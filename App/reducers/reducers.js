@@ -52,8 +52,18 @@ const books = (state = [], action) => {
   return state;
 }
 
+const flag = (state = true, action) => {
+  switch (action.type) {
+    case 'CHANGE_FLAG':
+      console.log('in the reducer flag');
+      return !state;
+    default:
+  }
+  return state;
+}
+
 const reducers = combineReducers({
-  events, user, books
+  events, user, books, flag
 
 })
 

@@ -85,3 +85,7 @@ export const login = (username, password) => ({
   },
   success: getEvents
 })
+
+export const changeFlag = () => ({
+  type: 'CHANGE_FLAG'
+})

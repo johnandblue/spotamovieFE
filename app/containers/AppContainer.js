@@ -1,46 +1,43 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-// import { ActionCreators } from '../actions'
+import ActionCreators from '../actions'
+
+console.log(ActionCreators.changeFlag);
 
 import {
   Animated,
   StyleSheet,
   View,
   NavigationExperimental,
-  Text
+  Text,
+  Button
 } from 'react-native';
 
-const {
-  PropTypes: NavigationPropTypes,
-  StateUtils: NavigationStateUtils,
-  Card: NavigationCard,
-  Transitioner: NavigationTransitioner,
-} = NavigationExperimental;
-
-const {
-  PagerStyleInterpolator: NavigationPagerStyleInterpolator,
-} = NavigationCard;
 
 class AppContainer extends Component {
 
-  // constructor(props: any, context: any) {
-  //   super(props, context);
-  //   this._render = this._render.bind(this);
-  //   this._renderScene = this._renderScene.bind(this);
-  // }
+
 
   render() {
-    return (
+   return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          SPOT A MOVIE or DIE HARD
-        </Text>
+        <Button
+          style={styles.welcome}
+          title="Button"
+          onPress={() => {this.props.changeFlag()}}
+          ></Button>
+
+          <Text>
+            {this.props.flag? 'flag!' : 'no flag'}
+          </Text>
       </View>
     );
   }
-}
 
+
+
+}
 
 
 const styles = StyleSheet.create({
@@ -61,7 +58,7 @@ const styles = StyleSheet.create({
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    marginTop: 40,
   },
   instructions: {
     textAlign: 'center',
@@ -71,17 +68,16 @@ const styles = StyleSheet.create({
 });
 
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators(ActionCreators, dispatch);
-// }
-//
-// function mapStateToProps(state) {
-//   return {
-//     navigationState: state.navigationState
-//   };
-// }
+function mapDispatchToProps(dispatch) {
+  return {
+    changeFlag: () => dispatch(ActionCreators.changeFlag())
+    }
+}
 
+function mapStateToProps(state) {
+  return {
+    flag: state.flag
+  };
+}
 
-export default connect()(AppContainer);
-
-// export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
