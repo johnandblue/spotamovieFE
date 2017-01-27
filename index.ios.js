@@ -9,7 +9,8 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
 
 export default class spotamovieFE extends Component {
@@ -19,6 +20,13 @@ export default class spotamovieFE extends Component {
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
+        <Button
+          onPress={() => console.log('HELLO')}
+          title="Learn More"
+          color="#841584"
+          backgroundColor="blue"
+          accessibilityLabel="Learn more about this purple button"
+        />
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
         </Text>
