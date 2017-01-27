@@ -5,6 +5,8 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 
 import reducers from  './app/reducers/reducers';
 import api      from './app/lib/api';
+import AppContainer from './app/containers/AppContainer'
+
 
 import {
   AppRegistry,
@@ -19,37 +21,37 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(api)));
 
 store.subscribe(() => {
   saveState({
-    events: store.getState().events,
-    user: store.getState().user
+    // events: store.getState().events,
+    // user: store.getState().user
   });
 });
 
 
-export default class spotamovieFE extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
-  }
-}
+// export default class spotamovieFE extends Component {
+//   render() {
+//     return (
+//       <View style={styles.container}>
+//         <Text style={styles.welcome}>
+//           SPOT A MOVIE or DIE HARD
+//         </Text>
+//       </View>
+//     );
+//   }
+// }
+
+
+const App = () => (
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>
+)
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#00AA00',
   },
   welcome: {
     fontSize: 20,
@@ -63,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('spotamovieFE', () => spotamovieFE);
+AppRegistry.registerComponent('spotamovieFE', () => App);
