@@ -4,6 +4,10 @@ import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 
+import reducers from '../reducers/reducers';
+import api      from '../lib/api';
+
+
 import {
   AppRegistry,
   StyleSheet,
@@ -11,6 +15,17 @@ import {
   View,
   Button
 } from 'react-native';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, loadState(), composeEnhancers(applyMiddleware(api, thunkMiddleware)));
+
+store.subscribe(() => {
+  saveState({
+    events: store.getState().events,
+    user: store.getState().user
+  });
+});
+
 
 export default class spotamovieFE extends Component {
   render() {
