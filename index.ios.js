@@ -6,7 +6,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import reducers from  './app/reducers/reducers';
 import api      from './app/lib/api';
 import AppContainer from './app/containers/AppContainer'
-
+import Login from './app/containers/Login'
 
 import {
   AppRegistry,
@@ -18,7 +18,8 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(api)));
 
 const App = () => (
   <Provider store={store}>
-    <AppContainer />
+    <Login/>
+    {/* <AppContainer /> */}
   </Provider>
 )
 
