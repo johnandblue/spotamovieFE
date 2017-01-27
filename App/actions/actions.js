@@ -1,43 +1,38 @@
 import { CALL_API } from '../lib/api'
 
-export const getEvents = () => ({
-    type: 'GET_EVENTS',
+export const getMovies = () => ({
+    type: 'GET_MOVIES',
     [CALL_API]: {
-      endpoint: '/events'
+      endpoint: '/movies'
     }
   })
 
 
-export const createEvent = (title, details, date, time, image) => ({
-  type: 'CREATE_EVENT',
+export const createMovie = (title, date, poster) => ({
+  type: 'CREATE_MOVIE',
   [CALL_API]: {
-    endpoint: '/events',
+    endpoint: '/movies',
     method: 'POST',
     data: {
       title,
-      details,
       date,
-      time,
-      image
+      poster
     },
   },
-  success: getEvents
+  success: getMovies
 })
 
-export const createBook = (name, email, rent, cert, eventId) => ({
-  type: 'CREATE_BOOK',
+export const createSong = (title, artist) => ({
+  type: 'CREATE_SONG',
   [CALL_API]: {
-    endpoint: '/appointments',
+    endpoint: '/songs',
     method: 'POST',
     data: {
-      name,
-      email,
-      rent,
-      cert,
-      eventId
+      title,
+      artist
     },
   },
-  success: getBooks
+  success: getSongs
 })
 
 export const deleteAll = (data) => ({
@@ -46,31 +41,31 @@ export const deleteAll = (data) => ({
     method: 'DELETE',
     endpoint: '/deleteAll'
   },
-  success: getEvents
+  success: getMovies
 })
 
-export const deleteEvent = (id) => ({
-  type: 'DELETE_EVENT',
+export const deleteMovie = (id) => ({
+  type: 'DELETE_MOVIE',
   [CALL_API]: {
     method: 'DELETE',
-    endpoint: '/events/'+id
+    endpoint: '/movies/'+id
   },
-  success: getEvents
+  success: getMovies
 })
 
-export const deleteBook = (id) => ({
-  type: 'DELETE_BOOK',
+export const deleteSong = (id) => ({
+  type: 'DELETE_SONG',
   [CALL_API]: {
     method: 'DELETE',
-    endpoint: '/appointments/'+id
+    endpoint: '/songs/'+id
   },
-  success: getBooks
+  success: getSongs
 })
 
-export const getBooks = () => ({
-    type: 'GET_BOOKS',
+export const getSongs = () => ({
+    type: 'GET_SONGS',
     [CALL_API]: {
-      endpoint: '/appointments'
+      endpoint: '/songs'
     }
   })
 
@@ -83,7 +78,7 @@ export const login = (username, password) => ({
     username,
     password
   },
-  success: getEvents
+  success: getMovies
 })
 
 export const changeFlag = () => ({

@@ -1,6 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
+import {Scene, Router} from 'react-native-router-flux';
+import Screen1 from '../components/Screen1';
+import Screen2 from '../components/Screen2'
+
+
 import ActionCreators from '../actions'
 
 console.log(ActionCreators.changeFlag);
@@ -21,17 +26,25 @@ class AppContainer extends Component {
 
   render() {
    return (
-      <View style={styles.container}>
-        <Button
-          style={styles.welcome}
-          title="Button"
-          onPress={() => {this.props.changeFlag()}}
-          ></Button>
 
-          <Text>
-            {this.props.flag? 'flag!' : 'no flag'}
-          </Text>
-      </View>
+    <Router>
+      <Scene key="root">
+        <Scene key="Screen1" component={Screen1} title="Screen1" initial={true} />
+        <Scene key="Screen2" component={Screen2} title="Screen2"/>
+      </Scene>
+    </Router>
+
+      // <View style={styles.container}>
+      //   <Button
+      //     style={styles.welcome}
+      //     title="Button"
+      //     onPress={() => {this.props.changeFlag()}}
+      //     ></Button>
+      //
+      //     <Text>
+      //       {this.props.flag? 'flag!' : 'no flag'}
+      //     </Text>
+      // </View>
     );
   }
 

@@ -1,20 +1,20 @@
 import { combineReducers } from 'redux';
 
-const events = (state = [], action) => {
+const movies = (state = [], action) => {
 
   switch (action.type) {
-    // case 'GET_EVENTS_REQUEST':
-    // case 'CREATE_EVENT_REQUEST':
+    // case 'GET_MOVIES_REQUEST':
+    // case 'CREATE_MOVIE_REQUEST':
     //   return Object.assign({}, state, {loading: true})
     //   break;
-    case 'GET_EVENTS_SUCCESS':
-      // return Object.assign({}, state, {events: action.response})
+    case 'GET_MOVIES_SUCCESS':
+      // return Object.assign({}, state, {movies: action.response})
       return [...action.response];
-    // case 'GET_EVENTS_FAILURE':
-    // case 'CREATE_EVENT_SUCCESS':
+    // case 'GET_MOVIES_FAILURE':
+    // case 'CREATE_MOVIE_SUCCESS':
     //   return Object.assign({}, state, {loading: true})
     //   break;
-    // case 'CREATE_EVENT_FAILURE':
+    // case 'CREATE_MOVIE_FAILURE':
     //   return Object.assign({}, state)
     //   break;
     // case 'DELETE_ALL_REQUEST':
@@ -41,9 +41,9 @@ const user = (state = {}, action) => {
   return state;
 }
 
-const books = (state = [], action) => {
+const songs = (state = [], action) => {
   switch (action.type) {
-    case 'GET_BOOKS_SUCCESS':
+    case 'GET_SONGS_SUCCESS':
       return [...action.response];
     case 'LOGOUT':
       return [];
@@ -63,7 +63,7 @@ const flag = (state = true, action) => {
 }
 
 const reducers = combineReducers({
-  events, user, books, flag
+  movies, user, songs, flag
 
 })
 
