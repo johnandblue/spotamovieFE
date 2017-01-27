@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
+
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import createLogger from 'redux-logger';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 
-import reducers from '../reducers/reducers';
-import api      from '../lib/api';
-
+import reducers from  './app/reducers/reducers';
+import api      from './app/lib/api';
 
 import {
   AppRegistry,
@@ -17,7 +15,7 @@ import {
 } from 'react-native';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, loadState(), composeEnhancers(applyMiddleware(api, thunkMiddleware)));
+const store = createStore(reducers, composeEnhancers(applyMiddleware(api)));
 
 store.subscribe(() => {
   saveState({
@@ -34,13 +32,6 @@ export default class spotamovieFE extends Component {
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
-        <Button
-          onPress={() => console.log('HELLO')}
-          title="Learn More"
-          color="#841584"
-          backgroundColor="blue"
-          accessibilityLabel="Learn more about this purple button"
-        />
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
         </Text>
