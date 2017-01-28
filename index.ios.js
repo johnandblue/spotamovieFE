@@ -18,8 +18,7 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(api)));
 
 const App = () => (
   <Provider store={store}>
-    <Login/>
-    {/* <AppContainer /> */}
+    <AppContainer />
   </Provider>
 )
 

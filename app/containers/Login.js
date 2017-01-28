@@ -67,10 +67,9 @@ class AppContainer extends Component {
 
   handleOpenURL(event) {
 
-    const code = event.url.match(/code=(.+)\&/);
-    
+    let code = event.url.match(/code=(.+)\&/);
     code = code[1];
-
+    let state = event.url.match(/code=(.+)\&/);
 
     fetch('http:localhost:8888/login', {
       method:  'POST',
