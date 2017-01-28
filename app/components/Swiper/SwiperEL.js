@@ -46,16 +46,24 @@ class SwiperEL extends Component {
     this._swiper._goToNextCard();
   }
 
+
+
   render() {
     // const { movies,
     //   modalInfoShow, openModalInfo, closeModalInfo
     // } = this.props;
-let title=' ';
+  const Frutas = [
+    {text: 'Tomato', backgroundColor: 'red'},
+    {text: 'Aubergine', backgroundColor: 'purple'},
+    {text: 'Courgette', backgroundColor: 'green'},
+    {text: 'Blueberry', backgroundColor: 'blue'},
+    {text: 'Umm...', backgroundColor: 'cyan'},
+    {text: 'orange', backgroundColor: 'orange'},
+  ]
+
+    let title=' ';
     const movies = this.props.movies;
-    if (movies.length>0) {
-      console.log('movies[0].title', movies[this.state.cardIndex].title);
-      title = movies[0].title
-    }
+    console.log(movies);
     if (this.state.cardIndex > movies.length - 1) {
       return <NoMoreCard />;
     }
@@ -63,27 +71,32 @@ let title=' ';
       return null
     }
     return (
-      <View style={styles.root}>
-        <StatusBar barStyle="light-content" />
+      <View>
+        {/* <StatusBar barStyle="light-content" />
         <View style={styles.titleContainer}>
           <Text style={styles.titleStyle}>
             {movies[this.state.cardIndex].title}
           </Text>
+        </View> */}
+        <View style={{margin: 130}}>
+          <Text>
+            {movies[this.state.cardIndex].title}
+          </Text>
         </View>
-        {/* <SwipeCards
-          ref={ref => this._swiper = ref} // eslint-disable-line
-          containerStyle={styles.swiperContainer}
+        <SwipeCards
+          // ref={ref => this._swiper = ref} // eslint-disable-line
+          // containerStyle={styles.swiperContainer}
           cards={movies}
           renderCard={data => <Card {...data} />}
           handleYup={this._handleYup}
           handleNope={this._handleNope}
-          yupStyle={styles.yupAndNopeStyle}
-          yupTextStyle={styles.yupTextStyle}
-          nopeStyle={styles.yupAndNopeStyle}
-          nopeTextStyle={styles.nopeTextStyle}
+          // yupStyle={styles.yupAndNopeStyle}
+          // yupTextStyle={styles.yupTextStyle}
+          // nopeStyle={styles.yupAndNopeStyle}
+          // nopeTextStyle={styles.nopeTextStyle}
           renderNoMoreCards={() => <NoMoreCard />}
         />
-        <ButtonsGroup
+        {/* <ButtonsGroup
           info={() => openModalInfo(movies[this.state.cardIndex])}
           dislike={this._clickDislike}
           like={this._clickLike}
