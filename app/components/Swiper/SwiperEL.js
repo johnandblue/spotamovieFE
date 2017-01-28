@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StatusBar } from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import SwipeCards from 'react-native-swipe-cards';
 import styles from './styles/SwiperEl';
@@ -63,14 +63,15 @@ class SwiperEL extends Component {
       return null
     }
     return (
-      <View>
-
-        <View style={{margin: 100}}>
-          <Text>
+      <View
+        style={{backgroundColor:'#494953', flex: 1,  alignItems: 'center'}}>
+        <View
+          style={{flexDirection: 'column', alignItems:'center', marginTop: 100}}
+        >
+          <Text
+            style={{margin: 20, fontSize: 20, color: 'white'}}
+          >
             {movies[this.state.cardIndex].title}
-          </Text>
-          <Text>
-            {movies[this.state.cardIndex].id}
           </Text>
         </View>
         <SwipeCards
@@ -80,17 +81,61 @@ class SwiperEL extends Component {
           handleNope={this._handleNope}
           renderNoMoreCards={() => <NoMoreCard />}
         />
-        {/* <ButtonsGroup
-          info={() => openModalInfo(movies[this.state.cardIndex])}
-          dislike={this._clickDislike}
-          like={this._clickLike}
-        />
-        <InfoModal
-          closeModalInfo={closeModalInfo}
-          close={() => closeModalInfo()}
-          visible={modalInfoShow}
-          movie={this.props.modalInfoMovie}
-        /> */}
+        <View
+          style={{
+            flex: 0.2,
+            flexDirection: 'row',
+            margin: 20
+          }}
+        >
+          <TouchableOpacity
+            // onPress={dislike}
+          >
+            <View
+              style={{
+                flex: 0.2,
+                flexDirection: 'row',
+                margin: 20
+              }}
+            >
+              <Text
+                style={{color: 'red'}}
+              >
+                NO
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            // onPress={info}
+          >
+            <View
+              style={{
+                flex: 0.2,
+                flexDirection: 'row',
+                margin: 20
+              }}            >
+              <Text>INFO</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            // onPress={like}
+          >
+            <View
+              style={{
+                flex: 0.2,
+                flexDirection: 'row',
+                margin: 20
+              }}
+            >
+              <Text
+                style={{color: 'green'}}
+              >
+                YES
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+
       </View>
     );
   }

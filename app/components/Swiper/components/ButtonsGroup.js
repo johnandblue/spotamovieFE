@@ -1,30 +1,30 @@
-import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import React, { Component } from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
 // import { Ionicons, FontAwesome } from '@exponent/vector-icons';
 import Colors from '../../../constants/Colors';
 import styles from './styles/ButtonsGroup';
 
-const ButtonsGroup = ({ like, dislike, info }) => (
-  <View style={styles.root}>
-    <TouchableOpacity onPress={dislike}>
-      <View style={[styles.buttons, { borderColor: Colors.redColor }]}>
-        <Text>NOP</Text>
-        {/* <Ionicons name="ios-thumbs-down" size={50} color={Colors.redColor} /> */}
-      </View>
-    </TouchableOpacity>
-    <TouchableOpacity onPress={info}>
-      <View style={styles.buttonInfo}>
-        <Text>INF</Text>
-        {/* <FontAwesome name="info" size={20} color="#fff" /> */}
-      </View>
-    </TouchableOpacity>
-    <TouchableOpacity onPress={like}>
-      <View style={[styles.buttons, { borderColor: Colors.blueColor }]}>
-        <Text>YEP</Text>
-        {/* <Ionicons name="ios-thumbs-up" size={50} color={Colors.blueColor} /> */}
-      </View>
-    </TouchableOpacity>
-  </View>
-);
 
-export default ButtonsGroup;
+export default class ButtonsGroup extends Component {
+  render() {
+    return (
+      <View>
+        <TouchableOpacity onPress={dislike}>
+          <View style={{ borderColor: 'red'}}>
+            <Text>NOP</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={info}>
+          <View style={{ borderColor: 'white'}}>
+            <Text>NOP</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={like}>
+          <View style={{ borderColor: 'green'}}>
+            <Text>NOP</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+}
