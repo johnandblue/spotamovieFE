@@ -2,13 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import {Scene, Router} from 'react-native-router-flux';
-import Screen1 from '../components/Screen1';
+import SwiperEL from '../components/Swiper/SwiperEL';
 import Screen2 from '../components/Screen2'
 
-
 import ActionCreators from '../actions'
-
-console.log(ActionCreators.changeFlag);
 
 import {
   Animated,
@@ -29,7 +26,7 @@ class AppContainer extends Component {
 
     <Router>
       <Scene key="root">
-        <Scene key="Screen1" component={Screen1} title="Screen1" initial={true} />
+        <Scene key="SwiperEL" component={SwiperEL} title="SwiperEL" initial={true} />
         <Scene key="Screen2" component={Screen2} title="Screen2"/>
       </Scene>
     </Router>
