@@ -33,7 +33,7 @@ const movies = (state = [], action) => {
 const user = (state = {}, action) => {
   switch (action.type) {
     case 'LOGIN_SUCCESS':
-      return {...action.response};
+      return action.response;
     case 'LOGOUT':
       return {};
     default:
@@ -44,7 +44,7 @@ const user = (state = {}, action) => {
 const songs = (state = [], action) => {
   switch (action.type) {
     case 'GET_SONGS_SUCCESS':
-      return [...action.response];
+      return action.response;
     case 'LOGOUT':
       return [];
     default:
