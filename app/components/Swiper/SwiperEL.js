@@ -52,14 +52,6 @@ class SwiperEL extends Component {
     // const { movies,
     //   modalInfoShow, openModalInfo, closeModalInfo
     // } = this.props;
-  const Frutas = [
-    {text: 'Tomato', backgroundColor: 'red'},
-    {text: 'Aubergine', backgroundColor: 'purple'},
-    {text: 'Courgette', backgroundColor: 'green'},
-    {text: 'Blueberry', backgroundColor: 'blue'},
-    {text: 'Umm...', backgroundColor: 'cyan'},
-    {text: 'orange', backgroundColor: 'orange'},
-  ]
 
     let title=' ';
     const movies = this.props.movies;
@@ -72,28 +64,20 @@ class SwiperEL extends Component {
     }
     return (
       <View>
-        {/* <StatusBar barStyle="light-content" />
-        <View style={styles.titleContainer}>
-          <Text style={styles.titleStyle}>
-            {movies[this.state.cardIndex].title}
-          </Text>
-        </View> */}
+
         <View style={{margin: 100}}>
           <Text>
             {movies[this.state.cardIndex].title}
           </Text>
+          <Text>
+            {movies[this.state.cardIndex].id}
+          </Text>
         </View>
         <SwipeCards
-          // ref={ref => this._swiper = ref} // eslint-disable-line
-          // containerStyle={styles.swiperContainer}
           cards={movies}
           renderCard={data => <Card {...data} />}
           handleYup={this._handleYup}
           handleNope={this._handleNope}
-          // yupStyle={styles.yupAndNopeStyle}
-          // yupTextStyle={styles.yupTextStyle}
-          // nopeStyle={styles.yupAndNopeStyle}
-          // nopeTextStyle={styles.nopeTextStyle}
           renderNoMoreCards={() => <NoMoreCard />}
         />
         {/* <ButtonsGroup
