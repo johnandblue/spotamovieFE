@@ -15,7 +15,7 @@ import {
   Button
 } from 'react-native';
 
-const path = 'https://movied.herokuapp.com/discover';
+const path = 'https://movied.herokuapp.com/popular';
 
 class AppContainer extends Component {
   render() {

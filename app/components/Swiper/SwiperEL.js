@@ -78,7 +78,7 @@ class SwiperEL extends Component {
             {movies[this.state.cardIndex].title}
           </Text>
         </View> */}
-        <View style={{margin: 130}}>
+        <View style={{margin: 100}}>
           <Text>
             {movies[this.state.cardIndex].title}
           </Text>
