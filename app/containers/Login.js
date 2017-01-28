@@ -1,10 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-
+import base64 from 'base-64';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 // import { ActionCreators } from '../actions'
 import config from '../../config';
 import querystring from 'querystring';
+
+import {Buffer} from 'buffer';
+
 import {
   Animated,
   StyleSheet,
@@ -54,26 +57,68 @@ function spotifyOauth () {
   Linking.openURL(query);
 }
 
+
 class AppContainer extends Component {
   componentDidMount() {
-    console.log('componentDidMount');
     spotifyOauth()
-    Linking.addEventListener('url', this._handleOpenURL);
+    Linking.addEventListener('url', this.handleOpenURL);
+
   }
 
-  _handleOpenURL(event) {
-    console.log(event.url);
-  }
+  handleOpenURL(event) {
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          SPOT A MOVIE or DIE HARD
-        </Text>
-      </View>
-    );
-  }
+    const code = event.url.match(/code=(.+)\&/);
+    
+    code = code[1];
+
+
+    fetch('http:localhost:8888/login', {
+      method:  'POST',
+      headers: {
+        // 'Authorization':encoded,
+        'Accept': 'application/json',
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        grant_type : "authorization_code",
+        code : code,
+        redirect_uri: config.redirect_uri,
+        client_id:config.client_id,
+        client_secret:config.client_secret
+
+      })
+    }
+  )
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+        response.status);
+        return;
+      }
+      // Examine the text in the response
+      response.json().then(function(data) {
+        console.log(data);
+      });
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
+
+}
+
+
+
+render() {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.welcome}>
+        SPOT A MOVIE or DIE HARD
+      </Text>
+    </View>
+  );
+}
 }
 
 
