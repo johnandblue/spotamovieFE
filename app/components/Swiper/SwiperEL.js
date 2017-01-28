@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import SwipeCards from 'react-native-swipe-cards';
-import styles from './styles/SwiperElStyle';
+import styles from './styles/SwiperEl';
 import { ButtonsGroup, Card, NoMoreCard } from './components';
 import ActionCreators from '../../actions'
 
@@ -17,7 +17,6 @@ class SwiperEL extends Component {
 
   componentDidMount() {
     this.props.getMovies(path)
-    console.log('in did mount', this.state);
   }
 
   _handleYup = movie => {
@@ -48,11 +47,20 @@ class SwiperEL extends Component {
   }
 
   render() {
-    const { movies,
-      // modalInfoShow, openModalInfo, closeModalInfo
-    } = this.props;
+    // const { movies,
+    //   modalInfoShow, openModalInfo, closeModalInfo
+    // } = this.props;
+let title=' ';
+    const movies = this.props.movies;
+    if (movies.length>0) {
+      console.log('movies[0].title', movies[this.state.cardIndex].title);
+      title = movies[0].title
+    }
     if (this.state.cardIndex > movies.length - 1) {
       return <NoMoreCard />;
+    }
+    if (!movies.length) {
+      return null
     }
     return (
       <View style={styles.root}>
@@ -62,7 +70,7 @@ class SwiperEL extends Component {
             {movies[this.state.cardIndex].title}
           </Text>
         </View>
-        <SwipeCards
+        {/* <SwipeCards
           ref={ref => this._swiper = ref} // eslint-disable-line
           containerStyle={styles.swiperContainer}
           cards={movies}
@@ -80,7 +88,7 @@ class SwiperEL extends Component {
           dislike={this._clickDislike}
           like={this._clickLike}
         />
-        {/* <InfoModal
+        <InfoModal
           closeModalInfo={closeModalInfo}
           close={() => closeModalInfo()}
           visible={modalInfoShow}

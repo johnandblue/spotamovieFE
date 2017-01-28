@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import {Scene, Router} from 'react-native-router-flux';
 import SwiperEL from '../components/Swiper/SwiperEL';
 import Screen2 from '../components/Screen2'
-
 import ActionCreators from '../actions'
 
 import {
@@ -16,11 +15,9 @@ import {
   Button
 } from 'react-native';
 
+const path = 'https://movied.herokuapp.com/discover';
 
 class AppContainer extends Component {
-
-
-
   render() {
    return (
 
@@ -78,16 +75,14 @@ const styles = StyleSheet.create({
 });
 
 
-function mapDispatchToProps(dispatch) {
-  return {
-    changeFlag: () => dispatch(ActionCreators.changeFlag())
-    }
-}
-
 function mapStateToProps(state) {
   return {
-    flag: state.flag
+    flag: state.flag,
+
   };
 }
+const mapDispatchToProps = (dispatch) => ({
+});
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

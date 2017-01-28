@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const movies = (state = {}, action) => {
+const movies = (state = [], action) => {
   switch (action.type) {
     // case 'ADD_MOVIES':
     //   return ({ ...state, ...action.movies });
@@ -17,10 +17,9 @@ const movies = (state = {}, action) => {
 
     case 'GET_MOVIES_RECEIVED':
       if (action.data) {
-        console.log('action.data:', action.data);
         let parsedMovies = parseMovies(action.data);
-        console.log('parsedMovies', parsedMovies);
-        return ({ ...state, ...parsedMovies });
+        // console.log('parsedMovies', parsedMovies);
+        return parsedMovies;
       }
       return state;
 
@@ -62,6 +61,26 @@ const movies = (state = {}, action) => {
 //   }
 //   return state;
 // }
+
+export const parseMovies = (moviesArray) => {
+  // let moviesObj = {};
+  // moviesArray.forEach((movie) => {
+  //   moviesObj[movie.id] = {
+  //     seen: false,
+  //     poster_path: movie.poster_path,
+  //     id: movie.id,
+  //     title: movie.title
+  //   };
+  // });
+  return moviesArray.map((movie)=>(
+    {
+      seen: false,
+      poster_path: movie.poster_path,
+      id: movie.id,
+      title: movie.title
+    }
+  ));
+}
 
 const reducers = combineReducers({
   movies,

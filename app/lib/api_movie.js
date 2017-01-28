@@ -19,7 +19,7 @@ export const apiGenerator = (dispatch) => (route, name) => {
 export const apiMiddleware = store => next => action => {
   const getApi = apiGenerator(store.dispatch)
   if (action.route) {
-    console.log('action in middlew', action);
+    // console.log('action in middlew', action);
     getApi(action.route, action.type);
     return next({
       type: action.type,
