@@ -15,35 +15,18 @@ import {
   Button
 } from 'react-native';
 
-const path = 'https://movied.herokuapp.com/popular';
 
 class AppContainer extends Component {
   render() {
    return (
-
     <Router>
       <Scene key="root">
         <Scene key="SwiperEL" component={SwiperEL} title="Movie Survey" initial={true} />
         <Scene key="Screen2" component={Screen2} title="Screen2"/>
       </Scene>
     </Router>
-
-      // <View style={styles.container}>
-      //   <Button
-      //     style={styles.welcome}
-      //     title="Button"
-      //     onPress={() => {this.props.changeFlag()}}
-      //     ></Button>
-      //
-      //     <Text>
-      //       {this.props.flag? 'flag!' : 'no flag'}
-      //     </Text>
-      // </View>
     );
   }
-
-
-
 }
 
 
@@ -77,7 +60,6 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-    flag: state.flag,
 
   };
 }
