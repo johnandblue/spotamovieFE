@@ -6,7 +6,7 @@ import { composeWithDevTools } from 'remote-redux-devtools';
 
 
 import reducers from  './app/reducers/reducers';
-import api_movie      from './app/lib/api_movie.js';
+import api      from './app/lib/api.js';
 import AppContainer from './app/containers/AppContainer'
 import Login from './app/containers/Login'
 
@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 
 const composeEnhancers = composeWithDevTools({ realtime: true, port: 8000 });
-const store = createStore(reducers, composeEnhancers(applyMiddleware(api_movie)));
+const store = createStore(reducers, composeEnhancers(applyMiddleware(api)));
 
 const App = () => (
   <Provider store={store}>

@@ -1,7 +1,17 @@
+const PATH_POPULAR = 'https://movied.herokuapp.com/popular';
 const API_ROOT = 'http://localhost:8888'
 
-const callApi = (endpoint, method='GET', data, authentication) => {
-  const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
+const callApi = (serverRoute, endpoint, method='GET', data, authentication) => {
+  console.log(serverRoute)
+
+  const serverURL = (serverRoute) => {
+    if (serverRoute === 'tmdb') return PATH_POPULAR
+    if (serverRoute === 'spotify') return API_ROOT
+  }
+
+  console.log(serverURL)
+
+  const fullUrl = (endpoint.indexOf(serverURL(serverRoute)) === -1) ? serverURL(serverRoute) + endpoint : endpoint
 
   let body
   if (data) {
@@ -20,6 +30,7 @@ const callApi = (endpoint, method='GET', data, authentication) => {
       response.json()
       .then(json => {
         if (!response.ok) {
+          console.log('response rejected');
           return Promise.reject(json)
         }
         return json
@@ -38,7 +49,7 @@ export default store => next => action => {
     return next(action)
   }
 
-  let { endpoint, method, data } = callAPI
+  let { serverRoute, endpoint, method, data } = callAPI
   const { type } = action
 
   if (typeof endpoint !== 'string') {
@@ -58,7 +69,7 @@ export default store => next => action => {
 
   next(actionWith({ type: type + '_REQUEST' }))
 
-  return callApi(endpoint, method, data, authentication)
+  return callApi(serverRoute, endpoint, method, data, authentication)
     .then(
       response => {
         next(actionWith({

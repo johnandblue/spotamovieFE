@@ -6,6 +6,7 @@ import { login } from '../actions/actions'
 import config from '../../config';
 import querystring from 'querystring';
 import {Buffer} from 'buffer';
+import { Actions } from 'react-native-router-flux';
 
 import {
   Animated,
@@ -15,7 +16,8 @@ import {
   Text,
   AppRegistry,
   TouchableHighlight,
-  Linking
+  Linking,
+  Button
 } from 'react-native';
 
 const {
@@ -83,17 +85,36 @@ const styles = StyleSheet.create({
   },
 });
 
+const buttonStyle = {
+  start:{
+    padding: 30,
+    margin: 50,
+    paddingBottom:20,
+    backgroundColor:'peru',
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: '#fff'
+  },
+  startText:{
+      color:'#fff',
+      textAlign:'center',
+  }
+}
+
 class Login extends Component {
   componentDidMount() {
     spotifyOauth()
     Linking.addEventListener('url', this.handleOpenSpotifyURL.bind(this));
   }
 
+  componentDidUpdate() {
+
+console.log(this.props);
+  }
+
   handleOpenSpotifyURL(event) {
     let code = event.url.match(/code=(.+)\&/);
     code = code[1];
-    console.log('code in handleOpenSpotifyURL: ', code);
-    console.log(typeof this.props.login);
     this.props.login(code);
   }
 
@@ -103,18 +124,24 @@ class Login extends Component {
         <Text style={styles.welcome}>
           After Spotify Login
         </Text>
+        <TouchableHighlight
+          style={buttonStyle.start}
+          onPress={Actions.SwiperEL}
+          underlayColor='#fff'>
+            <Text style={buttonStyle.startText}>Start</Text>
+        </TouchableHighlight>
       </View>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (code) => dispatch(login(code))
+  login: (code) => dispatch(login(code)),
 })
 
 const mapStateToProps = (state) => ({
   navigationState: state.navigationState,
-  user: state.user
+  user: state.user,
 })
 
 export default connect(

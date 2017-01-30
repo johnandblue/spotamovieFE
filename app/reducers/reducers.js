@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 const movies = (state = [], action) => {
   switch (action.type) {
 
-    case 'GET_MOVIES_RECEIVED':
+    case 'GET_MOVIES_SUCCESS':
       if (action.data) {
         let parsedMovies = parseMovies(action.data);
         // console.log('parsedMovies', parsedMovies);
@@ -20,6 +20,7 @@ const movies = (state = [], action) => {
   }
 }
 
+
 const user = (state = {}, action) => {
   switch (action.type) {
     case 'LOGIN_SUCCESS':
@@ -30,6 +31,7 @@ const user = (state = {}, action) => {
   }
   return state;
 }
+
 
 export const parseMovies = (moviesArray) => {
   return moviesArray.map((movie)=>(
