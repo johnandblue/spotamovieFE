@@ -1,33 +1,23 @@
 import { combineReducers } from 'redux';
 
-const events = (state = [], action) => {
-
+const movies = (state = [], action) => {
   switch (action.type) {
-    // case 'GET_EVENTS_REQUEST':
-    // case 'CREATE_EVENT_REQUEST':
-    //   return Object.assign({}, state, {loading: true})
-    //   break;
-    case 'GET_EVENTS_SUCCESS':
-      // return Object.assign({}, state, {events: action.response})
-      return [...action.response];
-    // case 'GET_EVENTS_FAILURE':
-    // case 'CREATE_EVENT_SUCCESS':
-    //   return Object.assign({}, state, {loading: true})
-    //   break;
-    // case 'CREATE_EVENT_FAILURE':
-    //   return Object.assign({}, state)
-    //   break;
-    // case 'DELETE_ALL_REQUEST':
-    // case 'DELETE_ALL_SUCCESS':
-    // return Object.assign({}, state, {loading: true})
-    // break;
-    case 'LOGOUT':
-      return [];
+
+    case 'GET_MOVIES_RECEIVED':
+      if (action.data) {
+        let parsedMovies = parseMovies(action.data);
+        // console.log('parsedMovies', parsedMovies);
+        return parsedMovies;
+      }
+      return state;
+
+    case 'GET_MOVIES_ERROR':
+      console.log('ERROR IN REDUCERS:', action.error);
+      return state;
+
     default:
-
+      return state;
   }
-
-  return state;
 }
 
 const user = (state = {}, action) => {
@@ -41,19 +31,19 @@ const user = (state = {}, action) => {
   return state;
 }
 
-const books = (state = [], action) => {
-  switch (action.type) {
-    case 'GET_BOOKS_SUCCESS':
-      return [...action.response];
-    case 'LOGOUT':
-      return [];
-    default:
-  }
-  return state;
+export const parseMovies = (moviesArray) => {
+  return moviesArray.map((movie)=>(
+    {
+      seen: false,
+      poster_path: movie.poster_path,
+      id: movie.id,
+      title: movie.title
+    }
+  ));
 }
 
 const reducers = combineReducers({
-  events, user, books
+  movies, user
 
 })
 

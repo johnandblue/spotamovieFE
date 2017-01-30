@@ -1,46 +1,33 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-// import { ActionCreators } from '../actions'
+import {Scene, Router} from 'react-native-router-flux';
+import SwiperEL from '../components/Swiper/SwiperEL';
+import Login from '../containers/Login'
+import ActionCreators from '../actions'
 
 import {
   Animated,
   StyleSheet,
   View,
   NavigationExperimental,
-  Text
+  Text,
+  Button
 } from 'react-native';
 
-const {
-  PropTypes: NavigationPropTypes,
-  StateUtils: NavigationStateUtils,
-  Card: NavigationCard,
-  Transitioner: NavigationTransitioner,
-} = NavigationExperimental;
-
-const {
-  PagerStyleInterpolator: NavigationPagerStyleInterpolator,
-} = NavigationCard;
 
 class AppContainer extends Component {
-
-  // constructor(props: any, context: any) {
-  //   super(props, context);
-  //   this._render = this._render.bind(this);
-  //   this._renderScene = this._renderScene.bind(this);
-  // }
-
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          SPOT A MOVIE or DIE HARD
-        </Text>
-      </View>
+   return (
+    <Router>
+      <Scene key="root">
+        <Scene key="Login" component={Login} title="Login"/>
+        <Scene key="SwiperEL" component={SwiperEL} title="Movie Survey" />
+      </Scene>
+    </Router>
     );
   }
 }
-
 
 
 const styles = StyleSheet.create({
@@ -61,7 +48,7 @@ const styles = StyleSheet.create({
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    marginTop: 40,
   },
   instructions: {
     textAlign: 'center',
@@ -71,17 +58,13 @@ const styles = StyleSheet.create({
 });
 
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators(ActionCreators, dispatch);
-// }
-//
-// function mapStateToProps(state) {
-//   return {
-//     navigationState: state.navigationState
-//   };
-// }
+function mapStateToProps(state) {
+  return {
+
+  };
+}
+const mapDispatchToProps = (dispatch) => ({
+});
 
 
-export default connect()(AppContainer);
-
-// export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
