@@ -2,13 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import {Scene, Router} from 'react-native-router-flux';
-import Screen1 from '../components/Screen1';
+import SwiperEL from '../components/Swiper/SwiperEL';
 import Screen2 from '../components/Screen2'
-
-
 import ActionCreators from '../actions'
-
-console.log(ActionCreators.changeFlag);
 
 import {
   Animated,
@@ -21,35 +17,16 @@ import {
 
 
 class AppContainer extends Component {
-
-
-
   render() {
    return (
-
     <Router>
       <Scene key="root">
-        <Scene key="Screen1" component={Screen1} title="Screen1" initial={true} />
+        <Scene key="SwiperEL" component={SwiperEL} title="Movie Survey" initial={true} />
         <Scene key="Screen2" component={Screen2} title="Screen2"/>
       </Scene>
     </Router>
-
-      // <View style={styles.container}>
-      //   <Button
-      //     style={styles.welcome}
-      //     title="Button"
-      //     onPress={() => {this.props.changeFlag()}}
-      //     ></Button>
-      //
-      //     <Text>
-      //       {this.props.flag? 'flag!' : 'no flag'}
-      //     </Text>
-      // </View>
     );
   }
-
-
-
 }
 
 
@@ -81,16 +58,13 @@ const styles = StyleSheet.create({
 });
 
 
-function mapDispatchToProps(dispatch) {
-  return {
-    changeFlag: () => dispatch(ActionCreators.changeFlag())
-    }
-}
-
 function mapStateToProps(state) {
   return {
-    flag: state.flag
+
   };
 }
+const mapDispatchToProps = (dispatch) => ({
+});
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
