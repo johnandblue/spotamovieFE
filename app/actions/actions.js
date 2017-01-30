@@ -19,6 +19,7 @@ export const getMovies = (route) => ({
 
 
 export const login = (code) => {
+  console.log('in login actions');
   return {
     type: 'LOGIN',
     [CALL_API] : {
@@ -33,3 +34,18 @@ export const login = (code) => {
     }
   }
 }
+
+
+const mockServer = new Promise((resolve, reject) => {
+  resolve({
+    status: 200,
+    json: () => {
+      return new Promise((resolve, reject) => {
+        resolve({
+          name: 'Arol',
+          auth_token: 'jd8393je03k390dkd9'
+        })
+      })
+    }
+  })
+})

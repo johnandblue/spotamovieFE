@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import base64 from 'base-64';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { ActionCreators } from '../actions'
+import { login } from '../actions/actions'
 import config from '../../config';
 import querystring from 'querystring';
 import {Buffer} from 'buffer';
@@ -86,13 +86,14 @@ const styles = StyleSheet.create({
 class Login extends Component {
   componentDidMount() {
     spotifyOauth()
-    Linking.addEventListener('url', this.handleOpenSpotifyURL);
+    Linking.addEventListener('url', this.handleOpenSpotifyURL.bind(this));
   }
 
   handleOpenSpotifyURL(event) {
     let code = event.url.match(/code=(.+)\&/);
     code = code[1];
-
+    console.log('code in handleOpenSpotifyURL: ', code);
+    console.log(typeof this.props.login);
     this.props.login(code);
   }
 
@@ -108,7 +109,7 @@ class Login extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (code) => dispatch(ActionCreators.login(code))
+  login: (code) => dispatch(login(code))
 })
 
 const mapStateToProps = (state) => ({

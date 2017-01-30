@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { composeWithDevTools } from 'remote-redux-devtools';
+
 
 import reducers from  './app/reducers/reducers';
 import api_movie      from './app/lib/api_movie.js';
@@ -13,7 +15,7 @@ import {
   StyleSheet
 } from 'react-native';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = composeWithDevTools({ realtime: true, port: 8000 });
 const store = createStore(reducers, composeEnhancers(applyMiddleware(api_movie)));
 
 const App = () => (
