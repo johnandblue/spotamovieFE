@@ -1,4 +1,6 @@
-import { CALL_API } from '../lib/api'
+export const SpotifySymbol = Symbol('Spotify')
+export const TMDBSymbol    = Symbol('TMDB')
+
 import config from '../../config';
 export const ADD_MOVIES = 'addMovies';
 
@@ -16,9 +18,8 @@ export const seen = (id) => ({
 
 export const getMovies = () => ({
   type: 'GET_MOVIES',
-  [CALL_API] : {
-    serverRoute: 'tmdb',
-    endpoint: '/discover',
+  [TMDBSymbol] : {
+    endpoint: '/discover/movie',
     method: 'GET'
   }
 })
@@ -26,8 +27,7 @@ export const getMovies = () => ({
 
 export const login = (code) => ({
   type: 'LOGIN',
-  [CALL_API] : {
-    serverRoute: 'spotify',
+  [SpotifySymbol] : {
     endpoint: '/login',
     method: 'POST',
     data: {
