@@ -4,9 +4,9 @@ const movies = (state = [], action) => {
   switch (action.type) {
 
     case 'GET_MOVIES_SUCCESS':
-      if (action.data) {
-        console.log('in success', action);
-        let parsedMovies = parseMovies(action.data);
+    console.log('in success', action.response.results);
+      if (action.response.results) {
+        let parsedMovies = parseMovies(action.response.results);
         console.log('parsedMovies', parsedMovies);
         return parsedMovies;
       }

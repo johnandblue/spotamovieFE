@@ -18,7 +18,7 @@ export const getMovies = () => ({
   type: 'GET_MOVIES',
   [CALL_API] : {
     serverRoute: 'tmdb',
-    // endpoint: '/discover',
+    endpoint: '/discover',
     method: 'GET'
   }
 })

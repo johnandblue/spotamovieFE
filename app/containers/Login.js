@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#00AA00',
+    backgroundColor: '#494953',
   },
   welcome: {
     fontSize: 20,
@@ -90,8 +90,8 @@ const buttonStyle = {
     padding: 30,
     margin: 50,
     paddingBottom:20,
-    backgroundColor:'peru',
-    borderRadius:10,
+    backgroundColor:'darkblue',
+    borderRadius:50,
     borderWidth: 1,
     borderColor: '#fff'
   },
@@ -107,8 +107,12 @@ class Login extends Component {
     Linking.addEventListener('url', this.handleOpenSpotifyURL.bind(this));
   }
 
-  componentWillUpdate() {
-    console.log(this.props);
+  componentWillUpdate(nextProps) {
+    console.log('this.props in will update: ', nextProps.user);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('this.props in will receive props: ', nextProps.user);
   }
 
   handleOpenSpotifyURL(event) {

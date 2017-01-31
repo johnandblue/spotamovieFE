@@ -15,7 +15,10 @@ class SwiperEL extends Component {
   componentDidMount() {
     this.props.getMovies()
   }
-  
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps.movies);
+  }
 
   _handleYup = movie => {
     this.setState({ cardIndex: this.state.cardIndex + 1 });

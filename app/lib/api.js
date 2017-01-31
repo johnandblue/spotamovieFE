@@ -11,12 +11,9 @@ const callApi = (serverRoute, endpoint, method='GET', data, authentication) => {
   }
 
   const fullUrl = serverURL(serverRoute)
-  console.log(fullUrl)
-
 
   let body
   if (data) {
-    console.log('data in body: ', data);
     body = JSON.stringify(data)
   }
 
@@ -39,7 +36,8 @@ const callApi = (serverRoute, endpoint, method='GET', data, authentication) => {
       })
     )
     .catch(err => {
-      debugger;
+      console.error('ERROR in fetch');
+      return Promise.reject(err)
     })
 }
 
@@ -77,7 +75,6 @@ export default store => next => action => {
   return callApi(serverRoute, endpoint, method, data, authentication)
     .then(
       response => {
-        console.log(action);
         next(actionWith({
         response,
         type: type + '_SUCCESS'
