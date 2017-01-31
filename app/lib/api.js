@@ -1,20 +1,22 @@
-const PATH_POPULAR = 'https://movied.herokuapp.com/popular';
-const API_ROOT = 'http://localhost:8888'
+const API_KEY = 'b7e6c4c8913b06fd1a52159e1aa7f343';
+const PATH_TMDB = 'https://api.themoviedb.org/3';
+// const API_ROOT = 'http://localhost:8888'
+const API_ROOT = 'https://private-bd796b-spotamovie.apiary-mock.com'
+
 
 const callApi = (serverRoute, endpoint, method='GET', data, authentication) => {
-  console.log(serverRoute)
-
   const serverURL = (serverRoute) => {
-    if (serverRoute === 'tmdb') return PATH_POPULAR
-    if (serverRoute === 'spotify') return API_ROOT
+    if (serverRoute === 'tmdb') return PATH_TMDB + endpoint + "/movie?api_key=" + API_KEY
+    if (serverRoute === 'spotify') return API_ROOT + endpoint
   }
 
-  console.log(serverURL)
+  const fullUrl = serverURL(serverRoute)
+  console.log(fullUrl)
 
-  const fullUrl = (endpoint.indexOf(serverURL(serverRoute)) === -1) ? serverURL(serverRoute) + endpoint : endpoint
 
   let body
   if (data) {
+    console.log('data in body: ', data);
     body = JSON.stringify(data)
   }
 
@@ -36,6 +38,9 @@ const callApi = (serverRoute, endpoint, method='GET', data, authentication) => {
         return json
       })
     )
+    .catch(err => {
+      debugger;
+    })
 }
 
 // Action key that carries API call info interpreted by this Redux middleware.
@@ -72,6 +77,7 @@ export default store => next => action => {
   return callApi(serverRoute, endpoint, method, data, authentication)
     .then(
       response => {
+        console.log(action);
         next(actionWith({
         response,
         type: type + '_SUCCESS'

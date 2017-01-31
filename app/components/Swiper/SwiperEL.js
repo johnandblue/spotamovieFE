@@ -8,14 +8,14 @@ import ActionCreators from '../../actions'
 
 // import { addMovieToLikedList } from './actions';
 
-const path = 'https://movied.herokuapp.com/discover';
 
 class SwiperEL extends Component {
   state = { cardIndex: 0 }
 
   componentDidMount() {
-    this.props.getMovies(path)
+    this.props.getMovies()
   }
+  
 
   _handleYup = movie => {
     this.setState({ cardIndex: this.state.cardIndex + 1 });
@@ -137,7 +137,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getMovies: (route) => dispatch(ActionCreators.getMovies(route))
+  getMovies: () => dispatch(ActionCreators.getMovies())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SwiperEL);

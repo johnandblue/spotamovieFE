@@ -107,9 +107,8 @@ class Login extends Component {
     Linking.addEventListener('url', this.handleOpenSpotifyURL.bind(this));
   }
 
-  componentDidUpdate() {
-
-console.log(this.props);
+  componentWillUpdate() {
+    console.log(this.props);
   }
 
   handleOpenSpotifyURL(event) {

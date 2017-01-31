@@ -15,7 +15,7 @@ import {
   StyleSheet
 } from 'react-native';
 
-const composeEnhancers = composeWithDevTools({ realtime: true, port: 8000 });
+const composeEnhancers = composeWithDevTools({ realtime: true });
 const store = createStore(reducers, composeEnhancers(applyMiddleware(api)));
 
 const App = () => (
