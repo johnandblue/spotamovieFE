@@ -34,6 +34,21 @@ export const getMoviesSurvey = () => ({
   }
 })
 
+export const getMoviesLiked = () => ({
+  type: 'GET_MOVIES_LIKED',
+  [SpotifySymbol] : {
+    endpoint: `/movies/liked`,
+    method: 'GET',
+  }
+})
+
+export const getMoviesDisliked = () => ({
+  type: 'GET_MOVIES_DISLIKED',
+  [SpotifySymbol] : {
+    endpoint: `/movies/disliked`,
+    method: 'GET',
+  }
+})
 
 export const dislikeMovie = (movieId) => ({
   type: 'DISLIKE_MOVIE',

@@ -9,6 +9,7 @@ export default (symbol, baseURL, endpointSuffix="") => {
     if (data) {
       body = JSON.stringify(data)
     }
+
     return fetch(fullUrl, {
       method,
       body,
