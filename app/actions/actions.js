@@ -66,6 +66,22 @@ export const likeMovie = (movieId) => ({
   }
 })
 
+export const unLikeMovie = (movieId) => ({
+  type: 'UNLIKE_MOVIE',
+  [SpotifySymbol] : {
+    endpoint: `/movies/${movieId}/unlike`,
+    method: 'POST',
+  }
+})
+
+export const unDislikeMovie = (movieId) => ({
+  type: 'UNDISLIKE_MOVIE',
+  [SpotifySymbol] : {
+    endpoint: `/movies/${movieId}/undislike`,
+    method: 'POST',
+  }
+})
+
 
 export const login = (code) => ({
   type: 'LOGIN',
