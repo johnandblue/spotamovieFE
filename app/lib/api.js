@@ -4,13 +4,14 @@
 export default (symbol, baseURL, endpointSuffix="") => {
   const callApi = (serverRoute, endpoint, method='GET', data, authentication) => {
     const fullUrl = baseURL + endpoint + endpointSuffix
+    console.log(fullUrl);
 
     let body
     if (data) {
+      console.log('data in body: ', data);
       body = JSON.stringify(data)
     }
 
-    console.log(fullUrl);
     return fetch(fullUrl, {
       method,
       body,
@@ -19,18 +20,23 @@ export default (symbol, baseURL, endpointSuffix="") => {
         'Authorization': authentication
       }
     })
-      .then(response =>
-        response.json()
-        .then(json => {
-          if (!response.ok) {
-            console.log('response rejected');
-            return Promise.reject(json)
+      .then(response =>{
+        console.log(response);
+        if (response.status !== 201) {
+          return  response.json()
+            .then(json => {
+              console.log('json: ', json);
+              if (!response.ok) {
+                console.log('response rejected');
+                return Promise.reject(json)
+              }
+              return json
+            })
           }
-          return json
-        })
+        }
       )
       .catch(err => {
-        console.error('ERROR in fetch');
+        console.error('ERROR in fetch', err);
         return Promise.reject(err)
       })
   }
@@ -50,8 +56,8 @@ export default (symbol, baseURL, endpointSuffix="") => {
     }
 
     let authentication
-    if (store.getState().user.token) {
-      authentication = 'Bearer ' + store.getState().user.token
+    if (store.getState().user.userToken) {
+      authentication = 'Bearer ' + store.getState().userToken
     }
 
     const actionWith = data => {

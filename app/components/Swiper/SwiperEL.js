@@ -5,54 +5,53 @@ import SwipeCards from 'react-native-swipe-cards';
 import styles from './styles/SwiperEl';
 import { ButtonsGroup, Card, NoMoreCard } from './components';
 import ActionCreators from '../../actions'
-
-// import { addMovieToLikedList } from './actions';
+import { likeMovie, dislikeMovie } from '../../actions/actions';
 
 
 class SwiperEL extends Component {
-  state = { cardIndex: 0 }
+  state = {
+    cardIndex: 0
+  }
 
   componentDidMount() {
-    this.props.getMovies()
+    this.props.getMoviesDiscover()
+    this.props.getMoviesSurvey()
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.movies);
+    console.log('nextProps: ', nextProps);
   }
 
-  _handleYup = movie => {
+  handleYup = () => {
+    const movieId = this.props.movies[this.state.cardIndex].id;
     this.setState({ cardIndex: this.state.cardIndex + 1 });
-    // this.props.addMovieToLikedList({
-    //   id: movie.id,
-    //   title: movie.title,
-    //   image: movie.poster_path
-    // });
+    this.props.likeMovie(movieId);
+    console.log(movieId);
   }
 
-  _handleNope = () => this.setState({ cardIndex: this.state.cardIndex + 1 })
-
-  _clickLike= () => {
+  handleNope = () => {
+    const movieId = this.props.movies[this.state.cardIndex].id;
     this.setState({ cardIndex: this.state.cardIndex + 1 });
-    this._swiper._goToNextCard();
-    const movie = this.props.movies[this.state.cardIndex];
-    // this.props.addMovieToLikedList({
-    //   id: movie.id,
-    //   title: movie.title,
-    //   image: movie.poster_path
-    // });
+    this.props.dislikeMovie(movieId);
+    console.log(movieId);
   }
-
-  _clickDislike = () => {
-    this.setState({ cardIndex: this.state.cardIndex + 1 });
-    this._swiper._goToNextCard();
-  }
-
-
+  //
+  // clickLike = movie => {
+  //   const movie = this.props.movies[this.state.cardIndex];
+  //   this.setState({ cardIndex: this.state.cardIndex + 1 });
+  //   this.props.likeMovie(movie);
+  // }
+  //
+  // clickDislike = movie => {
+  //   const movie = this.props.movies[this.state.cardIndex];
+  //   this.setState({ cardIndex: this.state.cardIndex + 1 });
+  //   this.props.dislikeMovie(movie);
+  //
+  // }
 
   render() {
     let title='';
     const movies = this.props.movies;
-    console.log(movies);
     if (this.state.cardIndex > movies.length - 1) {
       return <NoMoreCard />;
     }
@@ -74,8 +73,8 @@ class SwiperEL extends Component {
         <SwipeCards
           cards={movies}
           renderCard={data => <Card {...data} />}
-          handleYup={this._handleYup}
-          handleNope={this._handleNope}
+          handleYup={this.handleYup}
+          handleNope={this.handleNope}
           renderNoMoreCards={() => <NoMoreCard />}
         />
         <View
@@ -113,7 +112,7 @@ class SwiperEL extends Component {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            // onPress={like}
+            onPress={this.clicLike}
           >
             <View
               style={{
@@ -135,12 +134,17 @@ class SwiperEL extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    movies: state.movies
+    movies: state.movies,
+    moviesSurvey: state.moviesSurvey,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getMovies: () => dispatch(ActionCreators.getMovies())
+  getMoviesDiscover: () => dispatch(ActionCreators.getMoviesDiscover()),
+  getMoviesSurvey: () => dispatch(ActionCreators.getMoviesSurvey()),
+  likeMovie: (movieId) => {dispatch(ActionCreators.likeMovie(movieId))},
+  dislikeMovie: (movieId) => dispatch(ActionCreators.dislikeMovie(movieId)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SwiperEL);

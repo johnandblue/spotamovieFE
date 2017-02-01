@@ -27,7 +27,6 @@ const styles = {
 
 const Card = React.createClass({
   render() {
-    console.log('in Card', this.props.poster_path);
     return (
       <View style={styles.poster}>
         <Image

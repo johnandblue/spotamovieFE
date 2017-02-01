@@ -1,26 +1,48 @@
 export const SpotifySymbol = Symbol('Spotify')
 export const TMDBSymbol    = Symbol('TMDB')
-
 import config from '../../config';
-export const ADD_MOVIES = 'addMovies';
 
-export const addMovies = (movies) => ({
-  serverRoute: 'tmdb',
-  type: 'ADD_MOVIES',
-  movies
-})
-
-export const seen = (id) => ({
-  serverRoute: 'tmdb',
-  type: 'SEEN_MOVIE',
-  id
-})
-
-export const getMovies = () => ({
-  type: 'GET_MOVIES',
+export const getMoviesDiscover = () => ({
+  type: 'GET_MOVIES_DISCOVER',
   [TMDBSymbol] : {
     endpoint: '/discover/movie',
     method: 'GET'
+  }
+})
+
+export const getMovieFromId = (movieId) => ({
+  type: 'GET_MOVIE',
+  [TMDBSymbol] : {
+    endpoint: `/movie/${movieId}`,
+    method: 'GET'
+  }
+})
+
+export const getMoviesSurvey = () => ({
+  type: 'GET_MOVIES_SURVEY',
+  [SpotifySymbol] : {
+    endpoint: `/movies/survey`,
+    method: 'GET',
+  }
+})
+
+
+export const dislikeMovie = (movieId) => ({
+  type: 'DISLIKE_MOVIE',
+  [SpotifySymbol] : {
+    endpoint: `/movies/${movieId}/dislike`,
+    method: 'POST',
+  }
+})
+
+export const likeMovie = (movieId) => ({
+  type: 'LIKE_MOVIE',
+  [SpotifySymbol] : {
+    endpoint: `/movies/${movieId}/like`,
+    method: 'POST',
+    data: {
+      movieId
+    }
   }
 })
 
