@@ -1,9 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
 
 const POSTER = 'https://image.tmdb.org/t/p/w500';
-
 
 const styles = {
   posterCard: {
@@ -30,11 +28,9 @@ const Card = React.createClass({
     return (
       <View style={styles.poster}>
         <Image
-         style={styles.posterCard}
+          style={styles.posterCard}
           source={{uri: `${POSTER}/${this.props.poster_path}`}}
-       />
-        {/* <Image style={styles.thumbnail} source={{uri: `${POSTER}/${this.props.poster_path}`}} /> */}
-        {/* <Text style={styles.text}>This is card {this.props.title}</Text> */}
+        />
       </View>
     )
   }

@@ -21,8 +21,8 @@ class AppContainer extends Component {
    return (
     <Router>
       <Scene key="root">
-        <Scene key="Login" component={Login} title="Login"/>
         <Scene key="SwiperEL" component={SwiperEL} title="Movie Survey" />
+        <Scene key="Login" component={Login} title="Login"/>
       </Scene>
     </Router>
     );
