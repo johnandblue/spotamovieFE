@@ -12,6 +12,8 @@ export default (symbol, baseURL, endpointSuffix="") => {
       body = JSON.stringify(data)
     }
 
+    console.log("AUTHORIATION", authentication);
+
     return fetch(fullUrl, {
       method,
       body,
@@ -21,20 +23,17 @@ export default (symbol, baseURL, endpointSuffix="") => {
       }
     })
       .then(response =>{
-        console.log(response);
-        if (response.status !== 201) {
+        if (response._bodyBlob.size !== 0) {
           return  response.json()
             .then(json => {
-              console.log('json: ', json);
               if (!response.ok) {
-                console.log('response rejected');
                 return Promise.reject(json)
               }
               return json
             })
-          }
-        }
-      )
+        } else if (!response.ok) return Promise.reject({})
+        else return {}
+      })
       .catch(err => {
         console.error('ERROR in fetch', err);
         return Promise.reject(err)
@@ -57,7 +56,7 @@ export default (symbol, baseURL, endpointSuffix="") => {
 
     let authentication
     if (store.getState().user.userToken) {
-      authentication = 'Bearer ' + store.getState().userToken
+      authentication = 'Bearer ' + store.getState().user.userToken
     }
 
     const actionWith = data => {

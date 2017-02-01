@@ -59,7 +59,6 @@ class SwiperEL extends Component {
     if (this.state.cardIndex > movies.length - 1) {
       return <NoMoreCard />;
     }
-    console.log(movies.length, this.props.moviesSurvey.length);
     if (movies.length !== this.props.moviesSurvey.length) {
       // Render a loader
       return null
