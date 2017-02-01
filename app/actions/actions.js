@@ -18,6 +18,14 @@ export const getMovieFromId = (movieId) => ({
   }
 })
 
+export const getMovieRecommendation = () => ({
+  type: 'GET_MOVIE_RECOMMENDATION',
+  [SpotifySymbol] : {
+    endpoint: `/movies/recommendation`,
+    method: 'GET'
+  }
+})
+
 export const getMoviesSurvey = () => ({
   type: 'GET_MOVIES_SURVEY',
   [SpotifySymbol] : {

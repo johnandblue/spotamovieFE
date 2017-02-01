@@ -15,7 +15,6 @@ const movies = (state = [], action) => {
       return state;
 
     case 'GET_MOVIE_SUCCESS':
-      console.log('action in reducer movie: ', action);
       if (action.response) {
         return [...state, parseMovie(action.response)]
       }

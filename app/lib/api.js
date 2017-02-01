@@ -4,16 +4,11 @@
 export default (symbol, baseURL, endpointSuffix="") => {
   const callApi = (serverRoute, endpoint, method='GET', data, authentication) => {
     const fullUrl = baseURL + endpoint + endpointSuffix
-    console.log(fullUrl);
 
     let body
     if (data) {
-      console.log('data in body: ', data);
       body = JSON.stringify(data)
     }
-
-    console.log("AUTHORIATION", authentication);
-
     return fetch(fullUrl, {
       method,
       body,

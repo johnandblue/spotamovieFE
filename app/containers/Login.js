@@ -87,17 +87,17 @@ const styles = StyleSheet.create({
 
 const buttonStyle = {
   start:{
-    padding: 30,
+    padding: 20,
     margin: 50,
-    paddingBottom:20,
-    backgroundColor:'darkblue',
-    borderRadius:50,
+    backgroundColor:'#494953',
+    borderRadius:30,
     borderWidth: 1,
     borderColor: '#fff'
   },
   startText:{
       color:'#fff',
       textAlign:'center',
+      fontSize: 20
   }
 }
 
@@ -107,12 +107,8 @@ class Login extends Component {
     Linking.addEventListener('url', this.handleOpenSpotifyURL.bind(this));
   }
 
-  componentWillUpdate(nextProps) {
-    console.log('this.props in will update: ', nextProps.user);
-  }
-
   componentWillReceiveProps(nextProps) {
-    console.log('this.props in will receive props: ', nextProps.user);
+    console.log('User login: ', nextProps.user);
   }
 
   handleOpenSpotifyURL(event) {
@@ -124,14 +120,11 @@ class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          After Spotify Login
-        </Text>
         <TouchableHighlight
           style={buttonStyle.start}
           onPress={Actions.SwiperEL}
           underlayColor='#fff'>
-            <Text style={buttonStyle.startText}>Start</Text>
+            <Text style={buttonStyle.startText}>Spot A Movie</Text>
         </TouchableHighlight>
       </View>
     );

@@ -29,31 +29,27 @@ class SwiperEL extends Component {
     const movieId = this.props.movies[this.state.cardIndex].id;
     this.setState({ cardIndex: this.state.cardIndex + 1 });
     this.props.likeMovie(movieId);
-    console.log(movieId);
   }
 
   handleNope = () => {
     const movieId = this.props.movies[this.state.cardIndex].id;
     this.setState({ cardIndex: this.state.cardIndex + 1 });
     this.props.dislikeMovie(movieId);
-    console.log(movieId);
   }
 
   clickLike = () => {
       const movieId = this.props.movies[this.state.cardIndex].id;
       this.setState({ cardIndex: this.state.cardIndex + 1 });
       this.props.likeMovie(movieId);
-      console.log(this._swiper, this.refs);
       this._swiper._goToNextCard();
-      console.log(movieId);
   }
-  //
-  // clickDislike = movie => {
-  //   const movie = this.props.movies[this.state.cardIndex];
-  //   this.setState({ cardIndex: this.state.cardIndex + 1 });
-  //   this.props.dislikeMovie(movie);
-  //
-  // }
+
+  clickDislike = movie => {
+  const movieId = this.props.movies[this.state.cardIndex].id;
+  this.setState({ cardIndex: this.state.cardIndex + 1 });
+  this.props.dislikeMovie(movieId);
+  this._swiper._goToNextCard();
+}
 
   render() {
     let title='';
