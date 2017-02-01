@@ -13,13 +13,16 @@ class SwiperEL extends Component {
     cardIndex: 0
   }
 
-  componentDidMount() {
-    this.props.getMoviesDiscover()
-    this.props.getMoviesSurvey()
+  componentWillReceiveProps(nextProps) {
+    if(this.props.moviesSurvey !== nextProps.moviesSurvey) {
+      nextProps.moviesSurvey.map(movieId => {
+        this.props.getMovieFromId(movieId)
+      })
+    }
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('nextProps: ', nextProps);
+  componentDidMount() {
+    this.props.getMoviesSurvey()
   }
 
   handleYup = () => {
@@ -52,10 +55,13 @@ class SwiperEL extends Component {
   render() {
     let title='';
     const movies = this.props.movies;
+
     if (this.state.cardIndex > movies.length - 1) {
       return <NoMoreCard />;
     }
-    if (!movies.length) {
+    console.log(movies.length, this.props.moviesSurvey.length);
+    if (movies.length !== this.props.moviesSurvey.length) {
+      // Render a loader
       return null
     }
     return (
@@ -133,6 +139,7 @@ class SwiperEL extends Component {
 }
 
 const mapStateToProps = (state) => {
+
   return {
     movies: state.movies,
     moviesSurvey: state.moviesSurvey,
@@ -141,7 +148,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getMoviesDiscover: () => dispatch(ActionCreators.getMoviesDiscover()),
+  getMovieFromId: (movieId) => dispatch(ActionCreators.getMovieFromId(movieId)),
+  // getMoviesDiscover: () => dispatch(ActionCreators.getMoviesDiscover()),
   getMoviesSurvey: () => dispatch(ActionCreators.getMoviesSurvey()),
   likeMovie: (movieId) => {dispatch(ActionCreators.likeMovie(movieId))},
   dislikeMovie: (movieId) => dispatch(ActionCreators.dislikeMovie(movieId)),
