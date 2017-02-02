@@ -51,7 +51,7 @@ const moviesSurvey = (state = [], action) => {
   }
 }
 
-const movieReccom = (state = [], action) => {
+const movieRecomm = (state = [], action) => {
   switch (action.type) {
 
     case 'GET_MOVIE_RECOMMENDATION_SUCCESS':
@@ -131,8 +131,7 @@ export const parseMoviesSurvey = (moviesArray) => {
 }
 
 const reducers = combineReducers({
-  movies, user, moviesSurvey
-
+  movies, user, moviesSurvey, movieRecomm
 })
 
 export default reducers
