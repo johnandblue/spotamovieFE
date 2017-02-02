@@ -105,7 +105,6 @@ class SwiperEL extends Component {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            // onPress={info}
           >
             <View
               style={{
@@ -148,7 +147,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   getMovieFromId: (movieId) => dispatch(ActionCreators.getMovieFromId(movieId)),
-  // getMoviesDiscover: () => dispatch(ActionCreators.getMoviesDiscover()),
   getMoviesSurvey: () => dispatch(ActionCreators.getMoviesSurvey()),
   likeMovie: (movieId) => {dispatch(ActionCreators.likeMovie(movieId))},
   dislikeMovie: (movieId) => dispatch(ActionCreators.dislikeMovie(movieId)),
