@@ -1,31 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text, StatusBar, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StatusBar,
+  TouchableOpacity,
+  ScrollView,
+  SegmentedControlIOS
+} from 'react-native';
 import { connect } from 'react-redux';
 import ActionCreators from '../../actions'
 import MovieItem from './components/MovieItem';
 
 
-const styles = {
-  posterCard: {
-    borderRadius: 10,
-    width: 250,
-    height: 400,
-    shadowOffset: {
-      width: 0.5,
-      height: 0.5,
-    },
-    shadowColor: 'black',
-    shadowOpacity: 0.8,
-  },
-  poster: {
-    flex: 1,
-    height: null,
-    width: null,
-    borderRadius: 10
-  }
-}
-
-class Liked extends Component {
+class LikedList extends Component {
   state = {
     cardIndex: 0
   }
@@ -36,10 +23,17 @@ class Liked extends Component {
         this.props.getMovieFromId(movieId)
       })
     }
+    if(this.props.moviesDisliked !== nextProps.moviesDisliked) {
+      nextProps.moviesDisliked.map(movieId => {
+        this.props.getMovieFromId(movieId)
+      })
+    }
   }
 
   componentDidMount() {
     this.props.getMoviesLiked()
+    this.props.getMoviesDisliked()
+
   }
 
   clickUnlike = () => {
@@ -51,7 +45,6 @@ class Liked extends Component {
   render() {
     let title='';
     const movies = this.props.movies;
-    console.log(movies);
 
     if (this.state.cardIndex > movies.length - 1) {
       return (
@@ -67,42 +60,42 @@ class Liked extends Component {
 
     return (
       <View
-        style={{backgroundColor:'#494953', flex: 1,  alignItems: 'center'}}>
-        <View style={{flexDirection: 'column', alignItems:'center', marginTop: 100}}>
-          <Text style={{margin: 20, fontSize: 20, color: 'blue'}}>
-            Movie Reccomendation
+        style={{
+          backgroundColor:'#494953',
+          flex: 1,
+          flexDirection: 'column',
+          alignItems: 'stretch'
+        }}>
+        <View style={{ alignItems:'center', marginTop: 70}}>
+          <Text style={{margin: 20, fontSize: 20, color: 'white'}}>
+            Movie {this.props.mode === 'likes' ? "Likes" : "Dislikes"}
           </Text>
         </View>
-          {
-            movies.map((movie) =>
-              <MovieItem
-                key={movies.id}
-                title={movie.title}
-                image={movie.poster_path}
-              />
-            )
-          }
-
-
-        <View
-          style={{
-            flex: 0.2,
-            flexDirection: 'row',
-            margin: 20
-          }}>
-          <TouchableOpacity
-            onPress={this.clickUnlike}>
-            <View
-              style={{
-                flex: 0.2,
-                flexDirection: 'row',
-                margin: 20
-              }}>
-              <Text>UNLIKE</Text>
-            </View>
-          </TouchableOpacity>
-
+        <View style={{marginBottom: 10}}>
+          <SegmentedControlIOS
+            values={['Liked', 'Disliked']}
+            selectedIndex={0}
+            
+          />
         </View>
+        <ScrollView
+          style={{flex:1}}>
+          <View style={{
+           flexDirection: 'row',
+           flexWrap: 'wrap',
+           alignItems: 'flex-start'
+          }}>
+            {
+              movies.map((movie) =>
+                <MovieItem
+                  key={movie.id}
+                  title={movie.title}
+                  image={movie.poster_path}
+                />
+              )
+            }
+          </View>
+        </ScrollView>
       </View>
     );
   }
@@ -113,14 +106,16 @@ const mapStateToProps = (state) => {
   return {
     movies: state.movies,
     moviesLiked: state.moviesLiked,
+    moviesDisliked: state.moviesDisliked,
     user: state.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
+  getMoviesDisliked: () => dispatch(ActionCreators.getMoviesDisliked()),
   getMoviesLiked: () => dispatch(ActionCreators.getMoviesLiked()),
   getMovieFromId: (movieId) => dispatch(ActionCreators.getMovieFromId(movieId)),
   unLikeMovie: (movieId) => dispatch(ActionCreators.unLikeMovie(movieId)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Liked);
+export default connect(mapStateToProps, mapDispatchToProps)(LikedList);

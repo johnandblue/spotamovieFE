@@ -64,6 +64,20 @@ const moviesLiked = (state = [], action) => {
     return state;
   }
 }
+const moviesDisliked = (state = [], action) => {
+  switch (action.type) {
+
+    case 'GET_MOVIES_DISLIKED_SUCCESS':
+    return action.response.movies;
+
+    case 'GET_MOVIES_DISLIKED_ERROR':
+    console.log('ERROR IN REDUCERS:', action.error);
+    return state;
+
+    default:
+    return state;
+  }
+}
 
 const movieReccom = (state = [], action) => {
   switch (action.type) {
@@ -81,20 +95,6 @@ const movieReccom = (state = [], action) => {
 }
 
 
-const moviesDisliked = (state = [], action) => {
-  switch (action.type) {
-
-    case 'GET_MOVIE_DISLIKED_SUCCESS':
-      return action.response.movies;
-
-    case 'GET_MOVIE_DISLIKED_ERROR':
-      console.log('ERROR IN REDUCERS:', action.error);
-      return state;
-
-    default:
-      return state;
-  }
-}
 
 
 const user = (state = {}, action) => {

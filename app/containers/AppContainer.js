@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import {Scene, Router} from 'react-native-router-flux';
 import SwiperEL from '../components/Swiper/SwiperEL';
-import Liked from '../components/Liked/Liked';
+import LikedList from '../components/LikedList/LikedList';
 import Login from '../containers/Login'
 import ActionCreators from '../actions'
 
@@ -22,7 +22,7 @@ class AppContainer extends Component {
    return (
     <Router>
       <Scene key="root">
-        <Scene key="Liked" component={Liked} tittle="Liked Movies" />
+        <Scene key="LikedList" component={LikedList} title="Liked Movies" />
         <Scene key="Login" component={Login} title="Login"/>
         <Scene key="SwiperEL" component={SwiperEL} title="Movie Survey" />
       </Scene>
@@ -30,34 +30,6 @@ class AppContainer extends Component {
     );
   }
 }
-
-
-const styles = StyleSheet.create({
-  scene: {
-    flex: 1,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-    right: 0,
-    top: 0,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#00AA00',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    marginTop: 40,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 
 function mapStateToProps(state) {
