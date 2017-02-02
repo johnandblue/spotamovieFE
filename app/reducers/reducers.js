@@ -94,9 +94,6 @@ const movieReccom = (state = [], action) => {
   }
 }
 
-
-
-
 const user = (state = {}, action) => {
   switch (action.type) {
     case 'LOGIN_SUCCESS':

@@ -14,7 +14,10 @@ import MovieItem from './components/MovieItem';
 
 class LikedList extends Component {
   state = {
-    cardIndex: 0
+    cardIndex: 0,
+    value: 'Liked',
+    values: ['Liked', 'Disliked'],
+    selectedIndex: 0
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,12 +31,16 @@ class LikedList extends Component {
         this.props.getMovieFromId(movieId)
       })
     }
+    filteredMovies = this.props.movies.filter((val) => this.props.moviesLiked.includes(val.id))
+  }
+
+  componentWillMount() {
+
   }
 
   componentDidMount() {
     this.props.getMoviesLiked()
     this.props.getMoviesDisliked()
-
   }
 
   clickUnlike = () => {
@@ -41,6 +48,26 @@ class LikedList extends Component {
     this.setState({ cardIndex: this.state.cardIndex + 1 });
     this.props.unLikeMovie(movieId);
   }
+
+
+  _onChange = (event) => {
+    this.setState({
+      selectedIndex: event.nativeEvent.selectedSegmentIndex,
+    });
+    if (this.state.value === 'Liked') {
+      filteredMovies = this.props.movies.filter((val) => this.props.moviesDisliked.includes(val.id))
+    }
+    if (this.state.value === 'Disliked') {
+      filteredMovies = this.props.movies.filter((val) => this.props.moviesLiked.includes(val.id))
+
+    }
+  };
+
+  _onValueChange = (value) => {
+    this.setState({
+      value: value,
+    });
+  };
 
   render() {
     let title='';
@@ -53,10 +80,6 @@ class LikedList extends Component {
         </Text>
       );
     }
-    // if (movies.length !== this.props.moviesSurvey.length) {
-    //   // Render a loader
-    //   return null
-    // }
 
     return (
       <View
@@ -68,14 +91,16 @@ class LikedList extends Component {
         }}>
         <View style={{ alignItems:'center', marginTop: 70}}>
           <Text style={{margin: 20, fontSize: 20, color: 'white'}}>
-            Movie {this.props.mode === 'likes' ? "Likes" : "Dislikes"}
+            Movies {this.state.value}
           </Text>
         </View>
-        <View style={{marginBottom: 10}}>
+        <View style={{marginLeft: 12, marginRight: 12, marginBottom: 10}}>
           <SegmentedControlIOS
-            values={['Liked', 'Disliked']}
-            selectedIndex={0}
-            
+            tintColor="lightgrey"
+            values={this.state.values}
+            selectedIndex={this.state.selectedIndex}
+            onChange={this._onChange}
+            onValueChange={this._onValueChange}
           />
         </View>
         <ScrollView
@@ -86,7 +111,7 @@ class LikedList extends Component {
            alignItems: 'flex-start'
           }}>
             {
-              movies.map((movie) =>
+              filteredMovies.map((movie) =>
                 <MovieItem
                   key={movie.id}
                   title={movie.title}
