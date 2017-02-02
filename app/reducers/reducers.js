@@ -14,6 +14,16 @@ const movies = (state = [], action) => {
       console.log('ERROR IN REDUCERS:', action.error);
       return state;
 
+    case 'GET_MOVIE_SUCCESS':
+      if (action.response) {
+        return [...state, parseMovie(action.response)]
+      }
+      return state;
+
+    case 'GET_MOVIE_ERROR':
+      console.log('ERROR IN REDUCERS:', action.error);
+      return state;
+
     default:
       return state;
   }
@@ -23,12 +33,7 @@ const moviesSurvey = (state = [], action) => {
   switch (action.type) {
 
     case 'GET_MOVIES_SURVEY_SUCCESS':
-      console.log('action in reducer movey survey: ', action);
-      if (action.response.movies) {
-        let parsedMoviesSurvey = parseMoviesSurvey(action.response.movies);
-        return parsedMoviesSurvey;
-      }
-      return state;
+      return action.response.movies;
 
     case 'GET_MOVIES_SURVEY_ERROR':
       console.log('ERROR IN REDUCERS:', action.error);
@@ -45,7 +50,49 @@ const moviesSurvey = (state = [], action) => {
       return state;
   }
 }
+const moviesLiked = (state = [], action) => {
+  switch (action.type) {
 
+    case 'GET_MOVIES_LIKED_SUCCESS':
+    return action.response.movies;
+
+    case 'GET_MOVIES_LIKED_ERROR':
+    console.log('ERROR IN REDUCERS:', action.error);
+    return state;
+
+    default:
+    return state;
+  }
+}
+const moviesDisliked = (state = [], action) => {
+  switch (action.type) {
+
+    case 'GET_MOVIES_DISLIKED_SUCCESS':
+    return action.response.movies;
+
+    case 'GET_MOVIES_DISLIKED_ERROR':
+    console.log('ERROR IN REDUCERS:', action.error);
+    return state;
+
+    default:
+    return state;
+  }
+}
+
+const movieReccom = (state = [], action) => {
+  switch (action.type) {
+
+    case 'GET_MOVIE_RECOMMENDATION_SUCCESS':
+      return action.response.movies;
+
+    case 'GET_MOVIE_RECOMMENDATION_ERROR':
+      console.log('ERROR IN REDUCERS:', action.error);
+      return state;
+
+    default:
+      return state;
+  }
+}
 
 const user = (state = {}, action) => {
   switch (action.type) {
@@ -58,16 +105,17 @@ const user = (state = {}, action) => {
   return state;
 }
 
+export const parseMovie = (data) => {
+  return {
+    seen: false,
+    poster_path: data.poster_path,
+    id: data.id,
+    title: data.title
+  }
+}
 
 export const parseMovies = (moviesArray) => {
-  return moviesArray.map((movie)=>(
-    {
-      seen: false,
-      poster_path: movie.poster_path,
-      id: movie.id,
-      title: movie.title
-    }
-  ));
+  return moviesArray.map((movie) => parseMovies(movie));
 }
 
 export const parseMoviesSurvey = (moviesArray) => {
@@ -79,7 +127,7 @@ export const parseMoviesSurvey = (moviesArray) => {
 }
 
 const reducers = combineReducers({
-  movies, user, moviesSurvey
+  movies, user, moviesSurvey, moviesLiked, moviesDisliked, movieReccom
 
 })
 

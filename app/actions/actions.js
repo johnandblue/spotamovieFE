@@ -18,6 +18,14 @@ export const getMovieFromId = (movieId) => ({
   }
 })
 
+export const getMovieRecommendation = () => ({
+  type: 'GET_MOVIE_RECOMMENDATION',
+  [SpotifySymbol] : {
+    endpoint: `/movies/recommendation`,
+    method: 'GET'
+  }
+})
+
 export const getMoviesSurvey = () => ({
   type: 'GET_MOVIES_SURVEY',
   [SpotifySymbol] : {
@@ -26,6 +34,21 @@ export const getMoviesSurvey = () => ({
   }
 })
 
+export const getMoviesLiked = () => ({
+  type: 'GET_MOVIES_LIKED',
+  [SpotifySymbol] : {
+    endpoint: `/movies/liked`,
+    method: 'GET',
+  }
+})
+
+export const getMoviesDisliked = () => ({
+  type: 'GET_MOVIES_DISLIKED',
+  [SpotifySymbol] : {
+    endpoint: `/movies/disliked`,
+    method: 'GET',
+  }
+})
 
 export const dislikeMovie = (movieId) => ({
   type: 'DISLIKE_MOVIE',
@@ -40,9 +63,22 @@ export const likeMovie = (movieId) => ({
   [SpotifySymbol] : {
     endpoint: `/movies/${movieId}/like`,
     method: 'POST',
-    data: {
-      movieId
-    }
+  }
+})
+
+export const unLikeMovie = (movieId) => ({
+  type: 'UNLIKE_MOVIE',
+  [SpotifySymbol] : {
+    endpoint: `/movies/${movieId}/unlike`,
+    method: 'POST',
+  }
+})
+
+export const unDislikeMovie = (movieId) => ({
+  type: 'UNDISLIKE_MOVIE',
+  [SpotifySymbol] : {
+    endpoint: `/movies/${movieId}/undislike`,
+    method: 'POST',
   }
 })
 
