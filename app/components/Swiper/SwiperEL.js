@@ -35,19 +35,6 @@ class SwiperEL extends Component {
     this.props.dislikeMovie(movieId);
     console.log(movieId);
   }
-  //
-  // clickLike = movie => {
-  //   const movie = this.props.movies[this.state.cardIndex];
-  //   this.setState({ cardIndex: this.state.cardIndex + 1 });
-  //   this.props.likeMovie(movie);
-  // }
-  //
-  // clickDislike = movie => {
-  //   const movie = this.props.movies[this.state.cardIndex];
-  //   this.setState({ cardIndex: this.state.cardIndex + 1 });
-  //   this.props.dislikeMovie(movie);
-  //
-  // }
 
   render() {
     let title='';
@@ -85,7 +72,6 @@ class SwiperEL extends Component {
           }}
         >
           <TouchableOpacity
-            // onPress={dislike}
           >
             <View
               style={{
@@ -100,7 +86,6 @@ class SwiperEL extends Component {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            // onPress={info}
           >
             <View
               style={{
