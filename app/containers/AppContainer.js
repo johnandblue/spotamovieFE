@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import {Scene, Router} from 'react-native-router-flux';
 import SwiperEL from '../components/Swiper/SwiperEL';
-import Screen2 from '../components/Screen2'
+import Login from '../containers/Login'
 import ActionCreators from '../actions'
 
 import {
@@ -21,8 +21,8 @@ class AppContainer extends Component {
    return (
     <Router>
       <Scene key="root">
-        <Scene key="SwiperEL" component={SwiperEL} title="Movie Survey" initial={true} />
-        <Scene key="Screen2" component={Screen2} title="Screen2"/>
+        <Scene key="Login" component={Login} title="Login"/>
+        <Scene key="SwiperEL" component={SwiperEL} title="Movie Survey" />
       </Scene>
     </Router>
     );

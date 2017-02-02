@@ -5,57 +5,40 @@ import SwipeCards from 'react-native-swipe-cards';
 import styles from './styles/SwiperEl';
 import { ButtonsGroup, Card, NoMoreCard } from './components';
 import ActionCreators from '../../actions'
+import { likeMovie, dislikeMovie } from '../../actions/actions';
 
-// import { InfoModal } from '../infoModal';
-// import { addMovieToLikedList } from './actions';
-// import { openModalInfo, closeModalInfo } from '../ui';
-
-const path = 'https://movied.herokuapp.com/discover';
 
 class SwiperEL extends Component {
-  state = { cardIndex: 0 }
+  state = {
+    cardIndex: 0
+  }
 
   componentDidMount() {
-    this.props.getMovies(path)
+    this.props.getMoviesDiscover()
+    this.props.getMoviesSurvey()
   }
 
-  _handleYup = movie => {
+  componentWillReceiveProps(nextProps) {
+    console.log('nextProps: ', nextProps);
+  }
+
+  handleYup = () => {
+    const movieId = this.props.movies[this.state.cardIndex].id;
     this.setState({ cardIndex: this.state.cardIndex + 1 });
-    // this.props.addMovieToLikedList({
-    //   id: movie.id,
-    //   title: movie.title,
-    //   image: movie.poster_path
-    // });
+    this.props.likeMovie(movieId);
+    console.log(movieId);
   }
 
-  _handleNope = () => this.setState({ cardIndex: this.state.cardIndex + 1 })
-
-  _clickLike= () => {
+  handleNope = () => {
+    const movieId = this.props.movies[this.state.cardIndex].id;
     this.setState({ cardIndex: this.state.cardIndex + 1 });
-    this._swiper._goToNextCard();
-    const movie = this.props.movies[this.state.cardIndex];
-    // this.props.addMovieToLikedList({
-    //   id: movie.id,
-    //   title: movie.title,
-    //   image: movie.poster_path
-    // });
+    this.props.dislikeMovie(movieId);
+    console.log(movieId);
   }
-
-  _clickDislike = () => {
-    this.setState({ cardIndex: this.state.cardIndex + 1 });
-    this._swiper._goToNextCard();
-  }
-
-
 
   render() {
-    // const { movies,
-    //   modalInfoShow, openModalInfo, closeModalInfo
-    // } = this.props;
-
-    let title=' ';
+    let title='';
     const movies = this.props.movies;
-    console.log(movies);
     if (this.state.cardIndex > movies.length - 1) {
       return <NoMoreCard />;
     }
@@ -77,8 +60,8 @@ class SwiperEL extends Component {
         <SwipeCards
           cards={movies}
           renderCard={data => <Card {...data} />}
-          handleYup={this._handleYup}
-          handleNope={this._handleNope}
+          handleYup={this.handleYup}
+          handleNope={this.handleNope}
           renderNoMoreCards={() => <NoMoreCard />}
         />
         <View
@@ -89,7 +72,6 @@ class SwiperEL extends Component {
           }}
         >
           <TouchableOpacity
-            // onPress={dislike}
           >
             <View
               style={{
@@ -98,15 +80,12 @@ class SwiperEL extends Component {
                 margin: 20
               }}
             >
-              <Text
-                style={{color: 'red'}}
-              >
+              <Text style={{color: 'red'}}>
                 NO
               </Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            // onPress={info}
           >
             <View
               style={{
@@ -118,7 +97,7 @@ class SwiperEL extends Component {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            // onPress={like}
+            onPress={this.clicLike}
           >
             <View
               style={{
@@ -127,15 +106,12 @@ class SwiperEL extends Component {
                 margin: 20
               }}
             >
-              <Text
-                style={{color: 'green'}}
-              >
+              <Text style={{color: 'green'}}>
                 YES
               </Text>
             </View>
           </TouchableOpacity>
         </View>
-
       </View>
     );
   }
@@ -143,12 +119,17 @@ class SwiperEL extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    movies: state.movies
+    movies: state.movies,
+    moviesSurvey: state.moviesSurvey,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getMovies: (route) => dispatch(ActionCreators.getMovies(route))
+  getMoviesDiscover: () => dispatch(ActionCreators.getMoviesDiscover()),
+  getMoviesSurvey: () => dispatch(ActionCreators.getMoviesSurvey()),
+  likeMovie: (movieId) => {dispatch(ActionCreators.likeMovie(movieId))},
+  dislikeMovie: (movieId) => dispatch(ActionCreators.dislikeMovie(movieId)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SwiperEL);

@@ -1,18 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { POSTER } from '../../../constants/poster_path';
-// import styles from './styles/Card';
 
-// const Card = movie => (
-//   <View style={{margin: 120}}>
-//     {/* <Text>Hola</Text> */}
-//     <Image
-//       // style={styles.poster}
-//       source={{ uri: `${POSTER}/${movie.poster_path}` }}
-//     />
-//   </View>
-// );
+const POSTER = 'https://image.tmdb.org/t/p/w500';
 
 
 const styles = {
@@ -37,7 +27,6 @@ const styles = {
 
 const Card = React.createClass({
   render() {
-    console.log('in Card', this.props.poster_path);
     return (
       <View style={styles.poster}>
         <Image
@@ -50,34 +39,5 @@ const Card = React.createClass({
     )
   }
 })
-
-
-// const styles = StyleSheet.create({
-//
-//   card: {
-//     alignItems: 'center',
-//     borderRadius: 5,
-//     overflow: 'hidden',
-//     borderColor: 'grey',
-//     backgroundColor: 'white',
-//     borderWidth: 1,
-//     elevation: 1,
-//   },
-//   thumbnail: {
-//     flexGrow: 0.3,
-//     width: 300,
-//     height: 300,
-//   },
-//   text: {
-//     fontSize: 20,
-//     paddingTop: 10,
-//     paddingBottom: 10
-//   },
-//   noMoreCards: {
-//     flexGrow: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//   }
-// })
 
 export default Card;

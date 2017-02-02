@@ -7,6 +7,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "base-64": "^0.1.0",
+    "buffer": "^5.0.2",
+    "querystring": "^0.2.0",
     "@exponent/vector-icons": "^4.0.0",
     "react": "15.4.2",
     "react-native": "0.40.0",
@@ -17,14 +20,19 @@
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "request": "^2.79.0",
+    "shitty-qs": "^1.0.1"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",
     "babel-preset-react-native": "1.9.1",
+    "eslint": "^3.14.1",
+    "eslint-plugin-react": "^6.9.0",
     "flow-bin": "^0.38.0",
     "jest": "18.1.0",
-    "react-test-renderer": "15.4.2"
+    "react-test-renderer": "15.4.2",
+    "remote-redux-devtools": "^0.5.7"
   },
   "jest": {
     "preset": "react-native"
