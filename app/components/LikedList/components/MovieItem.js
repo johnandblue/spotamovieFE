@@ -5,12 +5,12 @@ const POSTER = 'https://image.tmdb.org/t/p/w500';
 
 const styles = {
   poster: {
-    margin: 12
+    margin: 3
   },
   posterCard: {
     borderRadius: 5,
-    width: 100,
-    height: 153
+    width: 118,
+    height: 177
   }
 }
 
