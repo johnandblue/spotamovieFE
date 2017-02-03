@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const movies = (state = [], action) => {
+export const movies = (state = [], action) => {
   switch (action.type) {
 
     case 'GET_MOVIES_DISCOVER_SUCCESS':
@@ -16,6 +16,15 @@ const movies = (state = [], action) => {
 
     case 'GET_MOVIE_SUCCESS':
       if (action.response) {
+        const movie = action.response;
+        if (state.find(movie => movie.id === action.response.id)){
+          return state.map(movie => {
+            if (movie.id === action.response.id) {
+              return parseMovie(action.response);
+            }
+            return movie;
+          });
+        }
         return [...state, parseMovie(action.response)]
       }
       return state;
@@ -29,7 +38,7 @@ const movies = (state = [], action) => {
   }
 }
 
-const moviesSurvey = (state = [], action) => {
+export const moviesSurvey = (state = [], action) => {
   switch (action.type) {
 
     case 'GET_MOVIES_SURVEY_SUCCESS':
@@ -115,7 +124,7 @@ export const parseMovie = (data) => {
 }
 
 export const parseMovies = (moviesArray) => {
-  return moviesArray.map((movie) => parseMovies(movie));
+  return moviesArray.map((movie) => parseMovie(movie));
 }
 
 export const parseMoviesSurvey = (moviesArray) => {

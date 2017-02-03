@@ -31,5 +31,6 @@ const App = () => (
   </Provider>
 )
 
+export default App
 
 AppRegistry.registerComponent('spotamovieFE', () => App);
