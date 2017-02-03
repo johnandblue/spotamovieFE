@@ -51,13 +51,13 @@ const moviesSurvey = (state = [], action) => {
   }
 }
 
-const movieRecomm = (state = [], action) => {
+const movieRecomm = (state = { movieId: undefined }, action) => {
   switch (action.type) {
 
     case 'GET_MOVIE_RECOMMENDATION_SUCCESS':
-      return action.response.movies;
+      return { movieId: action.response.movieId };
 
-    case 'GET_MOVIE_RECOMMENDATION_ERROR':
+    case 'GET_MOVIE_RECOMMENDATION_FAILURE':
       console.log('ERROR IN REDUCERS:', action.error);
       return state;
 

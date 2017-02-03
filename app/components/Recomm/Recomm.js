@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StatusBar, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity, Image, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import ActionCreators from '../../actions';
 
@@ -23,6 +23,28 @@ const styles = {
     height: null,
     width: null,
     borderRadius: 10
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#494953',
+  },
+}
+
+const buttonStyle = {
+  start:{
+    padding: 20,
+    margin: 50,
+    backgroundColor:'#494953',
+    borderRadius:30,
+    borderWidth: 1,
+    borderColor: '#fff'
+  },
+  startText:{
+      color:'#fff',
+      textAlign:'center',
+      fontSize: 20
   }
 }
 
@@ -34,33 +56,36 @@ class Recomm extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(this.props.movieRecomm !== nextProps.movieRecomm) {
-      nextProps.movieRecomm.map(movieId => {
-        this.props.getMovieFromId(movieId);
-      });
+      console.log(nextProps);
+      this.props.getMovieFromId(nextProps.movieRecomm);
     }
+    // this.setState({ cardIndex: this.state.cardIndex + 1 });
   }
 
   componentDidMount() {
     this.props.getMovieRecommendation()
+    console.log('this.state.cardIndex in didmount: ', this.state.cardIndex);
   }
 
+
+  newReccom = movie => {
+    console.log('cardIndex in newReccom: ', this.state.cardIndex)
+    this.props.getMovieRecommendation()
+    console.log(this.props.movies);
+  }
 
 
   render() {
 
-    const movies = this.props.movies;
-    console.log(movies);
+    const movie = this.props.movie;
+    console.log(movie);
 
-    if (this.state.cardIndex > movies.length - 1) {
-      return null;
+    if (!movie) {
+      return <View><Text>No recommendation</Text></View>;
     }
-    if (movies.length !== this.props.movieRecomm.length) {
-      // Render a loader
-      return null
-    }
+
     return (
-      // <View></View>
-      <View style={{ backgroundColor: '#494953', flex: 1,  alignItems: 'center' }}>
+      <View style={{ backgroundColor: '#494953', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
         <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 100 }}>
           <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
             Recommendations
@@ -68,21 +93,18 @@ class Recomm extends Component {
           <View style={styles.poster}>
             <Image
               style={styles.posterCard}
-              source={{uri: `${POSTER}/${movies[this.state.cardIndex].poster_path}`}}
+              source={{uri: `${POSTER}/${movie.poster_path}`}}
             />
           </View>
         </View>
-
-        <View style={{ flex: 0.2, flexDirection: 'row', margin: 20 }}>
-
-          <TouchableOpacity>
-            <View style={{ flex: 0.2, flexDirection: 'row', margin: 20 }}>
-              <Text>INFO</Text>
-            </View>
-          </TouchableOpacity>
-
+        <View style={styles.container}>
+          <TouchableHighlight
+            style={buttonStyle.start}
+            onPress={this.newReccom}
+            underlayColor='#fff'>
+              <Text style={buttonStyle.startText}>Give me another one !</Text>
+          </TouchableHighlight>
         </View>
-
       </View>
     )
   }
@@ -91,8 +113,8 @@ class Recomm extends Component {
 const mapStateToProps = (state) => {
 
   return {
-    movies: state.movies,
-    movieRecomm: state.movieRecomm,
+    movie: state.movies.find(movie =>  movie.id === state.movieRecomm.movieId),
+    movieRecomm: state.movieRecomm.movieId,
     user: state.user
   }
 }
