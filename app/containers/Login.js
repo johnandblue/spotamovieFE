@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import base64 from 'base-64';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { login } from '../actions/actions'
+import { login, logout } from '../actions/actions'
 import config from '../../config';
 import querystring from 'querystring';
 import {Buffer} from 'buffer';
@@ -106,6 +106,7 @@ class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      userLogged: false
     }
   }
 
@@ -122,6 +123,7 @@ class Login extends Component {
   handleOpenSpotifyURL(event) {
     let code = event.url.match(/code=(.+)\&/);
     code = code[1];
+    console.log('in handleOpenSpotifyURL: ', code);
     this.props.login(code);
   }
 
@@ -132,52 +134,82 @@ class Login extends Component {
       return <Text style={buttonStyle.startText}>Welcome</Text>
     }
   }
-  handleLogout() {
-    console.log('handleLogout');
-    this.setState({ userLogged:""});
+
+  handleLogin() {
+    spotifyOauth()
+    console.log('in handleOpenSpotifyURL: ', this.props);
+    Linking.addEventListener('url', this.handleOpenSpotifyURL.bind(this));
 
   }
 
-  render() {
+  handleLogout() {
+    console.log('handleLogout');
+    this.props.logout()
+    this.setState({userLogged: false})
+    console.log(this.props.user);
+  }
+
+  renderLoginButton() {
     return (
       <View style={styles.container}>
         <TouchableHighlight
           style={buttonStyle.start}
-          onPress={Actions.SwiperEL}
-          underlayColor='#fff'>
-          {this.handleGreeting()}
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={buttonStyle.start}
-          onPress={Actions.SwiperEL}
-          underlayColor='#fff'>
-            <Text style={buttonStyle.startText}>Go to Survey</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={buttonStyle.start}
-          onPress={Actions.LikedList}
-          underlayColor='#fff'>
-            <Text style={buttonStyle.startText}>Go to Liked List</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={buttonStyle.start}
-          onPress={Actions.Recomm}
-          underlayColor='#fff'>
-            <Text style={buttonStyle.startText}>Go to Recommendation</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={buttonStyle.start}
-          // onPress={() => this.handleLogout()}
+          onPress={this.handleLogin.bind(this)}
           underlayColor='red'>
-            <Text style={buttonStyle.startText}>Logout</Text>
+            <Text style={buttonStyle.startText}>Login</Text>
         </TouchableHighlight>
       </View>
-    );
+    )
+  }
+
+  render() {
+    if (this.props.user.userToken) {
+      return (
+        <View style={styles.container}>
+          <TouchableHighlight
+            style={buttonStyle.start}
+            // onPress={Actions.SwiperEL}
+            underlayColor='red'>
+            {this.handleGreeting()}
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={buttonStyle.start}
+            onPress={Actions.SwiperEL}
+            underlayColor='#fff'>
+            <Text style={buttonStyle.startText}>Go to Survey</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={buttonStyle.start}
+            onPress={Actions.LikedList}
+            underlayColor='#fff'>
+            <Text style={buttonStyle.startText}>Go to Liked List</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={buttonStyle.start}
+            onPress={Actions.Recomm}
+            underlayColor='#fff'>
+            <Text style={buttonStyle.startText}>Go to Recommendation</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={buttonStyle.start}
+            onPress={() => this.handleLogout()}
+            underlayColor='red'>
+            <Text style={buttonStyle.startText}>Logout</Text>
+          </TouchableHighlight>
+        </View>
+      );
+    } else {
+      return (
+        this.renderLoginButton()
+      )
+    }
+
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
   login: (code) => dispatch(login(code)),
+  logout: () => dispatch(logout())
 })
 
 const mapStateToProps = (state) => ({

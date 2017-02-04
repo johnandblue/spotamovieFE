@@ -89,6 +89,10 @@ export const resetMovies = () => ({
   type: 'RESET_MOVIES'
 })
 
+export const logout = () => ({
+  type: 'LOGOUT'
+})
+
 export const login = (code) => ({
   type: 'LOGIN',
   [SpotifySymbol] : {
