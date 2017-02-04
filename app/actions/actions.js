@@ -85,6 +85,9 @@ export const unDislikeMovie = (movieId) => ({
   }
 })
 
+export const resetMovies = () => ({
+  type: 'RESET_MOVIES'
+})
 
 export const login = (code) => ({
   type: 'LOGIN',
