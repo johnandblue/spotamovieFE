@@ -19,7 +19,10 @@ export default (symbol, baseURL, endpointSuffix="") => {
       }
     })
       .then(response =>{
+        console.log('before if', response._bodyBlob);
+        console.log(typeof response);
         if (response._bodyBlob.size !== 0) {
+          console.log('after if', response);
           return  response.json()
             .then(json => {
               if (!response.ok) {
@@ -28,7 +31,10 @@ export default (symbol, baseURL, endpointSuffix="") => {
               return json
             })
         } else if (!response.ok) return Promise.reject({})
-        else return {}
+        else {
+          console.log('body empty', response);
+          return {}
+        }
       })
       .catch(err => {
         console.error('ERROR in fetch', err);

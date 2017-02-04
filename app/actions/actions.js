@@ -63,6 +63,9 @@ export const likeMovie = (movieId) => ({
   [SpotifySymbol] : {
     endpoint: `/movies/${movieId}/like`,
     method: 'POST',
+    data: {
+      movieId
+    }
   }
 })
 
