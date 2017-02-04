@@ -44,9 +44,15 @@ class SwiperEL extends Component {
 
   componentDidMount() {
     this.setState({ cardIndex: 0 });
-    // this.props.resetMovies()
+    this.props.resetMovies()
     this.props.getMoviesSurvey()
 
+  }
+
+  handleNoMore = () => {
+    this.setState({ cardIndex: 0 });
+    this.props.resetMovies()
+    this.props.getMoviesSurvey()
   }
 
   handleYup = () => {
@@ -79,7 +85,7 @@ class SwiperEL extends Component {
     let title='';
     const movies = this.props.movies;
     if (this.state.cardIndex > movies.length - 1) {
-      return null;
+      return <Login />;
     }
     if (movies.length !== this.props.moviesSurvey.length) {
       // Render a loader
@@ -103,7 +109,7 @@ class SwiperEL extends Component {
           renderCard={data => <Card {...data} />}
           handleYup={this.handleYup}
           handleNope={this.handleNope}
-          renderNoMoreCards={() => (this.setState({ cardIndex: 0 }))}
+          renderNoMoreCards={this.handleNoMore}
         />
         <View
           style={{

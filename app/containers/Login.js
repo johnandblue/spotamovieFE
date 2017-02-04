@@ -112,8 +112,8 @@ class Login extends Component {
 
 
   componentDidMount() {
-      spotifyOauth()
-      Linking.addEventListener('url', this.handleOpenSpotifyURL.bind(this));
+      // spotifyOauth()
+      // Linking.addEventListener('url', this.handleOpenSpotifyURL.bind(this));
   }
 
   componentWillReceiveProps(nextProps) {
