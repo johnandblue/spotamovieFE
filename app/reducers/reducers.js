@@ -42,7 +42,7 @@ export const moviesSurvey = (state = [], action) => {
   switch (action.type) {
 
     case 'GET_MOVIES_SURVEY_SUCCESS':
-      return action.response;
+      return action.response.movies;
 
     case 'GET_MOVIES_SURVEY_ERROR':
       console.log('ERROR IN REDUCERS:', action.error);
