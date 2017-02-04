@@ -5,12 +5,32 @@ import {
   StatusBar,
   TouchableOpacity,
   ScrollView,
-  SegmentedControlIOS
+  SegmentedControlIOS,
+  TouchableHighlight
 } from 'react-native';
 import { connect } from 'react-redux';
 import ActionCreators from '../../actions'
 import MovieItem from './components/MovieItem';
+import { Actions } from 'react-native-router-flux';
 
+
+let filteredMovies;
+
+const buttonStyle = {
+  start:{
+    padding: 20,
+    margin: 50,
+    backgroundColor:'#494953',
+    borderRadius:30,
+    borderWidth: 1,
+    borderColor: '#fff'
+  },
+  startText:{
+      color:'#fff',
+      textAlign:'center',
+      fontSize: 20
+  }
+}
 
 class LikedList extends Component {
   state = {
@@ -34,8 +54,11 @@ class LikedList extends Component {
     filteredMovies = this.props.movies.filter((val) => this.props.moviesLiked.includes(val.id))
   }
 
-  componentWillMount() {
-
+  componentWillUpdate() {
+    // this.props.getMoviesLiked()
+    // this.props.getMoviesDisliked()
+    console.log('will update');
+    console.log(filteredMovies);
   }
 
   componentDidMount() {
