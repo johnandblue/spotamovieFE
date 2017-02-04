@@ -1,12 +1,31 @@
 import React, { Component } from 'react';
-import { View, Text, StatusBar, TouchableOpacity } from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import SwipeCards from 'react-native-swipe-cards';
 import styles from './styles/SwiperEl';
 import { ButtonsGroup, Card, NoMoreCard } from './components';
 import ActionCreators from '../../actions'
 import { likeMovie, dislikeMovie } from '../../actions/actions';
+import Navigation from '../navigation/navigation';
+import LikedList from '../LikedList/LikedList';
+import { Actions } from 'react-native-router-flux';
 
+
+const buttonStyle = {
+  start:{
+    padding: 20,
+    margin: 50,
+    backgroundColor:'#494953',
+    borderRadius:30,
+    borderWidth: 1,
+    borderColor: '#fff'
+  },
+  startText:{
+      color:'#fff',
+      textAlign:'center',
+      fontSize: 20
+  }
+}
 
 class SwiperEL extends Component {
   state = {
@@ -80,7 +99,7 @@ class SwiperEL extends Component {
           renderCard={data => <Card {...data} />}
           handleYup={this.handleYup}
           handleNope={this.handleNope}
-          renderNoMoreCards={() => <NoMoreCard />}
+          renderNoMoreCards={() => <LikedList />}
         />
         <View
           style={{
@@ -115,6 +134,7 @@ class SwiperEL extends Component {
               <Text>INFO</Text>
             </View>
           </TouchableOpacity>
+
           <TouchableOpacity
             onPress={this.clickLike}
           >

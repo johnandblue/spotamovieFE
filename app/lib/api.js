@@ -19,7 +19,7 @@ export default (symbol, baseURL, endpointSuffix="") => {
       }
     })
       .then(response =>{
-        if (response._bodyBlob.size !== 7) {
+        if (response._bodyBlob.size !== 0) {
           return  response.json()
             .then(json => {
               if (!response.ok) {

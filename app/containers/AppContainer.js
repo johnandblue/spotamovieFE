@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import {Scene, Router} from 'react-native-router-flux';
 import SwiperEL from '../components/Swiper/SwiperEL';
 import LikedList from '../components/LikedList/LikedList';
+import Navigation from '../components/navigation/navigation';
 import Login from '../containers/Login'
 import ActionCreators from '../actions'
 
