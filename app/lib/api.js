@@ -5,11 +5,43 @@ export default (symbol, baseURL, endpointSuffix="") => {
   const callApi = (serverRoute, endpoint, method='GET', data, authentication) => {
     const fullUrl = baseURL + endpoint + endpointSuffix
 
-    let body
+  //   let body
+  //   if (data) {
+  //     body = JSON.stringify(data)
+  //   }
+  //   return fetch(fullUrl, {
+  //     method,
+  //     body,
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': authentication
+  //     }
+  //   })
+  //     .then(response =>{
+  //       console.log(response._bodyBlob);
+  //       if (response._bodyBlob.size !== 0) {
+  //       // if (response._bodyBlob.size !== 0) {
+  //         return  response.json()
+  //           .then(json => {
+  //             if (!response.ok) {
+  //               return Promise.reject(json)
+  //             }
+  //             return json
+  //           })
+  //       } else if (!response.ok) return Promise.reject({})
+  //       else return {}
+  //     })
+  //     .catch(err => {
+  //       console.error('ERROR in fetch', err);
+  //       return Promise.reject(err)
+  //     })
+  // }
+
+  let body
     if (data) {
       body = JSON.stringify(data)
     }
-
+    let ok ;
     return fetch(fullUrl, {
       method,
       body,
@@ -19,7 +51,7 @@ export default (symbol, baseURL, endpointSuffix="") => {
       }
     })
       .then(response =>{
-        if (response._bodyBlob.size !== 0) {
+        ok=response.ok;
           return  response.json()
             .then(json => {
               if (!response.ok) {
@@ -27,10 +59,11 @@ export default (symbol, baseURL, endpointSuffix="") => {
               }
               return json
             })
-        } else if (!response.ok) return Promise.reject({})
-        else return {}
       })
       .catch(err => {
+        if (ok) {
+          return {};
+        }
         console.error('ERROR in fetch', err);
         return Promise.reject(err)
       })

@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#494953',
+    backgroundColor: '#333',
   },
   welcome: {
     fontSize: 20,
@@ -89,7 +89,7 @@ const buttonStyle = {
   start:{
     padding: 10,
     margin: 10,
-    backgroundColor:'#494953',
+    backgroundColor:'rgba(0,0,0,0)',
     borderRadius:30,
     borderWidth: 1,
     borderColor: '#fff'
@@ -102,6 +102,8 @@ const buttonStyle = {
 }
 
 class Login extends Component {
+
+
   componentDidMount() {
     spotifyOauth()
     Linking.addEventListener('url', this.handleOpenSpotifyURL.bind(this));
@@ -131,6 +133,18 @@ class Login extends Component {
           onPress={Actions.LikedList}
           underlayColor='#fff'>
             <Text style={buttonStyle.startText}>Go to Liked List</Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={buttonStyle.start}
+          onPress={Actions.Recomm}
+          underlayColor='#fff'>
+            <Text style={buttonStyle.startText}>Go to Recommendation</Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={buttonStyle.start}
+          onPress={Actions.LikedList}
+          underlayColor='red'>
+            <Text style={buttonStyle.startText}>Logout</Text>
         </TouchableHighlight>
       </View>
     );

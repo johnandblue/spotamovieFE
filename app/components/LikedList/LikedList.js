@@ -14,7 +14,6 @@ import MovieItem from './components/MovieItem';
 import { Actions } from 'react-native-router-flux';
 
 
-let filteredMovies;
 
 const buttonStyle = {
   start:{
@@ -33,14 +32,28 @@ const buttonStyle = {
 }
 
 class LikedList extends Component {
+  constructor (props){
+    super(props)
+    this.filteredMovies=[];
+  }
   state = {
     cardIndex: 0,
     value: 'Liked',
     values: ['Liked', 'Disliked'],
     selectedIndex: 0
   }
+  componentDidMount() {
+    this.props.getMoviesLiked()
+    this.props.getMoviesDisliked()
+
+  }
+  componentWillUpdate() {
+    // this.props.getMoviesLiked()
+    // this.props.getMoviesDisliked()
+  }
 
   componentWillReceiveProps(nextProps) {
+
     if(this.props.moviesLiked !== nextProps.moviesLiked) {
       nextProps.moviesLiked.map(movieId => {
         this.props.getMovieFromId(movieId)
@@ -51,19 +64,17 @@ class LikedList extends Component {
         this.props.getMovieFromId(movieId)
       })
     }
-    filteredMovies = this.props.movies.filter((val) => this.props.moviesLiked.includes(val.id))
+    this.filteredMovies = this.props.movies.filter((val) => this.props.moviesLiked.includes(val.id.toString()))
   }
 
-  componentWillUpdate() {
-    // this.props.getMoviesLiked()
-    // this.props.getMoviesDisliked()
-    console.log('will update');
-    console.log(filteredMovies);
-  }
-
-  componentDidMount() {
-    this.props.getMoviesLiked()
-    this.props.getMoviesDisliked()
+  mapFilteredMovies = () => {
+      this.filteredMovies.map((movie) =>
+                      <MovieItem
+                        key={movie.id}
+                        title={movie.title}
+                        image={movie.poster_path}
+                      />
+                    )
   }
 
   clickUnlike = () => {
@@ -78,10 +89,10 @@ class LikedList extends Component {
       selectedIndex: event.nativeEvent.selectedSegmentIndex,
     });
     if (this.state.value === 'Liked') {
-      filteredMovies = this.props.movies.filter((val) => this.props.moviesDisliked.includes(val.id))
+      this.filteredMovies = this.props.movies.filter((val) => this.props.moviesDisliked.includes(val.id.toString()))
     }
     if (this.state.value === 'Disliked') {
-      filteredMovies = this.props.movies.filter((val) => this.props.moviesLiked.includes(val.id))
+      this.filteredMovies = this.props.movies.filter((val) => this.props.moviesLiked.includes(val.id.toString()))
 
     }
   };
@@ -95,6 +106,7 @@ class LikedList extends Component {
   render() {
     let title='';
     const movies = this.props.movies;
+    console.log('this.filteredMovies: ', this.filteredMovies);
 
     if (this.state.cardIndex > movies.length - 1) {
       return (
@@ -134,7 +146,7 @@ class LikedList extends Component {
            alignItems: 'flex-start'
           }}>
             {
-              filteredMovies.map((movie) =>
+              this.filteredMovies.map((movie) =>
                 <MovieItem
                   key={movie.id}
                   title={movie.title}
