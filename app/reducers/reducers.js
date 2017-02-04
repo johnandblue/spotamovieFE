@@ -29,6 +29,11 @@ export const movies = (state = [], action) => {
       }
       return state;
 
+    case 'RESET_MOVIES':
+      console.log('Reset Movies Reducer');
+      return [];
+
+
     case 'GET_MOVIE_ERROR':
       console.log('ERROR IN REDUCERS:', action.error);
       return state;

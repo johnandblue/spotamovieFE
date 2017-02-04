@@ -103,14 +103,20 @@ const buttonStyle = {
 
 class Login extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+    }
+  }
+
 
   componentDidMount() {
-    spotifyOauth()
-    Linking.addEventListener('url', this.handleOpenSpotifyURL.bind(this));
+      spotifyOauth()
+      Linking.addEventListener('url', this.handleOpenSpotifyURL.bind(this));
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('User login: ', nextProps.user);
+
   }
 
   handleOpenSpotifyURL(event) {
@@ -119,9 +125,28 @@ class Login extends Component {
     this.props.login(code);
   }
 
+  handleGreeting() {
+    if (this.props.user.name !== undefined) {
+      return <Text style={buttonStyle.startText}>Welcome {this.props.user.name}</Text>
+    } else {
+      return <Text style={buttonStyle.startText}>Welcome</Text>
+    }
+  }
+  handleLogout() {
+    console.log('handleLogout');
+    this.setState({ userLogged:""});
+
+  }
+
   render() {
     return (
       <View style={styles.container}>
+        <TouchableHighlight
+          style={buttonStyle.start}
+          onPress={Actions.SwiperEL}
+          underlayColor='#fff'>
+          {this.handleGreeting()}
+        </TouchableHighlight>
         <TouchableHighlight
           style={buttonStyle.start}
           onPress={Actions.SwiperEL}
@@ -142,7 +167,7 @@ class Login extends Component {
         </TouchableHighlight>
         <TouchableHighlight
           style={buttonStyle.start}
-          onPress={Actions.LikedList}
+          // onPress={() => this.handleLogout()}
           underlayColor='red'>
             <Text style={buttonStyle.startText}>Logout</Text>
         </TouchableHighlight>

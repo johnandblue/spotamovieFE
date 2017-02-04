@@ -9,6 +9,7 @@ import { likeMovie, dislikeMovie } from '../../actions/actions';
 import Navigation from '../navigation/navigation';
 import LikedList from '../LikedList/LikedList';
 import { Actions } from 'react-native-router-flux';
+import Login from '../../containers/Login'
 
 
 const buttonStyle = {
@@ -33,6 +34,7 @@ class SwiperEL extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('movies in will props: ',this.props.movies);
     if(this.props.moviesSurvey !== nextProps.moviesSurvey) {
       nextProps.moviesSurvey.map(movieId => {
         this.props.getMovieFromId(movieId)
@@ -41,7 +43,10 @@ class SwiperEL extends Component {
   }
 
   componentDidMount() {
+    this.setState({ cardIndex: 0 });
+    // this.props.resetMovies()
     this.props.getMoviesSurvey()
+
   }
 
   handleYup = () => {
@@ -73,13 +78,12 @@ class SwiperEL extends Component {
   render() {
     let title='';
     const movies = this.props.movies;
-
     if (this.state.cardIndex > movies.length - 1) {
-      return <NoMoreCard />;
+      return null;
     }
     if (movies.length !== this.props.moviesSurvey.length) {
       // Render a loader
-      return null
+      return null;
     }
     return (
       <View
@@ -99,7 +103,7 @@ class SwiperEL extends Component {
           renderCard={data => <Card {...data} />}
           handleYup={this.handleYup}
           handleNope={this.handleNope}
-          renderNoMoreCards={() => <LikedList />}
+          renderNoMoreCards={() => (this.setState({ cardIndex: 0 }))}
         />
         <View
           style={{
@@ -166,6 +170,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
+  resetMovies: () => dispatch(ActionCreators.resetMovies()),
   getMovieFromId: (movieId) => dispatch(ActionCreators.getMovieFromId(movieId)),
   getMoviesSurvey: () => dispatch(ActionCreators.getMoviesSurvey()),
   likeMovie: (movieId) => {dispatch(ActionCreators.likeMovie(movieId))},
