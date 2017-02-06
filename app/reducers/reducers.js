@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const movies = (state = [], action) => {
+export const movies = (state = [], action) => {
   switch (action.type) {
 
     case 'GET_MOVIES_DISCOVER_SUCCESS':
@@ -16,9 +16,23 @@ const movies = (state = [], action) => {
 
     case 'GET_MOVIE_SUCCESS':
       if (action.response) {
+        const movie = action.response;
+        if (state.find(movie => movie.id === action.response.id)){
+          return state.map(movie => {
+            if (movie.id === action.response.id) {
+              return parseMovie(action.response);
+            }
+            return movie;
+          });
+        }
         return [...state, parseMovie(action.response)]
       }
       return state;
+
+    case 'RESET_MOVIES':
+      console.log('Reset Movies Reducer');
+      return [];
+
 
     case 'GET_MOVIE_ERROR':
       console.log('ERROR IN REDUCERS:', action.error);
@@ -29,7 +43,7 @@ const movies = (state = [], action) => {
   }
 }
 
-const moviesSurvey = (state = [], action) => {
+export const moviesSurvey = (state = [], action) => {
   switch (action.type) {
 
     case 'GET_MOVIES_SURVEY_SUCCESS':
@@ -79,13 +93,13 @@ const moviesDisliked = (state = [], action) => {
   }
 }
 
-const movieReccom = (state = [], action) => {
+const movieRecomm = (state = { movieId: undefined }, action) => {
   switch (action.type) {
 
     case 'GET_MOVIE_RECOMMENDATION_SUCCESS':
-      return action.response.movies;
+      return { movieId: action.response.movieId };
 
-    case 'GET_MOVIE_RECOMMENDATION_ERROR':
+    case 'GET_MOVIE_RECOMMENDATION_FAILURE':
       console.log('ERROR IN REDUCERS:', action.error);
       return state;
 
@@ -115,7 +129,7 @@ export const parseMovie = (data) => {
 }
 
 export const parseMovies = (moviesArray) => {
-  return moviesArray.map((movie) => parseMovies(movie));
+  return moviesArray.map((movie) => parseMovie(movie));
 }
 
 export const parseMoviesSurvey = (moviesArray) => {
@@ -127,7 +141,7 @@ export const parseMoviesSurvey = (moviesArray) => {
 }
 
 const reducers = combineReducers({
-  movies, user, moviesSurvey, moviesLiked, moviesDisliked, movieReccom
+  movies, user, moviesSurvey, moviesLiked, moviesDisliked, movieRecomm
 
 })
 

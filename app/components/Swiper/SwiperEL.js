@@ -1,12 +1,32 @@
 import React, { Component } from 'react';
-import { View, Text, StatusBar, TouchableOpacity } from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import SwipeCards from 'react-native-swipe-cards';
 import styles from './styles/SwiperEl';
 import { ButtonsGroup, Card, NoMoreCard } from './components';
 import ActionCreators from '../../actions'
 import { likeMovie, dislikeMovie } from '../../actions/actions';
+import Navigation from '../navigation/navigation';
+import LikedList from '../LikedList/LikedList';
+import { Actions } from 'react-native-router-flux';
+import Login from '../../containers/Login'
 
+
+const buttonStyle = {
+  start:{
+    padding: 20,
+    margin: 50,
+    backgroundColor:'#494953',
+    borderRadius:30,
+    borderWidth: 1,
+    borderColor: '#fff'
+  },
+  startText:{
+      color:'#fff',
+      textAlign:'center',
+      fontSize: 20
+  }
+}
 
 class SwiperEL extends Component {
   state = {
@@ -14,6 +34,7 @@ class SwiperEL extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('movies in will props: ',this.props.movies);
     if(this.props.moviesSurvey !== nextProps.moviesSurvey) {
       nextProps.moviesSurvey.map(movieId => {
         this.props.getMovieFromId(movieId)
@@ -22,6 +43,15 @@ class SwiperEL extends Component {
   }
 
   componentDidMount() {
+    this.setState({ cardIndex: 0 });
+    this.props.resetMovies()
+    this.props.getMoviesSurvey()
+
+  }
+
+  handleNoMore = () => {
+    this.setState({ cardIndex: 0 });
+    this.props.resetMovies()
     this.props.getMoviesSurvey()
   }
 
@@ -54,13 +84,12 @@ class SwiperEL extends Component {
   render() {
     let title='';
     const movies = this.props.movies;
-
     if (this.state.cardIndex > movies.length - 1) {
-      return <NoMoreCard />;
+      return <Login />;
     }
     if (movies.length !== this.props.moviesSurvey.length) {
       // Render a loader
-      return null
+      return null;
     }
     return (
       <View
@@ -80,7 +109,7 @@ class SwiperEL extends Component {
           renderCard={data => <Card {...data} />}
           handleYup={this.handleYup}
           handleNope={this.handleNope}
-          renderNoMoreCards={() => <NoMoreCard />}
+          renderNoMoreCards={this.handleNoMore}
         />
         <View
           style={{
@@ -115,6 +144,7 @@ class SwiperEL extends Component {
               <Text>INFO</Text>
             </View>
           </TouchableOpacity>
+
           <TouchableOpacity
             onPress={this.clickLike}
           >
@@ -146,6 +176,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
+  resetMovies: () => dispatch(ActionCreators.resetMovies()),
   getMovieFromId: (movieId) => dispatch(ActionCreators.getMovieFromId(movieId)),
   getMoviesSurvey: () => dispatch(ActionCreators.getMoviesSurvey()),
   likeMovie: (movieId) => {dispatch(ActionCreators.likeMovie(movieId))},
