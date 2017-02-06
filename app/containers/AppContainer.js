@@ -6,6 +6,7 @@ import Login from '../containers/Login';
 import SwiperEL from '../components/Swiper/SwiperEL';
 import LikedList from '../components/LikedList/LikedList';
 import Recomm from '../components/Recomm/Recomm';
+import SurveyNav from '../components/Swiper/components/SurveyNav';
 import ActionCreators from '../actions';
 
 import {
@@ -27,6 +28,8 @@ class AppContainer extends Component {
         <Scene key="Recomm" component={Recomm} title="Recommendations" />
         <Scene key="LikedList" component={LikedList} title="Liked Movies" />
         <Scene key="SwiperEL" component={SwiperEL} title="Movie Survey" />
+        <Scene key="SurveyNav" component={SurveyNav} title="" />
+
       </Scene>
     </Router>
     );

@@ -6,7 +6,7 @@ import styles from './styles/SwiperEl';
 import { ButtonsGroup, Card, NoMoreCard } from './components';
 import ActionCreators from '../../actions'
 import { likeMovie, dislikeMovie } from '../../actions/actions';
-import Navigation from '../navigation/navigation';
+import SurveyNav from './components/SurveyNav';
 import LikedList from '../LikedList/LikedList';
 import { Actions } from 'react-native-router-flux';
 import Login from '../../containers/Login'
@@ -50,6 +50,7 @@ class SwiperEL extends Component {
   }
 
   handleNoMore = () => {
+    console.log('Hello', Actions.SurveyNav);
     this.setState({ cardIndex: 0 });
     this.props.resetMovies()
     this.props.getMoviesSurvey()
@@ -84,90 +85,102 @@ class SwiperEL extends Component {
   render() {
     let title='';
     const movies = this.props.movies;
-    if (this.state.cardIndex > movies.length - 1) {
-      return <Login />;
-    }
-    if (movies.length !== this.props.moviesSurvey.length) {
-      // Render a loader
-      return null;
-    }
-    return (
-      <View
-        style={{backgroundColor:'#494953', flex: 1,  alignItems: 'center'}}>
-        <View
-          style={{flexDirection: 'column', alignItems:'center', marginTop: 100}}
-        >
-          <Text
-            style={{margin: 20, fontSize: 20, color: 'white'}}
-          >
-            {movies[this.state.cardIndex].title}
-          </Text>
-        </View>
-        <SwipeCards
-          ref={ref => this._swiper = ref}
-          cards={movies}
-          renderCard={data => <Card {...data} />}
-          handleYup={this.handleYup}
-          handleNope={this.handleNope}
-          renderNoMoreCards={this.handleNoMore}
-        />
-        <View
-          style={{
-            flex: 0.2,
-            flexDirection: 'row',
-            margin: 20
-          }}
-        >
-          <TouchableOpacity
-            onPress={this.clickDislike}
-          >
-            <View
-              style={{
-                flex: 0.2,
-                flexDirection: 'row',
-                margin: 20
-              }}
-            >
-              <Text style={{color: 'red'}}>
-                NO
+    if (!movies.length || movies.length < this.props.moviesSurvey.length) {
+        return (
+          <View style={{ backgroundColor: '#494953', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
+            <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 80 }}>
+              <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
+                LOADING SURVEY...
               </Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-          >
-            <View
-              style={{
-                flex: 0.2,
-                flexDirection: 'row',
-                margin: 20
-              }}            >
-              <Text>INFO</Text>
-            </View>
-          </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={this.clickLike}
-          >
-            <View
-              style={{
-                flex: 0.2,
-                flexDirection: 'row',
-                margin: 20
-              }}
-            >
-              <Text style={{color: 'green'}}>
-                YES
-              </Text>
             </View>
-          </TouchableOpacity>
+          </View>
+        )
+    } else if (movies[this.state.cardIndex]) {
+      return (
+        <View
+          style={{backgroundColor:'#494953', flex: 1,  alignItems: 'center'}}>
+          <View
+            style={{flexDirection: 'column', alignItems:'center', marginTop: 100}}
+          >
+            <Text
+              style={{margin: 20, fontSize: 20, color: 'white'}}
+            >
+              {movies[this.state.cardIndex].title}
+            </Text>
+          </View>
+          <SwipeCards
+            ref={ref => this._swiper = ref}
+            cards={movies}
+            renderCard={data => <Card {...data} />}
+            handleYup={this.handleYup}
+            handleNope={this.handleNope}
+            renderNoMoreCards={() => <SurveyNav/>}
+          />
+          <View
+            style={{
+              flex: 0.2,
+              flexDirection: 'row',
+              margin: 20
+            }}
+          >
+            <TouchableOpacity
+              onPress={this.clickDislike}
+            >
+              <View
+                style={{
+                  flex: 0.2,
+                  flexDirection: 'row',
+                  margin: 20
+                }}
+              >
+                <Text style={{color: 'red'}}>
+                  NO
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+            >
+              <View
+                style={{
+                  flex: 0.2,
+                  flexDirection: 'row',
+                  margin: 20
+                }}            >
+                <Text>INFO</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={this.clickLike}
+            >
+              <View
+                style={{
+                  flex: 0.2,
+                  flexDirection: 'row',
+                  margin: 20
+                }}
+              >
+                <Text style={{color: 'green'}}>
+                  YES
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-    );
+      );
+    }
+    else {
+      return (
+        <SurveyNav
+          onHandleNoMore = {this.handleNoMore}
+        />
+      )
+    }
   }
 }
 
 const mapStateToProps = (state) => {
-
   return {
     movies: state.movies,
     moviesSurvey: state.moviesSurvey,
