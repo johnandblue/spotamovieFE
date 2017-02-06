@@ -68,6 +68,7 @@ class Recomm extends Component {
 
 
   render() {
+    console.log('recommendation: ', this.props.movieRecomm);
     const movie = this.props.movie;
     console.log('movie: ', movie);
 
@@ -76,7 +77,7 @@ class Recomm extends Component {
         <View style={{ backgroundColor: '#494953', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
           <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 80 }}>
             <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
-              Loading...
+              LOADING...
             </Text>
 
           </View>
@@ -109,9 +110,9 @@ class Recomm extends Component {
 }
 
 const mapStateToProps = (state) => {
-
   return {
-    movie: state.movies.slice(state.movies.lenght -1)[0],
+    // movie: state.movies.pop(),
+    movie: state.movies.find(movie => movie.id === parseInt(state.movieRecomm.movieId, 10)),
     movieRecomm: state.movieRecomm.movieId,
     user: state.user
   }
