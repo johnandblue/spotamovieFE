@@ -55,7 +55,6 @@ class Recomm extends Component {
     if(this.props.movieRecomm !== nextProps.movieRecomm) {
       this.props.getMovieFromId(nextProps.movieRecomm);
     }
-    // this.setState({ cardIndex: this.state.cardIndex + 1 });
   }
 
   componentDidMount() {
@@ -70,9 +69,19 @@ class Recomm extends Component {
 
   render() {
     const movie = this.props.movie;
+    console.log('movie: ', movie);
 
     if (!movie) {
-      return <View><Text>No recommendation</Text></View>;
+      return (
+        <View style={{ backgroundColor: '#494953', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
+          <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 80 }}>
+            <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
+              Loading...
+            </Text>
+
+          </View>
+        </View>
+      )
     }
 
     return (
@@ -94,7 +103,6 @@ class Recomm extends Component {
             <Text style={buttonStyle.startText}>Give me another one !</Text>
           </TouchableHighlight>
         </View>
-
       </View>
     )
   }
@@ -103,7 +111,7 @@ class Recomm extends Component {
 const mapStateToProps = (state) => {
 
   return {
-    movie: state.movies.find(movie =>  movie.id === state.movieRecomm.movieId),
+    movie: state.movies.slice(state.movies.lenght -1)[0],
     movieRecomm: state.movieRecomm.movieId,
     user: state.user
   }

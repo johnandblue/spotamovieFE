@@ -123,7 +123,6 @@ class Login extends Component {
   handleOpenSpotifyURL(event) {
     let code = event.url.match(/code=(.+)\&/);
     code = code[1];
-    console.log('in handleOpenSpotifyURL: ', code);
     this.props.login(code);
   }
 
@@ -137,13 +136,11 @@ class Login extends Component {
 
   handleLogin() {
     spotifyOauth()
-    console.log('in handleOpenSpotifyURL: ', this.props);
     Linking.addEventListener('url', this.handleOpenSpotifyURL.bind(this));
 
   }
 
   handleLogout() {
-    console.log('handleLogout');
     this.props.logout()
     this.setState({userLogged: false})
     console.log(this.props.user);
