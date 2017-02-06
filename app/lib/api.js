@@ -39,7 +39,6 @@ export default (symbol, baseURL, endpointSuffix="") => {
 
   let body
     if (data) {
-      console.log('data: ', data);
       body = JSON.stringify(data)
     }
     let ok ;
@@ -52,7 +51,6 @@ export default (symbol, baseURL, endpointSuffix="") => {
       }
     })
       .then(response =>{
-        console.log('response: ', response);
         ok=response.ok;
           return  response.json()
             .then(json => {
@@ -92,7 +90,7 @@ export default (symbol, baseURL, endpointSuffix="") => {
 
     const actionWith = data => {
       const finalAction = Object.assign({}, action, data)
-      delete finalAction[symbol]
+      // delete finalAction[symbol]
       return finalAction
     }
 
