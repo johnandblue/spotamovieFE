@@ -5,22 +5,55 @@ import {
   StatusBar,
   TouchableOpacity,
   ScrollView,
-  SegmentedControlIOS
+  SegmentedControlIOS,
+  TouchableHighlight
 } from 'react-native';
 import { connect } from 'react-redux';
 import ActionCreators from '../../actions'
 import MovieItem from './components/MovieItem';
+import { Actions } from 'react-native-router-flux';
 
+
+
+const buttonStyle = {
+  start:{
+    padding: 20,
+    margin: 50,
+    backgroundColor:'#494953',
+    borderRadius:30,
+    borderWidth: 1,
+    borderColor: '#fff'
+  },
+  startText:{
+      color:'#fff',
+      textAlign:'center',
+      fontSize: 20
+  }
+}
 
 class LikedList extends Component {
+  constructor (props){
+    super(props)
+    this.filteredMovies=[];
+  }
   state = {
     cardIndex: 0,
     value: 'Liked',
     values: ['Liked', 'Disliked'],
     selectedIndex: 0
   }
+  componentDidMount() {
+    this.props.getMoviesLiked()
+    this.props.getMoviesDisliked()
+
+  }
+  componentWillUpdate() {
+    // this.props.getMoviesLiked()
+    // this.props.getMoviesDisliked()
+  }
 
   componentWillReceiveProps(nextProps) {
+
     if(this.props.moviesLiked !== nextProps.moviesLiked) {
       nextProps.moviesLiked.map(movieId => {
         this.props.getMovieFromId(movieId)
@@ -31,16 +64,26 @@ class LikedList extends Component {
         this.props.getMovieFromId(movieId)
       })
     }
-    filteredMovies = this.props.movies.filter((val) => this.props.moviesLiked.includes(val.id))
+    this.filteredMovies = this.props.movies.filter((val) => this.props.moviesLiked.includes(val.id.toString()))
   }
 
-  componentWillMount() {
-
+  handleRemove = (movieId) => {
+    if (this.state.value === 'Liked') {
+      this.props.unLikeMovie(movieId)
+    }
+    if (this.state.value === 'Disliked') {
+      this.props.unDislikeMovie(movieId)
+    }
   }
 
-  componentDidMount() {
-    this.props.getMoviesLiked()
-    this.props.getMoviesDisliked()
+  mapFilteredMovies = () => {
+    this.filteredMovies.map((movie) =>
+      <MovieItem
+        key={movie.id}
+        title={movie.title}
+        image={movie.poster_path}
+      />
+    )
   }
 
   clickUnlike = () => {
@@ -55,10 +98,10 @@ class LikedList extends Component {
       selectedIndex: event.nativeEvent.selectedSegmentIndex,
     });
     if (this.state.value === 'Liked') {
-      filteredMovies = this.props.movies.filter((val) => this.props.moviesDisliked.includes(val.id))
+      this.filteredMovies = this.props.movies.filter((val) => this.props.moviesDisliked.includes(val.id.toString()))
     }
     if (this.state.value === 'Disliked') {
-      filteredMovies = this.props.movies.filter((val) => this.props.moviesLiked.includes(val.id))
+      this.filteredMovies = this.props.movies.filter((val) => this.props.moviesLiked.includes(val.id.toString()))
 
     }
   };
@@ -111,11 +154,12 @@ class LikedList extends Component {
            alignItems: 'flex-start'
           }}>
             {
-              filteredMovies.map((movie) =>
+              this.filteredMovies.map((movie) =>
                 <MovieItem
                   key={movie.id}
                   title={movie.title}
                   image={movie.poster_path}
+                  onRemove={() => this.handleRemove(movie.id)}
                 />
               )
             }
@@ -141,6 +185,8 @@ const mapDispatchToProps = (dispatch) => ({
   getMoviesLiked: () => dispatch(ActionCreators.getMoviesLiked()),
   getMovieFromId: (movieId) => dispatch(ActionCreators.getMovieFromId(movieId)),
   unLikeMovie: (movieId) => dispatch(ActionCreators.unLikeMovie(movieId)),
+  unDislikeMovie: (movieId) => dispatch(ActionCreators.unDislikeMovie(movieId)),
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LikedList);

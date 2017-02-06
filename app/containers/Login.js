@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import base64 from 'base-64';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { login } from '../actions/actions'
+import { login, logout, loading } from '../actions/actions'
 import config from '../../config';
 import querystring from 'querystring';
 import {Buffer} from 'buffer';
@@ -43,9 +43,7 @@ const generateRandomString = function(length) {
 
 const scope = 'user-read-private user-read-email playlist-read-private';
 const state = generateRandomString(16);
-
 const query= ('https://accounts.spotify.com/authorize?' +
-
 querystring.stringify({
   response_type: 'code',
   client_id: config.client_id,
@@ -53,7 +51,6 @@ querystring.stringify({
   redirect_uri: config.redirect_uri,
   state: state
 }))
-
 function spotifyOauth () {
   Linking.openURL(query);
 }
@@ -71,7 +68,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#494953',
+    backgroundColor: '#333',
   },
   welcome: {
     fontSize: 20,
@@ -87,28 +84,28 @@ const styles = StyleSheet.create({
 
 const buttonStyle = {
   start:{
-    padding: 20,
-    margin: 50,
-    backgroundColor:'#494953',
+    padding: 10,
+    margin: 10,
+    backgroundColor:'rgba(0,0,0,0)',
     borderRadius:30,
     borderWidth: 1,
     borderColor: '#fff'
   },
   startText:{
-      color:'#fff',
+      color:'white',
       textAlign:'center',
-      fontSize: 20
+      fontSize: 16
   }
 }
 
 class Login extends Component {
+
   componentDidMount() {
-    spotifyOauth()
-    Linking.addEventListener('url', this.handleOpenSpotifyURL.bind(this));
+
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('User login: ', nextProps.user);
+
   }
 
   handleOpenSpotifyURL(event) {
@@ -117,22 +114,101 @@ class Login extends Component {
     this.props.login(code);
   }
 
-  render() {
+  handleGreeting() {
+    if (this.props.user.name !== undefined) {
+      return <Text style={buttonStyle.startText}>Welcome {this.props.user.name}</Text>
+    } else {
+      return <Text style={buttonStyle.startText}>Welcome</Text>
+    }
+  }
+
+  handleLogin() {
+    this.props.loading()
+    spotifyOauth()
+    Linking.addEventListener('url', this.handleOpenSpotifyURL.bind(this));
+
+  }
+
+  handleLogout() {
+    this.props.logout()
+    this.setState({userLogged: false})
+    console.log(this.props.user);
+  }
+
+  renderLoginButton() {
     return (
       <View style={styles.container}>
         <TouchableHighlight
           style={buttonStyle.start}
-          onPress={Actions.SwiperEL}
-          underlayColor='#fff'>
-            <Text style={buttonStyle.startText}>Spot A Movie</Text>
+          onPress={this.handleLogin.bind(this)}
+          underlayColor='red'>
+            <Text style={buttonStyle.startText}>Login</Text>
         </TouchableHighlight>
       </View>
-    );
+    )
+  }
+
+  render() {
+
+    if (this.props.user.loading) {
+      return (
+        <View style={{ backgroundColor: '#333', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
+          <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 80 }}>
+            <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
+              LOGGING IN...
+            </Text>
+          </View>
+        </View>
+      );
+    }
+    if (this.props.user.userToken) {
+      return (
+        <View style={styles.container}>
+          <TouchableHighlight
+            style={buttonStyle.start}
+            // onPress={Actions.SwiperEL}
+            underlayColor='red'>
+            {this.handleGreeting()}
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={buttonStyle.start}
+            onPress={Actions.SwiperEL}
+            underlayColor='#fff'>
+            <Text style={buttonStyle.startText}>Go to Survey</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={buttonStyle.start}
+            onPress={Actions.LikedList}
+            underlayColor='#fff'>
+            <Text style={buttonStyle.startText}>Go to Liked List</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={buttonStyle.start}
+            onPress={Actions.Recomm}
+            underlayColor='#fff'>
+            <Text style={buttonStyle.startText}>Go to Recommendation</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={buttonStyle.start}
+            onPress={() => this.handleLogout()}
+            underlayColor='red'>
+            <Text style={buttonStyle.startText}>Logout</Text>
+          </TouchableHighlight>
+        </View>
+      );
+    } else {
+      return (
+        this.renderLoginButton()
+      )
+    }
+
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
+  loading: () => dispatch(loading()),
   login: (code) => dispatch(login(code)),
+  logout: () => dispatch(logout())
 })
 
 const mapStateToProps = (state) => ({

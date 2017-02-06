@@ -1,5 +1,5 @@
-export const SpotifySymbol = Symbol('Spotify')
-export const TMDBSymbol    = Symbol('TMDB')
+export const SpotifySymbol = 'apiSpotifySymbol';
+export const TMDBSymbol    = 'apiTMDBSymbol';
 import config from '../../config';
 
 export const getMoviesDiscover = () => ({
@@ -58,6 +58,10 @@ export const dislikeMovie = (movieId) => ({
   }
 })
 
+export const skipMovie = (movieId) => ({
+  type: 'SKIP_MOVIE'
+})
+
 export const likeMovie = (movieId) => ({
   type: 'LIKE_MOVIE',
   [SpotifySymbol] : {
@@ -82,6 +86,17 @@ export const unDislikeMovie = (movieId) => ({
   }
 })
 
+export const resetMovies = () => ({
+  type: 'RESET_MOVIES'
+})
+
+export const loading = () => ({
+  type: 'LOADING'
+})
+
+export const logout = () => ({
+  type: 'LOGOUT'
+})
 
 export const login = (code) => ({
   type: 'LOGIN',
@@ -89,10 +104,7 @@ export const login = (code) => ({
     endpoint: '/login',
     method: 'POST',
     data: {
-      grant_type : "authorization_code",
-      code : code,
-      redirect_uri: config.redirect_uri,
-      client_id:config.client_id
+      code : code
     }
   }
 })
