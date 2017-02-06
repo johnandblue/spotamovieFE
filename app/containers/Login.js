@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import base64 from 'base-64';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { login, logout } from '../actions/actions'
+import { login, logout, loading } from '../actions/actions'
 import config from '../../config';
 import querystring from 'querystring';
 import {Buffer} from 'buffer';
@@ -43,9 +43,7 @@ const generateRandomString = function(length) {
 
 const scope = 'user-read-private user-read-email playlist-read-private';
 const state = generateRandomString(16);
-
 const query= ('https://accounts.spotify.com/authorize?' +
-
 querystring.stringify({
   response_type: 'code',
   client_id: config.client_id,
@@ -53,7 +51,6 @@ querystring.stringify({
   redirect_uri: config.redirect_uri,
   state: state
 }))
-
 function spotifyOauth () {
   Linking.openURL(query);
 }
@@ -103,17 +100,8 @@ const buttonStyle = {
 
 class Login extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      userLogged: false
-    }
-  }
-
-
   componentDidMount() {
-      // spotifyOauth()
-      // Linking.addEventListener('url', this.handleOpenSpotifyURL.bind(this));
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -135,6 +123,7 @@ class Login extends Component {
   }
 
   handleLogin() {
+    this.props.loading()
     spotifyOauth()
     Linking.addEventListener('url', this.handleOpenSpotifyURL.bind(this));
 
@@ -160,6 +149,18 @@ class Login extends Component {
   }
 
   render() {
+
+    if (this.props.user.loading) {
+      return (
+        <View style={{ backgroundColor: '#333', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
+          <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 80 }}>
+            <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
+              LOGGING IN...
+            </Text>
+          </View>
+        </View>
+      );
+    }
     if (this.props.user.userToken) {
       return (
         <View style={styles.container}>
@@ -205,6 +206,7 @@ class Login extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
+  loading: () => dispatch(loading()),
   login: (code) => dispatch(login(code)),
   logout: () => dispatch(logout())
 })

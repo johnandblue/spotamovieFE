@@ -34,7 +34,6 @@ class SwiperEL extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('movies in will props: ',this.props.movies);
     if(this.props.moviesSurvey !== nextProps.moviesSurvey) {
       nextProps.moviesSurvey.map(movieId => {
         this.props.getMovieFromId(movieId)
@@ -50,7 +49,6 @@ class SwiperEL extends Component {
   }
 
   handleNoMore = () => {
-    console.log('Hello', Actions.SurveyNav);
     this.setState({ cardIndex: 0 });
     this.props.resetMovies()
     this.props.getMoviesSurvey()
@@ -92,7 +90,6 @@ class SwiperEL extends Component {
               <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
                 LOADING SURVEY...
               </Text>
-
             </View>
           </View>
         )
