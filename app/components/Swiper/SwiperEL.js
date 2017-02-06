@@ -40,39 +40,40 @@ class SwiperEL extends Component {
       })
     }
   }
-
   componentDidMount() {
     this.setState({ cardIndex: 0 });
     this.props.resetMovies()
     this.props.getMoviesSurvey()
 
   }
-
   handleNoMore = () => {
     this.setState({ cardIndex: 0 });
     this.props.resetMovies()
     this.props.getMoviesSurvey()
   }
-
   handleYup = () => {
     const movieId = this.props.movies[this.state.cardIndex].id;
     this.setState({ cardIndex: this.state.cardIndex + 1 });
     this.props.likeMovie(movieId);
   }
-
   handleNope = () => {
     const movieId = this.props.movies[this.state.cardIndex].id;
     this.setState({ cardIndex: this.state.cardIndex + 1 });
     this.props.dislikeMovie(movieId);
   }
-
+  clickSkip =() => {
+    const movieId = this.props.movies[this.state.cardIndex].id;
+    this.setState({ cardIndex: this.state.cardIndex + 1 });
+    console.log('hello');
+    this.props.skipMovie(movieId);
+    this._swiper._goToNextCard();
+  }
   clickLike = () => {
     const movieId = this.props.movies[this.state.cardIndex].id;
     this.setState({ cardIndex: this.state.cardIndex + 1 });
     this.props.likeMovie(movieId);
     this._swiper._goToNextCard();
   }
-
   clickDislike = movie => {
     const movieId = this.props.movies[this.state.cardIndex].id;
     this.setState({ cardIndex: this.state.cardIndex + 1 });
@@ -98,7 +99,7 @@ class SwiperEL extends Component {
         <View
           style={{backgroundColor:'#494953', flex: 1,  alignItems: 'center'}}>
           <View
-            style={{flexDirection: 'column', alignItems:'center', marginTop: 100}}
+            style={{flexDirection: 'column', alignItems:'center', marginTop: 70}}
           >
             <Text
               style={{margin: 20, fontSize: 20, color: 'white'}}
@@ -137,17 +138,20 @@ class SwiperEL extends Component {
               </View>
             </TouchableOpacity>
             <TouchableOpacity
+              onPress={this.clickSkip}
             >
               <View
                 style={{
                   flex: 0.2,
                   flexDirection: 'row',
                   margin: 20
-                }}            >
-                <Text>INFO</Text>
+                }}
+              >
+                <Text style={{color: 'yellow'}}>
+                  SKIP
+                </Text>
               </View>
             </TouchableOpacity>
-
             <TouchableOpacity
               onPress={this.clickLike}
             >
@@ -164,6 +168,27 @@ class SwiperEL extends Component {
               </View>
             </TouchableOpacity>
           </View>
+
+          {/* <View
+            style={{
+              flex: 0.2,
+              flexDirection: 'row',
+              margin: 20
+            }}
+          >
+          <TouchableOpacity
+          >
+            <View
+              style={{
+                flex: 0.2,
+                flexDirection: 'row',
+                margin: 5
+              }}            >
+              <Text>INFO</Text>
+            </View>
+          </TouchableOpacity>
+        </View> */}
+
         </View>
       );
     }
@@ -181,7 +206,8 @@ const mapStateToProps = (state) => {
   return {
     movies: state.movies,
     moviesSurvey: state.moviesSurvey,
-    user: state.user
+    user: state.user,
+    moviesSkipped: state.moviesSkipped
   }
 }
 
@@ -189,7 +215,8 @@ const mapDispatchToProps = (dispatch) => ({
   resetMovies: () => dispatch(ActionCreators.resetMovies()),
   getMovieFromId: (movieId) => dispatch(ActionCreators.getMovieFromId(movieId)),
   getMoviesSurvey: () => dispatch(ActionCreators.getMoviesSurvey()),
-  likeMovie: (movieId) => {dispatch(ActionCreators.likeMovie(movieId))},
+  skipMovie: (movieId) => dispatch(ActionCreators.skipMovie(movieId)),
+  likeMovie: (movieId) => dispatch(ActionCreators.likeMovie(movieId)),
   dislikeMovie: (movieId) => dispatch(ActionCreators.dislikeMovie(movieId)),
 })
 

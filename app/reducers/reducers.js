@@ -64,6 +64,19 @@ export const moviesSurvey = (state = [], action) => {
       return state;
   }
 }
+
+const moviesSkipped = (state = [], action) => {
+  switch (action.type) {
+
+    case 'SKIP_MOVIE':
+    return state;
+
+    default:
+    return state;
+  }
+
+}
+
 const moviesLiked = (state = [], action) => {
   switch (action.type) {
 
@@ -143,7 +156,7 @@ export const parseMoviesSurvey = (moviesArray) => {
 }
 
 const reducers = combineReducers({
-  movies, user, moviesSurvey, moviesLiked, moviesDisliked, movieRecomm
+  movies, user, moviesSurvey, moviesLiked, moviesDisliked, movieRecomm, moviesSkipped
 
 })
 
