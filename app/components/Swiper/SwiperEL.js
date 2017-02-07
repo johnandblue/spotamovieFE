@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StatusBar, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import SwipeCards from 'react-native-swipe-cards';
-import styles from './styles/SwiperEl';
+import  { styles } from './styles/SwiperEl';
 import { ButtonsGroup, Card, NoMoreCard } from './components';
 import ActionCreators from '../../actions'
 import { likeMovie, dislikeMovie } from '../../actions/actions';
@@ -10,26 +10,8 @@ import SurveyNav from './components/SurveyNav';
 import LikedList from '../LikedList/LikedList';
 import { Actions } from 'react-native-router-flux';
 import Login from '../../containers/Login';
-import { Button } from 'nachos-ui';
+import { Button, Spinner } from 'nachos-ui';
 import Icon from 'react-native-vector-icons/Ionicons';
-
-
-
-const buttonStyle = {
-  start:{
-    padding: 20,
-    margin: 50,
-    backgroundColor:'#494953',
-    borderRadius:30,
-    borderWidth: 1,
-    borderColor: '#fff'
-  },
-  startText:{
-      color:'#fff',
-      textAlign:'center',
-      fontSize: 20
-  }
-}
 
 btnStyle = { margin: 5 }
 
@@ -91,59 +73,65 @@ class SwiperEL extends Component {
     const movies = this.props.movies;
     if (!movies.length || movies.length < this.props.moviesSurvey.length) {
         return (
-          <View style={{ backgroundColor: '#494953', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
-            <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 80 }}>
-              <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
+          <View style={styles.container}>
+            <View style={styles.textView}>
+              <Text style={styles.title}>
                 LOADING SURVEY...
               </Text>
+              <Spinner />
             </View>
           </View>
         )
     } else if (movies[this.state.cardIndex]) {
       return (
         <View
-          style={{backgroundColor:'#494953', flex: 1,  alignItems: 'center'}}>
+          style={styles.container}>
+
           <View
-            style={{flexDirection: 'column', alignItems:'center', marginTop: 70}}
-          >
+            style={styles.titleView}>
             <Text
-              style={{margin: 20, fontSize: 20, color: 'white'}}
-            >
+              style={styles.title}>
               {movies[this.state.cardIndex].title}
             </Text>
           </View>
-          <SwipeCards
-            ref={ref => this._swiper = ref}
-            cards={movies}
-            renderCard={data => <Card {...data} />}
-            handleYup={this.handleYup}
-            handleNope={this.handleNope}
-            renderNoMoreCards={() => <SurveyNav/>}
-          />
+
           <View
-            style={{
-              flex: 0.2,
-              flexDirection: 'row',
-              margin: 30
-            }}
+            style={styles.posterView}>
+            <SwipeCards
+              ref={ref => this._swiper = ref}
+              cards={movies}
+              renderCard={data => <Card {...data} />}
+              handleYup={this.handleYup}
+              handleNope={this.handleNope}
+              renderNoMoreCards={() => <SurveyNav/>}
+            />
+          </View>
+
+          <View
+            style={styles.buttonView}
           >
             <Button
+              style={btnStyle}
               onPress={this.clickUnlike}
               type='danger'
-              style={btnStyle}
-              iconName='ios-thumbs-down'>
+              iconName='md-close'>
             </Button>
+
             <Button
-              onPress={this.clickSkip}
-              type='primary'
               style={btnStyle}
-              iconName='md-arrow-dropup-circle'>
-            </Button>
-            <Button
               onPress={this.clickLike}
               type='success'
+              iconName='md-heart'>
+            </Button>
+          </View>
+
+          <View
+            style={styles.buttonView2}>
+            <Button
               style={btnStyle}
-              iconName='ios-thumbs-up'>
+              onPress={this.clickSkip}
+              type='primary'
+              iconName='md-arrow-dropup-circle'>
             </Button>
           </View>
         </View>

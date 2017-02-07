@@ -23,7 +23,7 @@ class AppContainer extends Component {
   render() {
    return (
     <Router>
-      <Scene key="root">
+      <Scene key="root" hideNavBar="false">
         <Scene key="Login" component={Login} title="Login"/>
         <Scene key="Recomm" component={Recomm} title="Recommendations" />
         <Scene key="LikedList" component={LikedList} title="Liked Movies" />

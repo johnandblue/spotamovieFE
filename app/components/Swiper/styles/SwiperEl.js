@@ -1,43 +1,45 @@
-import EStyleSheet from 'react-native-extended-stylesheet';
+import { StyleSheet } from 'react-native';
 
-const styles = EStyleSheet.create({
-  root: {
+export const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#494953',
     flex: 1,
-    backgroundColor: '$blackColor',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop: '2%'
+    flexDirection: 'column',
+    alignItems: 'center'
   },
-  titleContainer: {
+  titleView: {
     flex: 0.1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingBottom: 5
+    backgroundColor: 'pink',
+    flexDirection: 'column',
+    alignItems:'center',
+    marginTop: 40
   },
-  yupAndNopeStyle: {
-    position: 'absolute',
-    top: '25%',
-    left: '20%',
-  },
-  nopeTextStyle: {
-    color: '$redColor',
-    fontFamily: 'montserrat-bold',
-    fontSize: 75,
-  },
-  yupTextStyle: {
-    color: '$blueColor',
-    fontFamily: 'montserrat-bold',
-    fontSize: 75
-  },
-  titleStyle: {
+  title: {
+    backgroundColor: 'purple',
     fontSize: 20,
-    color: '#fff',
-    fontFamily: 'montserrat-regular'
+    color: 'white'
   },
-  swiperContainer: {
-    flex: 1,
-    backgroundColor: '$blackColor'
+  posterView: {
+    flex: 0.6,
+    backgroundColor:'cyan',
+    paddingRight: 60,
+    paddingLeft: 60,
+    alignItems: 'center'
+  },
+  buttonView: {
+    marginTop: 10,
+    flex: 0.15,
+    backgroundColor: 'yellow',
+    flexDirection: 'row',
+    margin: 5
+  },
+  buttonView2: {
+    flex: 0.15,
+    backgroundColor:'chartreuse',
+    flexDirection: 'row',
+  },
+  btnStyle: {
+    width: 20,
+    marginLeft: 20
   }
 });
-
-export default styles;
