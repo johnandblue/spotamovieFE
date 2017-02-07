@@ -19,6 +19,19 @@ import {
 } from 'react-native';
 
 
+import { themeManager } from 'nachos-ui'
+
+const buttonTheme = themeManager.getStyle('Button')
+
+const newButtonTheme = {
+  ...buttonTheme,
+  BUTTON_STATE_PRIMARY: '#94de45',
+  BUTTON_STATE_SUCCESS: '#2f8cff',
+  BUTTON_STATE_DANGER:  '#ED462C'
+}
+
+themeManager.setSource('Button', () => (newButtonTheme))
+
 class AppContainer extends Component {
   render() {
    return (

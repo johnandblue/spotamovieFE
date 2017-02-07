@@ -5,41 +5,62 @@ export const styles = StyleSheet.create({
     backgroundColor: '#494953',
     flex: 1,
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+  },
+  containerLoader: {
+    backgroundColor: '#494953',
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   titleView: {
     flex: 0.1,
-    backgroundColor: 'pink',
+    // backgroundColor: 'pink',
     flexDirection: 'column',
     alignItems:'center',
-    marginTop: 40
+    marginTop: 40,
   },
   title: {
-    backgroundColor: 'purple',
-    fontSize: 20,
+    fontFamily: 'Raleway-Bold',
+    fontSize: 36,
+    // backgroundColor: 'purple',
     color: 'white'
   },
   posterView: {
     flex: 0.6,
-    backgroundColor:'cyan',
+    // backgroundColor:'cyan',
     paddingRight: 60,
     paddingLeft: 60,
     alignItems: 'center'
   },
-  buttonView: {
+  buttonRow1: {
     marginTop: 10,
-    flex: 0.15,
-    backgroundColor: 'yellow',
+    flex: 0.1,
+    // backgroundColor: 'yellow',
     flexDirection: 'row',
-    margin: 5
+    alignItems: 'center',
+    margin: 5,
+    width: 230,
+    justifyContent: 'space-between'
+  },
+  buttonView1: {
+    // flex: 0.1,
+    // backgroundColor:'deeppink',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   buttonView2: {
-    flex: 0.15,
-    backgroundColor:'chartreuse',
-    flexDirection: 'row',
+    flex: 0.1,
+    // backgroundColor:'chartreuse',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    width: 200
   },
   btnStyle: {
-    width: 20,
-    marginLeft: 20
+    // flex: 1,
+    margin: 5
   }
 });

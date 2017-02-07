@@ -25,6 +25,12 @@
 		23F98A83F76A4C64A42EECF7 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4235305E4055465687A956F0 /* libRNVectorIcons.a */; };
 		49449CB31E4933D4004807D2 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 49449CB21E4933D4004807D2 /* Fonts */; };
 		49449CB41E4933D4004807D2 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 49449CB21E4933D4004807D2 /* Fonts */; };
+		49449D001E4A156E004807D2 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49449CFF1E4A156D004807D2 /* Raleway-Bold.ttf */; };
+		49449D011E4A156E004807D2 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49449CFF1E4A156D004807D2 /* Raleway-Bold.ttf */; };
+		49449D031E4A157C004807D2 /* Raleway-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49449D021E4A157C004807D2 /* Raleway-Black.ttf */; };
+		49449D041E4A157C004807D2 /* Raleway-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49449D021E4A157C004807D2 /* Raleway-Black.ttf */; };
+		49449D061E4A1599004807D2 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49449D051E4A1599004807D2 /* Raleway-Medium.ttf */; };
+		49449D071E4A1599004807D2 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49449D051E4A1599004807D2 /* Raleway-Medium.ttf */; };
 		4CB32C254F8C409DB6A9B7CE /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2CF080DCBE34C9697BAE3BC /* FontAwesome.ttf */; };
 		5006D13CA4904650BA013C63 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BA21493049B4D3BABC146E3 /* MaterialCommunityIcons.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
@@ -269,6 +275,9 @@
 		20A81A9A98F440F5A7167A5E /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		4235305E4055465687A956F0 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		49449CB21E4933D4004807D2 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
+		49449CFF1E4A156D004807D2 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
+		49449D021E4A157C004807D2 /* Raleway-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Black.ttf"; sourceTree = "<group>"; };
+		49449D051E4A1599004807D2 /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
 		539C307582E545F584F0C4B8 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		5D3282B741C542A58C9EAAC6 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -433,6 +442,9 @@
 		55EE5DEC0F3D482E964E549B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				49449D051E4A1599004807D2 /* Raleway-Medium.ttf */,
+				49449D021E4A157C004807D2 /* Raleway-Black.ttf */,
+				49449CFF1E4A156D004807D2 /* Raleway-Bold.ttf */,
 				5D3282B741C542A58C9EAAC6 /* Entypo.ttf */,
 				AD493D3FF82C4243A88260C8 /* EvilIcons.ttf */,
 				B2CF080DCBE34C9697BAE3BC /* FontAwesome.ttf */,
@@ -862,6 +874,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				49449CB41E4933D4004807D2 /* Fonts in Resources */,
+				49449D071E4A1599004807D2 /* Raleway-Medium.ttf in Resources */,
+				49449D011E4A156E004807D2 /* Raleway-Bold.ttf in Resources */,
+				49449D041E4A157C004807D2 /* Raleway-Black.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,18 +885,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				49449CB31E4933D4004807D2 /* Fonts in Resources */,
+				49449D061E4A1599004807D2 /* Raleway-Medium.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				FB1444639B9A46EBBA782E28 /* Entypo.ttf in Resources */,
 				FAE6094742A6455ABD536955 /* EvilIcons.ttf in Resources */,
 				4CB32C254F8C409DB6A9B7CE /* FontAwesome.ttf in Resources */,
 				EEFB9AED54BF4896AF70D2CF /* Foundation.ttf in Resources */,
+				49449D001E4A156E004807D2 /* Raleway-Bold.ttf in Resources */,
 				827E356A34B14EB5A7BAC5F5 /* Ionicons.ttf in Resources */,
 				5006D13CA4904650BA013C63 /* MaterialCommunityIcons.ttf in Resources */,
 				71AABA83B10D4E30BC6DC603 /* MaterialIcons.ttf in Resources */,
 				67BD065918EB4874A2603ECF /* Octicons.ttf in Resources */,
 				7F0EDE12901440619A07119C /* SimpleLineIcons.ttf in Resources */,
 				74BF4F31E8B248F397F8988A /* Zocial.ttf in Resources */,
+				49449D031E4A157C004807D2 /* Raleway-Black.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

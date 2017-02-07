@@ -13,6 +13,21 @@ import Login from '../../containers/Login';
 import { Button, Spinner } from 'nachos-ui';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import { themeManager } from 'nachos-ui'
+
+const buttonTheme = themeManager.getStyle('Button')
+const transparentButtonStyle = {
+  ...buttonTheme,
+  BUTTON_STATE_PRIMARY: 'transparent',
+}
+
+const circleButtonStyle = {
+  ...buttonTheme,
+  BUTTON_ROUNDED_RADIUS: 60,
+  BUTTON_ROUNDED_HEIGHT: 60
+}
+
+
 btnStyle = { margin: 5 }
 
 class SwiperEL extends Component {
@@ -73,7 +88,7 @@ class SwiperEL extends Component {
     const movies = this.props.movies;
     if (!movies.length || movies.length < this.props.moviesSurvey.length) {
         return (
-          <View style={styles.container}>
+          <View style={styles.containerLoader}>
             <View style={styles.textView}>
               <Text style={styles.title}>
                 LOADING SURVEY...
@@ -84,19 +99,15 @@ class SwiperEL extends Component {
         )
     } else if (movies[this.state.cardIndex]) {
       return (
-        <View
-          style={styles.container}>
-
-          <View
-            style={styles.titleView}>
+        <View style={styles.container}>
+          <View style={styles.titleView}>
             <Text
               style={styles.title}>
               {movies[this.state.cardIndex].title}
             </Text>
           </View>
 
-          <View
-            style={styles.posterView}>
+          <View style={styles.posterView}>
             <SwipeCards
               ref={ref => this._swiper = ref}
               cards={movies}
@@ -107,31 +118,38 @@ class SwiperEL extends Component {
             />
           </View>
 
-          <View
-            style={styles.buttonView}
-          >
-            <Button
-              style={btnStyle}
-              onPress={this.clickUnlike}
-              type='danger'
-              iconName='md-close'>
-            </Button>
-
-            <Button
-              style={btnStyle}
-              onPress={this.clickLike}
-              type='success'
-              iconName='md-heart'>
-            </Button>
+          <View style={styles.buttonRow1}>
+            <View style ={styles.buttonView1}>
+              <Button
+                style={btnStyle}
+                theme={circleButtonStyle}
+                onPress={this.clickUnlike}
+                type='danger'
+                iconName='md-close'>
+              </Button>
+            </View>
+            <View style ={styles.buttonView1}>
+              <Button
+                style={btnStyle}
+                theme={circleButtonStyle}
+                onPress={this.clickLike}
+                type='primary'
+                iconName='md-heart'>
+              </Button>
+            </View>
           </View>
 
-          <View
-            style={styles.buttonView2}>
+
+
+          <View style={styles.buttonView2}>
             <Button
+              type='primary'
+              theme={transparentButtonStyle}
               style={btnStyle}
               onPress={this.clickSkip}
-              type='primary'
-              iconName='md-arrow-dropup-circle'>
+              // iconName='md-close'
+              >
+              I don't know
             </Button>
           </View>
         </View>
