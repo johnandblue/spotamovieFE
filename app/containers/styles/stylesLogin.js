@@ -8,6 +8,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  containerLoader: {
+    backgroundColor: '#23222E',
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   titleView: {
     flex: 0.1,
     // backgroundColor: 'pink',

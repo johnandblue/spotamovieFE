@@ -8,6 +8,8 @@ import querystring from 'querystring';
 import {Buffer} from 'buffer';
 import { Actions } from 'react-native-router-flux';
 import { styles } from './styles/stylesLogin'
+import { Spinner } from 'nachos-ui';
+
 
 import {
   Animated,
@@ -99,7 +101,7 @@ class Login extends Component {
       <View style={styles.container}>
         <View>
           <Text>
-            
+
           </Text>
         </View>
         <TouchableHighlight
@@ -116,11 +118,12 @@ class Login extends Component {
 
     if (this.props.user.loading) {
       return (
-        <View style={{ backgroundColor: '#23222E', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
-          <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 80 }}>
-            <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
+        <View style={styles.containerLoader}>
+          <View style={styles.textView}>
+            <Text style={styles.title}>
               LOGGING IN...
             </Text>
+            <Spinner />
           </View>
         </View>
       );

@@ -2,48 +2,11 @@ import React, { Component } from 'react';
 import { View, Text, StatusBar, TouchableOpacity, Image, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import ActionCreators from '../../actions';
+import { Spinner } from 'nachos-ui';
+import { styles, buttonStyle } from './styles/Recomm';
+import { Actions } from 'react-native-router-flux';
 
 const POSTER = 'https://image.tmdb.org/t/p/w500';
-
-
-const styles = {
-  posterCard: {
-    borderRadius: 10,
-    width: 250,
-    height: 400,
-    shadowOffset: {
-      width: 0.5,
-      height: 0.5,
-    },
-    shadowColor: 'black',
-    shadowOpacity: 0.8,
-  },
-  poster: {
-    borderRadius: 10
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#23222E',
-  },
-}
-
-const buttonStyle = {
-  start:{
-    padding: 10,
-    marginTop: 30,
-    backgroundColor:'#23222E',
-    borderRadius:30,
-    borderWidth: 1,
-    borderColor: '#fff'
-  },
-  startText:{
-      color:'#fff',
-      textAlign:'center',
-      fontSize: 16
-  }
-}
 
 class Recomm extends Component {
 
@@ -74,12 +37,12 @@ class Recomm extends Component {
 
     if (!movie) {
       return (
-        <View style={{ backgroundColor: '#23222E', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
-          <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 80 }}>
-            <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
-              LOADING...
+        <View style={styles.containerLoader}>
+          <View style={styles.textView}>
+            <Text style={styles.title}>
+              LOADING YOUR MOVIES...
             </Text>
-
+            <Spinner />
           </View>
         </View>
       )
@@ -87,7 +50,7 @@ class Recomm extends Component {
 
     return (
       <View style={{ backgroundColor: '#23222E', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
-        <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 80 }}>
+        <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 40 }}>
           <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
             Recommendations
           </Text>
@@ -102,6 +65,12 @@ class Recomm extends Component {
             onPress={this.newReccom}
             underlayColor='#fff'>
             <Text style={buttonStyle.startText}>Give me another one !</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={buttonStyle.start}
+            onPress={() => Actions.Login()}
+            underlayColor='#fff'>
+            <Text style={buttonStyle.startText}>Back to Home Screen</Text>
           </TouchableHighlight>
         </View>
       </View>
