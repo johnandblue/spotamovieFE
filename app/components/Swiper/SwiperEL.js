@@ -9,7 +9,10 @@ import { likeMovie, dislikeMovie } from '../../actions/actions';
 import SurveyNav from './components/SurveyNav';
 import LikedList from '../LikedList/LikedList';
 import { Actions } from 'react-native-router-flux';
-import Login from '../../containers/Login'
+import Login from '../../containers/Login';
+import { Button } from 'nachos-ui';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 
 
 const buttonStyle = {
@@ -27,6 +30,8 @@ const buttonStyle = {
       fontSize: 20
   }
 }
+
+btnStyle = { margin: 5 }
 
 class SwiperEL extends Component {
   state = {
@@ -119,76 +124,28 @@ class SwiperEL extends Component {
             style={{
               flex: 0.2,
               flexDirection: 'row',
-              margin: 20
+              margin: 30
             }}
           >
-            <TouchableOpacity
-              onPress={this.clickDislike}
-            >
-              <View
-                style={{
-                  flex: 0.2,
-                  flexDirection: 'row',
-                  margin: 20
-                }}
-              >
-                <Text style={{color: 'red'}}>
-                  NO
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
+            <Button
+              onPress={this.clickUnlike}
+              type='danger'
+              style={btnStyle}
+              iconName='ios-thumbs-down'>
+            </Button>
+            <Button
               onPress={this.clickSkip}
-            >
-              <View
-                style={{
-                  flex: 0.2,
-                  flexDirection: 'row',
-                  margin: 20
-                }}
-              >
-                <Text style={{color: 'yellow'}}>
-                  SKIP
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
+              type='primary'
+              style={btnStyle}
+              iconName='md-arrow-dropup-circle'>
+            </Button>
+            <Button
               onPress={this.clickLike}
-            >
-              <View
-                style={{
-                  flex: 0.2,
-                  flexDirection: 'row',
-                  margin: 20
-                }}
-              >
-                <Text style={{color: 'green'}}>
-                  YES
-                </Text>
-              </View>
-            </TouchableOpacity>
+              type='success'
+              style={btnStyle}
+              iconName='ios-thumbs-up'>
+            </Button>
           </View>
-
-          {/* <View
-            style={{
-              flex: 0.2,
-              flexDirection: 'row',
-              margin: 20
-            }}
-          >
-          <TouchableOpacity
-          >
-            <View
-              style={{
-                flex: 0.2,
-                flexDirection: 'row',
-                margin: 5
-              }}            >
-              <Text>INFO</Text>
-            </View>
-          </TouchableOpacity>
-        </View> */}
-
         </View>
       );
     }
