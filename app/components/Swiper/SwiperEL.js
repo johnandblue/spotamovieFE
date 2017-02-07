@@ -10,10 +10,13 @@ import SurveyNav from './components/SurveyNav';
 import LikedList from '../LikedList/LikedList';
 import { Actions } from 'react-native-router-flux';
 import Login from '../../containers/Login';
-import { Button, Spinner } from 'nachos-ui';
+import { Spinner, Button } from 'nachos-ui';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { themeManager } from 'nachos-ui'
+
+const iconHeart =(<Icon name="md-heart" size={40} color="white" />)
+const iconClose =(<Icon name="md-close" size={40} color="white" />)
 
 const buttonTheme = themeManager.getStyle('Button')
 const transparentButtonStyle = {
@@ -119,33 +122,28 @@ class SwiperEL extends Component {
           </View>
 
           <View style={styles.buttonRow1}>
-            <View style ={styles.buttonView1}>
-              <Button
-                style={btnStyle}
-                theme={circleButtonStyle}
-                onPress={this.clickUnlike}
-                type='danger'
-                iconName='md-close'>
-              </Button>
-            </View>
-            <View style ={styles.buttonView1}>
-              <Button
-                style={btnStyle}
-                theme={circleButtonStyle}
-                onPress={this.clickLike}
-                type='primary'
-                iconName='md-heart'>
-              </Button>
-            </View>
+
+            <TouchableHighlight
+              style={styles.btnHighLightClose}
+              onPress={this.clickDislike}
+              underlayColor='#ED462C'
+              >
+              <Text style={styles.txtHighLight}>{iconClose}</Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              style={styles.btnHighLightHeart}
+              onPress={this.clickLike}
+              underlayColor='#94de45'
+              >
+              <Text style={styles.txtHighLight}>{iconHeart}</Text>
+            </TouchableHighlight>
           </View>
-
-
 
           <View style={styles.buttonView2}>
             <Button
               type='primary'
               theme={transparentButtonStyle}
-              style={btnStyle}
+              style={styles.btnStyle}
               onPress={this.clickSkip}
               // iconName='md-close'
               >
