@@ -33,3 +33,19 @@ export const styles = StyleSheet.create({
     marginBottom:10,
   }
 });
+
+export const buttonStyle = StyleSheet.create({
+  start:{
+    padding: 5,
+    marginTop: 40,
+    backgroundColor:'#23222E',
+    borderRadius:30,
+    borderWidth: 1,
+    borderColor: '#fff'
+  },
+  startText:{
+      color:'#fff',
+      textAlign:'center',
+      fontSize: 16
+  }
+})

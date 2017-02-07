@@ -13,26 +13,12 @@ import ActionCreators from '../../actions'
 import MovieItem from './components/MovieItem';
 import { Actions } from 'react-native-router-flux';
 import { Spinner } from 'nachos-ui';
-import { styles } from './styles/stylesLiked';
+import { styles, buttonStyle } from './styles/stylesLiked';
 
 
 
 
-const buttonStyle = {
-  start:{
-    padding: 20,
-    margin: 50,
-    backgroundColor:'#23222E',
-    borderRadius:30,
-    borderWidth: 1,
-    borderColor: '#fff'
-  },
-  startText:{
-      color:'#fff',
-      textAlign:'center',
-      fontSize: 20
-  }
-}
+
 
 class LikedList extends Component {
   constructor (props){
@@ -89,13 +75,6 @@ class LikedList extends Component {
     )
   }
 
-  clickUnlike = () => {
-    const movieId = this.props.movies[this.state.cardIndex].id;
-    this.setState({ cardIndex: this.state.cardIndex + 1 });
-    this.props.unLikeMovie(movieId);
-  }
-
-
   _onChange = (event) => {
     this.setState({
       selectedIndex: event.nativeEvent.selectedSegmentIndex,
@@ -141,8 +120,14 @@ class LikedList extends Component {
           flexDirection: 'column',
           alignItems: 'stretch'
         }}>
-        <View style={{ alignItems:'center', marginTop: 70}}>
-          <Text style={{margin: 20, fontSize: 20, color: 'white'}}>
+        <TouchableHighlight
+          style={buttonStyle.start}
+          onPress={() => Actions.Login()}
+          underlayColor='#fff'>
+          <Text style={buttonStyle.startText}>Back to Home Screen</Text>
+        </TouchableHighlight>
+        <View style={{ alignItems:'center', margin: 20}}>
+          <Text style={{fontSize: 20, color: 'white'}}>
             Movies {this.state.value}
           </Text>
         </View>

@@ -40,7 +40,7 @@ class Recomm extends Component {
         <View style={styles.containerLoader}>
           <View style={styles.textView}>
             <Text style={styles.title}>
-              LOADING YOUR MOVIES...
+              LOADING YOUR RECOMMENDATIONS...
             </Text>
             <Spinner />
           </View>

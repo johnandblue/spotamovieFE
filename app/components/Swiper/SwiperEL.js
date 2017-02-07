@@ -12,7 +12,6 @@ import { Actions } from 'react-native-router-flux';
 import Login from '../../containers/Login';
 import { Spinner, Button } from 'nachos-ui';
 import Icon from 'react-native-vector-icons/Ionicons';
-
 import { themeManager } from 'nachos-ui'
 
 const iconHeart =(<Icon name="md-heart" size={40} color="white" />)
@@ -24,11 +23,6 @@ const transparentButtonStyle = {
   BUTTON_STATE_PRIMARY: 'transparent',
 }
 
-const circleButtonStyle = {
-  ...buttonTheme,
-  BUTTON_ROUNDED_RADIUS: 60,
-  BUTTON_ROUNDED_HEIGHT: 60
-}
 
 
 btnStyle = { margin: 5 }
@@ -122,7 +116,6 @@ class SwiperEL extends Component {
           </View>
 
           <View style={styles.buttonRow1}>
-
             <TouchableHighlight
               style={styles.btnHighLightClose}
               onPress={this.clickDislike}
@@ -143,13 +136,13 @@ class SwiperEL extends Component {
             <Button
               type='primary'
               theme={transparentButtonStyle}
-              style={styles.btnStyle}
               onPress={this.clickSkip}
               // iconName='md-close'
               >
               I don't know
             </Button>
           </View>
+
         </View>
       );
     }
