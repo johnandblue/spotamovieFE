@@ -12,6 +12,9 @@ import { connect } from 'react-redux';
 import ActionCreators from '../../actions'
 import MovieItem from './components/MovieItem';
 import { Actions } from 'react-native-router-flux';
+import { Spinner } from 'nachos-ui';
+import { styles } from './styles/stylesLiked';
+
 
 
 
@@ -19,7 +22,7 @@ const buttonStyle = {
   start:{
     padding: 20,
     margin: 50,
-    backgroundColor:'#494953',
+    backgroundColor:'#23222E',
     borderRadius:30,
     borderWidth: 1,
     borderColor: '#fff'
@@ -118,16 +121,22 @@ class LikedList extends Component {
 
     if (this.state.cardIndex > movies.length - 1) {
       return (
-        <Text style={{margin: 20, fontSize: 20, color: 'blue'}}>
-          Waiting for Movie Reccomendation
-        </Text>
+        <View style={styles.containerLoader}>
+          <View style={styles.textView}>
+            <Text style={styles.title}>
+              LOADING YOUR MOVIES...
+            </Text>
+            <Spinner />
+          </View>
+        </View>
+
       );
     }
 
     return (
       <View
         style={{
-          backgroundColor:'#494953',
+          backgroundColor:'#23222E',
           flex: 1,
           flexDirection: 'column',
           alignItems: 'stretch'

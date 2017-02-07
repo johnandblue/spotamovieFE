@@ -25,7 +25,7 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#494953',
+    backgroundColor: '#23222E',
   },
 }
 
@@ -33,7 +33,7 @@ const buttonStyle = {
   start:{
     padding: 10,
     marginTop: 30,
-    backgroundColor:'#494953',
+    backgroundColor:'#23222E',
     borderRadius:30,
     borderWidth: 1,
     borderColor: '#fff'
@@ -74,7 +74,7 @@ class Recomm extends Component {
 
     if (!movie) {
       return (
-        <View style={{ backgroundColor: '#494953', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
+        <View style={{ backgroundColor: '#23222E', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
           <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 80 }}>
             <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
               LOADING...
@@ -86,7 +86,7 @@ class Recomm extends Component {
     }
 
     return (
-      <View style={{ backgroundColor: '#494953', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
+      <View style={{ backgroundColor: '#23222E', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
         <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 80 }}>
           <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
             Recommendations
