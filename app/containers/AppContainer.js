@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {Scene, Router} from 'react-native-router-flux';
 import Login from '../containers/Login';
+import Wizard from '../containers/Wizard';
 import SwiperEL from '../components/Swiper/SwiperEL';
 import LikedList from '../components/LikedList/LikedList';
 import Recomm from '../components/Recomm/Recomm';
@@ -38,6 +39,7 @@ class AppContainer extends Component {
     <Router>
       <Scene key="root" hideNavBar="false">
         <Scene key="Login" component={Login} title="Login"/>
+        <Scene key="Wizard" component={Wizard} title="Wizard"/>
         <Scene key="Recomm" component={Recomm} title="Recommendations" />
         <Scene key="LikedList" component={LikedList} title="Liked Movies" />
         <Scene key="SwiperEL" component={SwiperEL} title="Movie Survey" />
