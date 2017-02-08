@@ -1,19 +1,30 @@
 import React, { Component } from 'react';
-import { View, Text, StatusBar, TouchableOpacity, Image, TouchableHighlight } from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity, Image, TouchableHighlight, Modal } from 'react-native';
 import { connect } from 'react-redux';
 import ActionCreators from '../../actions';
 import { Spinner } from 'nachos-ui';
 import { styles, buttonStyle } from './styles/Recomm';
 import { Actions } from 'react-native-router-flux';
 import RecLoader from '../RecLoader/RecLoader';
-
+import MovieCard from '../MovieCard/MovieCard';
+import ActionButton from 'react-native-circular-action-menu';
+import Icon from 'react-native-vector-icons/Ionicons';
 const POSTER = 'https://image.tmdb.org/t/p/w500';
 
 class Recomm extends Component {
 
-  state = {
-    cardIndex: 0
-  };
+  constructor() {
+      super();
+      this.state = {modalVisible: false};
+    }
+
+  openModal = () => {
+    this.setState({modalVisible: true});
+  }
+
+  closeModal = () => {
+    this.setState({modalVisible: false});
+  }
 
   componentWillReceiveProps(nextProps) {
     if(this.props.movieRecomm !== nextProps.movieRecomm) {
@@ -25,16 +36,12 @@ class Recomm extends Component {
     this.props.getMovieRecommendation()
   }
 
-
-  newReccom = movie => {
+  newRecomm = movie => {
     this.props.getMovieRecommendation()
   }
 
-
   render() {
-    console.log('recommendation: ', this.props.movieRecomm);
     const movie = this.props.movie;
-    console.log('movie: ', movie);
 
     if (!movie) {
       return (
@@ -48,25 +55,57 @@ class Recomm extends Component {
           <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
             Recommendations
           </Text>
-          <View style={styles.poster}>
-            <Image
-              style={styles.posterCard}
-              source={{uri: `${POSTER}/${movie.poster_path}`}}
-            />
-          </View>
+
           <TouchableHighlight
-            style={buttonStyle.start}
-            onPress={this.newReccom}
-            underlayColor='#fff'>
-            <Text style={buttonStyle.startText}>Give me another one !</Text>
+            onPress = {this.openModal}>
+            <View style={styles.poster}>
+              <Image
+                style={styles.posterCard}
+                source={{uri: `${POSTER}/${movie.poster_path}`}}
+              />
+            </View>
           </TouchableHighlight>
-          <TouchableHighlight
-            style={buttonStyle.start}
-            onPress={() => Actions.SwiperEL()}
-            underlayColor='#fff'>
-            <Text style={buttonStyle.startText}>Back to Home Screen</Text>
-          </TouchableHighlight>
+
         </View>
+
+        <Modal
+          animationType="fade"
+          transparent
+          visible={this.state.modalVisible}
+          >
+          <TouchableHighlight
+            onPress={this.closeModal}
+            style={styles.modal1}>
+            <View style = {styles.modal}>
+              <MovieCard/>
+            </View>
+          </TouchableHighlight>
+        </Modal>
+        
+        <ActionButton  buttonColor="#94de45">
+
+          <ActionButton.Item buttonColor='#94de45' title="Survey"
+            onPress={() => {Actions.SwiperEL()}}>
+            <Icon name="md-heart" size={20} color="white" />
+          </ActionButton.Item>
+
+          <ActionButton.Item buttonColor='#94de45'
+            title="Notifications" onPress={() => {this.newRecomm()}}>
+            <Icon name="md-repeat"color="white" size={20}  style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+
+          <ActionButton.Item buttonColor='#94de45' title="LikedList"
+            onPress={() => {Actions.LikedList()}}>
+            <Icon name="md-aperture"color="white" size={20}  style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+
+
+           <ActionButton.Item buttonColor='#94de45' title="New Task" onPress={() => Actions.LogOut()}>
+             <Icon name="md-log-out" size={20} color="white" />
+           </ActionButton.Item>
+
+        </ActionButton>
+
       </View>
     )
   }
@@ -74,7 +113,6 @@ class Recomm extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // movie: state.movies.pop(),
     movie: state.movies.find(movie => movie.id === parseInt(state.movieRecomm.movieId, 10)),
     movieRecomm: state.movieRecomm.movieId,
     user: state.user

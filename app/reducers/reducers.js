@@ -100,6 +100,9 @@ export const movieRecomm = (state = { movieId: undefined }, action) => {
       return { movieId: action.response.movieId };
 
     case 'GET_MOVIE_RECOMMENDATION_FAILURE':
+      console.log('ERROR IN REDUCERS:', action.error);
+      return state;
+
     default:
       return state;
   }
@@ -123,7 +126,12 @@ export const parseMovie = (data) => {
     seen: false,
     poster_path: data.poster_path,
     id: data.id,
-    title: data.title
+    title: data.title,
+    overview: data.overview,
+    voteAverage: data.vote_average,
+    genres: data.genres,
+    releaseDate: data.release_date,
+    backdropPath: data.backdrop_path
   }
 }
 

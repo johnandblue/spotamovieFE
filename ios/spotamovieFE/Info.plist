@@ -68,8 +68,10 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Raleway-Black.ttf</string>
+		<string>LucidaGrande.ttf</string>
+		<string>LucidaGrandeBold.ttf</string>
 		<string>Raleway-Bold.ttf</string>
+		<string>Raleway-Black.ttf</string>
 		<string>Raleway-Medium.ttf</string>
 		<string>Entypo.ttf</string>
 		<string>EvilIcons.ttf</string>

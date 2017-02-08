@@ -36,9 +36,22 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-    // backgroundColor: 'purple',
     color: 'white',
     marginBottom:10,
+  },
+  modal1: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'stretch',
+  },
+
+  modal: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    backgroundColor: 'rgba(0,0,0,0.8)',
   },
 });
 

@@ -25,8 +25,6 @@ const transparentButtonStyle = {
   BUTTON_STATE_PRIMARY: 'transparent',
 }
 
-
-
 btnStyle = { margin: 5 }
 
 class SwiperEL extends Component {
@@ -150,7 +148,7 @@ class SwiperEL extends Component {
     }
     else {
       this.setState({ cardIndex: 0 });
-      Actions.LikedList()
+      Actions.Recomm()
       return null;
 
     }
