@@ -48,7 +48,9 @@ class SwiperEL extends Component {
 
   }
   handleNoMore = () => {
-    () => Actions.Recomm()
+    this.setState({ cardIndex: 0 });
+    this.props.resetMovies()
+    Actions.Recomm()
   }
   handleYup = () => {
     const movieId = this.props.movies[this.state.cardIndex].id;
@@ -147,8 +149,9 @@ class SwiperEL extends Component {
       );
     }
     else {
-        Actions.Recomm()
-        return null;
+      this.props.resetMovies()
+      Actions.Recomm()
+      return null;
 
     }
   }

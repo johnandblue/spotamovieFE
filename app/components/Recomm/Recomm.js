@@ -62,7 +62,7 @@ class Recomm extends Component {
           </TouchableHighlight>
           <TouchableHighlight
             style={buttonStyle.start}
-            onPress={() => Actions.Login()}
+            onPress={() => Actions.SwiperEL()}
             underlayColor='#fff'>
             <Text style={buttonStyle.startText}>Back to Home Screen</Text>
           </TouchableHighlight>
