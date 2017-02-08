@@ -14,6 +14,8 @@ import MovieItem from './components/MovieItem';
 import { Actions } from 'react-native-router-flux';
 import { Spinner } from 'nachos-ui';
 import { styles, buttonStyle } from './styles/stylesLiked';
+import ActionButton from 'react-native-circular-action-menu';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 
@@ -128,12 +130,6 @@ class LikedList extends Component {
           flexDirection: 'column',
           alignItems: 'stretch'
         }}>
-        <TouchableHighlight
-          style={buttonStyle.start}
-          onPress={() => Actions.Login()}
-          underlayColor='#fff'>
-          <Text style={buttonStyle.startText}>Back to Home Screen</Text>
-        </TouchableHighlight>
         <View style={{ alignItems:'center', margin: 20}}>
           <Text style={{fontSize: 20, color: 'white'}}>
             Movies {this.state.value}
@@ -167,6 +163,21 @@ class LikedList extends Component {
             }
           </View>
         </ScrollView>
+        <ActionButton
+           buttonColor="#62C654">
+
+         <ActionButton.Item buttonColor='#94de45' title="Survey"
+           onPress={() => Actions.SwiperEL()}>
+           <Icon name="md-heart" size={20} color="white" />
+         </ActionButton.Item>
+           <ActionButton.Item buttonColor='#94de45' title="Recomm"
+             onPress={() => {Actions.Recomm()}}>
+             <Icon name="md-aperture"color="white" size={20}  style={styles.actionButtonIcon} />
+             </ActionButton.Item>
+           <ActionButton.Item buttonColor='#94de45' title="New Task" onPress={() => Actions.LogOut()}>
+             <Icon name="md-log-out" size={20} color="white" />
+           </ActionButton.Item>
+     </ActionButton>
       </View>
     );
   }

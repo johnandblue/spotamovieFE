@@ -149,8 +149,8 @@ class SwiperEL extends Component {
       );
     }
     else {
-      this.props.resetMovies()
-      Actions.Recomm()
+      this.setState({ cardIndex: 0 });
+      Actions.LikedList()
       return null;
 
     }
