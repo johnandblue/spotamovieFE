@@ -98,6 +98,7 @@ export const styles = StyleSheet.create({
   },
   spotifyIcon: {
     width: 20,
-    height: 20
+    height: 20,
+    marginRight: 5
   }
 });

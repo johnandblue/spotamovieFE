@@ -116,8 +116,8 @@ class Login extends Component {
             onPress={this.handleLogin.bind(this)}
             underlayColor='red'>
             <View style={styles.loginButtonContainer}>
-              <Image style={styles.spotifyIcon} source={require('./images/spotifyIcon.png')} />
-              <Text style={styles.startText}> SIGN IN WITH SPOTIFY</Text>
+              <Image style={styles.spotifyIcon} source={require('./images/spotifyIconBlack.png')} />
+              <Text style={styles.startText}>SIGN IN WITH SPOTIFY</Text>
             </View>
           </TouchableHighlight>
         </View>
