@@ -129,11 +129,11 @@ class Login extends Component {
     if (this.props.user.loading) {
       return (
         <View style={styles.containerLoader}>
-          <View style={styles.textView}>
+          <View style={styles.titleView}>
             <Text style={styles.title}>
               LOGGING IN...
             </Text>
-            <Spinner />
+            <Spinner color="#94de45"/>
           </View>
         </View>
       );

@@ -90,11 +90,11 @@ class SwiperEL extends Component {
     if (!movies.length || movies.length < this.props.moviesSurvey.length) {
         return (
           <View style={styles.containerLoader}>
-            <View style={styles.textView}>
+            <View style={styles.titleView}>
               <Text style={styles.title}>
                 LOADING SURVEY...
               </Text>
-              <Spinner />
+              <Spinner color ="#94de45"/>
             </View>
           </View>
         )
