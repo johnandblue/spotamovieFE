@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { styles } from './styles/Wizard';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import {
   StyleSheet,
@@ -8,6 +9,8 @@ import {
   Text,
   TouchableHighlight
 } from 'react-native';
+
+const arrowIcon = (<Icon name="md-arrow-round-forward" size={30} color="white" height={20} />);
 
 class Wizard extends Component {
   render() {
@@ -28,6 +31,11 @@ class Wizard extends Component {
             onPress={Actions.SwiperEL}
             underlayColor='#fff'>
               <Text style={styles.startText}>START WIZARD</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={Actions.SwiperEL}
+            underlayColor='#fff'>
+            <Text style={styles.arrowIcon}>{arrowIcon}</Text>
           </TouchableHighlight>
         </View>
       </View>

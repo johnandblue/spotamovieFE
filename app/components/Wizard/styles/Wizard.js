@@ -40,7 +40,9 @@ export const styles = StyleSheet.create({
   containerStart: {
     flex: 0.1,
     backgroundColor: '#62C654',
-    alignSelf: 'stretch'
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   start: {
     justifyContent: 'center',
@@ -53,5 +55,8 @@ export const styles = StyleSheet.create({
     color:'white',
     textAlign:'center',
     fontSize: 24
+  },
+  arrowIcon: {
+    marginTop: 15
   }
 });
