@@ -9,7 +9,7 @@ import {Buffer} from 'buffer';
 import { Actions } from 'react-native-router-flux';
 import { styles } from './styles/stylesLogin'
 import { Spinner } from 'nachos-ui';
-import { Wizard } from  '../components/Wizard/Wizard';
+import Wizard from  '../components/Wizard/Wizard';
 
 import {
   Animated,

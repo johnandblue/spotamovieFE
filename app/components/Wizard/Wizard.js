@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
 import { Actions } from 'react-native-router-flux';
 import { styles } from './styles/Wizard';
 
@@ -8,9 +6,7 @@ import {
   StyleSheet,
   View,
   Text,
-  TouchableHighlight,
-  Linking,
-  Button
+  TouchableHighlight
 } from 'react-native';
 
 class Wizard extends Component {
@@ -37,11 +33,4 @@ class Wizard extends Component {
   }
 }
 
-
-const mapStateToProps = (state) => ({
-  user: state.user,
-})
-
-export default connect(
-  mapStateToProps
-)(Wizard);
+export default Wizard;
