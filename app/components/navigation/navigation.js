@@ -1,7 +1,15 @@
 import React, { Component, PropTypes } from 'react';
+import base64 from 'base-64';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
+import { login, logout, loading } from '../actions/actions'
+import config from '../../config';
+import querystring from 'querystring';
+import {Buffer} from 'buffer';
 import { Actions } from 'react-native-router-flux';
+import { styles } from './styles/stylesLogin'
+import { Spinner } from 'nachos-ui';
+
 
 import {
   Animated,
@@ -26,79 +34,148 @@ const {
   PagerStyleInterpolator: NavigationPagerStyleInterpolator,
 } = NavigationCard;
 
+const generateRandomString = function(length) {
+  var text = '';
+  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-const styles = StyleSheet.create({
-  scene: {
-    flex: 1,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-    right: 0,
-    top: 0,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#23222E',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#23222E',
-    marginBottom: 5,
-  },
-});
-
-const buttonStyle = {
-  start:{
-    padding: 20,
-    margin: 50,
-    backgroundColor:'#23222E',
-    borderRadius:30,
-    borderWidth: 1,
-    borderColor: '#fff'
-  },
-  startText:{
-      color:'#fff',
-      textAlign:'center',
-      fontSize: 20
+  for (let i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
+  return text;
+};
+
+const scope = 'user-read-private user-read-email playlist-read-private';
+const state = generateRandomString(16);
+const query= ('https://accounts.spotify.com/authorize?' +
+querystring.stringify({
+  response_type: 'code',
+  client_id: config.client_id,
+  scope: scope,
+  redirect_uri: config.redirect_uri,
+  state: state
+}))
+function spotifyOauth () {
+  Linking.openURL(query);
 }
 
-class Navigation extends Component {
+
+class Login extends Component {
+
   componentDidMount() {
+
   }
 
   componentWillReceiveProps(nextProps) {
+
   }
 
+  handleOpenSpotifyURL(event) {
+    let code = event.url.match(/code=(.+)\&/);
+    code = code[1];
+    this.props.login(code);
+  }
 
-  render() {
+  handleGreeting() {
+    if (this.props.user.name !== undefined) {
+      return <Text style={styles.startText}>Welcome {this.props.user.name}</Text>
+    } else {
+      return <Text style={styles.startText}>Welcome</Text>
+    }
+  }
+
+  handleLogin() {
+    this.props.loading()
+    spotifyOauth()
+    Linking.addEventListener('url', this.handleOpenSpotifyURL.bind(this));
+
+  }
+
+  handleLogout() {
+    this.props.logout()
+    this.setState({userLogged: false})
+    console.log(this.props.user);
+  }
+
+  renderLoginButton() {
     return (
       <View style={styles.container}>
+        <View>
+          <Text>
+
+          </Text>
+        </View>
         <TouchableHighlight
-          style={buttonStyle.start}
-          onPress={Actions.SwiperEL}
-          underlayColor='#fff'>
-            <Text style={buttonStyle.startText}>Go to Survey</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={buttonStyle.start}
-          onPress={Actions.LikedList}
-          underlayColor='#fff'>
-            <Text style={buttonStyle.startText}>Go to Liked List</Text>
+          style={styles.start}
+          onPress={this.handleLogin.bind(this)}
+          underlayColor='red'>
+            <Text style={styles.startText}>SIGN IN WITH SPOTIFY</Text>
         </TouchableHighlight>
       </View>
-    );
+    )
+  }
+
+  render() {
+
+    if (this.props.user.loading) {
+      return (
+        <View style={styles.containerLoader}>
+          <View style={styles.textView}>
+            <Text style={styles.title}>
+              LOGGING IN...
+            </Text>
+            <Spinner />
+          </View>
+        </View>
+      );
+    }
+    if (this.props.user.userToken) {
+      return (
+        <View style={styles.container}>
+          <TouchableHighlight
+            style={styles.start}
+            // onPress={Actions.SwiperEL}
+            underlayColor='red'>
+            {this.handleGreeting()}
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.start}
+            onPress={Actions.SwiperEL}
+            underlayColor='#fff'>
+            <Text style={styles.startText}>Go to Survey</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.start}
+            onPress={Actions.LikedList}
+            underlayColor='#fff'>
+            <Text style={styles.startText}>Go to Liked List</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.start}
+            onPress={Actions.Recomm}
+            underlayColor='#fff'>
+            <Text style={styles.startText}>Go to Recommendation</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.start}
+            onPress={() => this.handleLogout()}
+            underlayColor='red'>
+            <Text style={styles.startText}>Logout</Text>
+          </TouchableHighlight>
+        </View>
+      );
+    } else {
+      return (
+        this.renderLoginButton()
+      )
+    }
+
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
+  loading: () => dispatch(loading()),
+  login: (code) => dispatch(login(code)),
+  logout: () => dispatch(logout())
 })
 
 const mapStateToProps = (state) => ({
@@ -109,4 +186,4 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Navigation);
+)(Login);

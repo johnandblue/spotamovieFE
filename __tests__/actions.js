@@ -1,7 +1,5 @@
 import * as ActionCreators from '../app/actions/actions'
 
-
-
 describe('Action creators for SpotifySymbol', () => {
   it('getMovieRecommendation', () => {
     const expectedAction = {
