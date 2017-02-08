@@ -10,7 +10,7 @@
     "@exponent/vector-icons": "^4.0.0",
     "base-64": "^0.1.0",
     "buffer": "^5.0.2",
-    "nachos-ui": "^0.1.1",
+    "nachos-ui": "^0.1.2",
     "querystring": "^0.2.0",
     "react": "15.4.2",
     "react-native": "0.40.0",
