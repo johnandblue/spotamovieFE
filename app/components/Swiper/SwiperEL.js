@@ -6,13 +6,15 @@ import  { styles } from './styles/SwiperEl';
 import { ButtonsGroup, Card, NoMoreCard } from './components';
 import ActionCreators from '../../actions'
 import { likeMovie, dislikeMovie } from '../../actions/actions';
-import SurveyNav from './components/SurveyNav';
+
 import LikedList from '../LikedList/LikedList';
 import { Actions } from 'react-native-router-flux';
 import Login from '../../containers/Login';
 import { Spinner, Button } from 'nachos-ui';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { themeManager } from 'nachos-ui'
+import Recomm from '../Recomm/Recomm';
+// import RecLoader from '../RecLoader/RecLoader';
 
 const iconHeart =(<Icon name="md-heart" size={40} color="white" />)
 const iconClose =(<Icon name="md-close" size={40} color="white" />)
@@ -46,9 +48,11 @@ class SwiperEL extends Component {
 
   }
   handleNoMore = () => {
-    this.setState({ cardIndex: 0 });
-    this.props.resetMovies()
-    this.props.getMoviesSurvey()
+    // this.setState({ cardIndex: 0 });
+    // this.props.resetMovies()
+    // this.props.getMoviesSurvey()
+    console.log('Actions',Actions);
+    () => Actions.Recomm()
   }
   handleYup = () => {
     const movieId = this.props.movies[this.state.cardIndex].id;
@@ -111,7 +115,7 @@ class SwiperEL extends Component {
               renderCard={data => <Card {...data} />}
               handleYup={this.handleYup}
               handleNope={this.handleNope}
-              renderNoMoreCards={() => <SurveyNav/>}
+              renderNoMoreCards={() => this.handleNoMore}
             />
           </View>
 
@@ -147,11 +151,10 @@ class SwiperEL extends Component {
       );
     }
     else {
-      return (
-        <SurveyNav
-          onHandleNoMore = {this.handleNoMore}
-        />
-      )
+      console.log(Actions);
+        Actions.Recomm()
+        return null;
+
     }
   }
 }

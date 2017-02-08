@@ -9,6 +9,7 @@ import LikedList from '../components/LikedList/LikedList';
 import Recomm from '../components/Recomm/Recomm';
 import SurveyNav from '../components/Swiper/components/SurveyNav';
 import ActionCreators from '../actions';
+import RecLoader from '../components/RecLoader/RecLoader';
 
 import {
   Animated,
@@ -38,12 +39,13 @@ class AppContainer extends Component {
    return (
     <Router>
       <Scene key="root" hideNavBar="false">
+
         <Scene key="Login" component={Login} title="Login"/>
         <Scene key="Recomm" component={Recomm} title="Recommendations" />
         <Scene key="LikedList" component={LikedList} title="Liked Movies" />
         <Scene key="SwiperEL" component={SwiperEL} title="Movie Survey" />
         <Scene key="SurveyNav" component={SurveyNav} title="" />
-
+        <Scene key="RecLoader" component={RecLoader} title="RecLoader" />
       </Scene>
     </Router>
     );
