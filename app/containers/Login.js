@@ -9,6 +9,7 @@ import {Buffer} from 'buffer';
 import { Actions } from 'react-native-router-flux';
 import { styles } from './styles/stylesLogin'
 import { Spinner } from 'nachos-ui';
+import { Wizard } from  '../components/Wizard/Wizard';
 
 import {
   Animated,
@@ -139,38 +140,7 @@ class Login extends Component {
     }
     if (this.props.user.userToken) {
       return (
-        <View style={styles.container}>
-          <TouchableHighlight
-            style={styles.start}
-            // onPress={Actions.SwiperEL}
-            underlayColor='red'>
-            {this.handleGreeting()}
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.start}
-            onPress={Actions.SwiperEL}
-            underlayColor='#fff'>
-            <Text style={styles.startText}>Go to Survey</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.start}
-            onPress={Actions.LikedList}
-            underlayColor='#fff'>
-            <Text style={styles.startText}>Go to Liked List</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.start}
-            onPress={Actions.Recomm}
-            underlayColor='#fff'>
-            <Text style={styles.startText}>Go to Recommendation</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.start}
-            onPress={() => this.handleLogout()}
-            underlayColor='red'>
-            <Text style={styles.startText}>Logout</Text>
-          </TouchableHighlight>
-        </View>
+        <Wizard/>
       );
     } else {
       return (
