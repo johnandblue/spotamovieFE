@@ -72,16 +72,16 @@ const buttonStyle = {
 class Recomm extends Component {
 
   constructor() {
-     super();
-     this.state = {modalVisible: false};
+    super();
+    this.state = {modalVisible: false};
   }
 
   openModal = () => {
-     this.setState({modalVisible: true});
+    this.setState({modalVisible: true});
   }
 
   closeModal = () => {
-     this.setState({modalVisible: false});
+    this.setState({modalVisible: false});
   }
 
   componentWillReceiveProps(nextProps) {
@@ -93,13 +93,11 @@ class Recomm extends Component {
   componentDidMount() {
     this.setState({modalVisible: false})
     this.props.getMovieRecommendation()
-
   }
 
-  newReccom = movie => {
+  newRecomm = movie => {
     this.props.getMovieRecommendation()
   }
-
 
   render() {
     console.log('recommendation: ', this.props.movieRecomm);
@@ -127,7 +125,6 @@ class Recomm extends Component {
           </Text>
 
           <TouchableHighlight
-
             onPress = {this.openModal}>
             <View style={styles.poster}>
               <Image
@@ -137,9 +134,10 @@ class Recomm extends Component {
             </View>
           </TouchableHighlight>
 
+
           <TouchableHighlight
             style={buttonStyle.start}
-            onPress={this.newReccom}
+            onPress={this.newRecomm}
             underlayColor='#fff'>
             <Text style={buttonStyle.startText}>Give me another one !</Text>
           </TouchableHighlight>
@@ -153,10 +151,10 @@ class Recomm extends Component {
           <TouchableHighlight
             onPress={this.closeModal}
             style={styles.modal1}>
-              <View style = {styles.modal}>
-                  <GridLayout/>
-                  <Text>Hide Modal</Text>
-              </View>
+            <View style = {styles.modal}>
+              <GridLayout/>
+              <Text>Hide Modal</Text>
+            </View>
           </TouchableHighlight>
         </Modal>
       </View>

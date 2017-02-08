@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
   },
   "dependencies": {
     "@exponent/vector-icons": "^4.0.0",
@@ -27,16 +27,20 @@
     "shitty-qs": "^1.0.1"
   },
   "devDependencies": {
-    "babel-jest": "18.0.0",
+    "babel-jest": "^18.0.0",
     "babel-preset-react-native": "1.9.1",
     "eslint": "^3.14.1",
     "eslint-plugin-react": "^6.9.0",
     "flow-bin": "^0.38.0",
-    "jest": "18.1.0",
+    "jest": "^18.1.0",
+    "jest-fetch-mock": "^1.0.7",
     "react-test-renderer": "15.4.2",
     "remote-redux-devtools": "^0.5.7"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "setupFiles": [
+      "./jest/setup.js"
+    ]
   }
 }

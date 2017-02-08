@@ -4,6 +4,11 @@ module.exports = {
         "commonjs": true,
         "es6": true
     },
+    "globals": {
+      "describe": true,
+      "it": true,
+      "expect": true
+    },
     "extends": "eslint:recommended",
     "installedESLint": true,
     "parserOptions": {
