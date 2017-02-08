@@ -23,8 +23,6 @@ const transparentButtonStyle = {
   BUTTON_STATE_PRIMARY: 'transparent',
 }
 
-
-
 btnStyle = { margin: 5 }
 
 class SwiperEL extends Component {

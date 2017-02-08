@@ -40,6 +40,7 @@
 		7F0EDE12901440619A07119C /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFF4CB7C700F44ABA640101D /* SimpleLineIcons.ttf */; };
 		827E356A34B14EB5A7BAC5F5 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDFF60A5E6744B485293B7C /* Ionicons.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		8B83D0061E4B8A0400CA4B1B /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B83D0041E4B891E00CA4B1B /* libRNKeychain.a */; };
 		EEFB9AED54BF4896AF70D2CF /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7528A8DB92DC4E30B022A12F /* Foundation.ttf */; };
 		FAE6094742A6455ABD536955 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD493D3FF82C4243A88260C8 /* EvilIcons.ttf */; };
 		FB1444639B9A46EBBA782E28 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D3282B741C542A58C9EAAC6 /* Entypo.ttf */; };
@@ -235,6 +236,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		8B83D0031E4B891E00CA4B1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B83CFE41E4B891E00CA4B1B /* RNKeychain.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5D82366F1B0CE05B005A9EF3;
+			remoteInfo = RNKeychain;
+		};
 		A343B9641E3BA9A90002C3EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A343B95F1E3BA9A90002C3EB /* RCTLinking.xcodeproj */;
@@ -285,6 +293,8 @@
 		7528A8DB92DC4E30B022A12F /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		8B83CFE41E4B891E00CA4B1B /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKeychain.xcodeproj; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; };
+		8B83D0071E4B8A7400CA4B1B /* spotamovieFE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = spotamovieFE.entitlements; path = spotamovieFE/spotamovieFE.entitlements; sourceTree = "<group>"; };
 		A343B95F1E3BA9A90002C3EB /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		AD493D3FF82C4243A88260C8 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		AFF4CB7C700F44ABA640101D /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -306,6 +316,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B83D0061E4B8A0400CA4B1B /* libRNKeychain.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -405,6 +416,7 @@
 		13B07FAE1A68108700A75B9A /* spotamovieFE */ = {
 			isa = PBXGroup;
 			children = (
+				8B83D0071E4B8A7400CA4B1B /* spotamovieFE.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -480,6 +492,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				8B83CFE41E4B891E00CA4B1B /* RNKeychain.xcodeproj */,
 				A343B95F1E3BA9A90002C3EB /* RCTLinking.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -524,6 +537,14 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* spotamovieFE.app */,
 				00E356EE1AD99517003FC87E /* spotamovieFETests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8B83CFE51E4B891E00CA4B1B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8B83D0041E4B891E00CA4B1B /* libRNKeychain.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -593,6 +614,11 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = W6WKBRV33E;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -655,6 +681,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = 8B83CFE51E4B891E00CA4B1B /* Products */;
+					ProjectRef = 8B83CFE41E4B891E00CA4B1B /* RNKeychain.xcodeproj */;
 				},
 				{
 					ProductGroup = 49449CDF1E49389A004807D2 /* Products */;
@@ -852,6 +882,13 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		8B83D0041E4B891E00CA4B1B /* libRNKeychain.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNKeychain.a;
+			remoteRef = 8B83D0031E4B891E00CA4B1B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		A343B9651E3BA9A90002C3EB /* libRCTLinking.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1006,6 +1043,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = spotamovieFE/spotamovieFE.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
@@ -1031,6 +1069,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = spotamovieFE/spotamovieFE.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
