@@ -42,8 +42,7 @@ export const styles = StyleSheet.create({
     top: 0,
   },
   containerWelcome: {
-    marginTop: 80,
-    flex: 0.35,
+    marginTop: 80
   },
   welcome: {
     color: 'white',
