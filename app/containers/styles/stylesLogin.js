@@ -41,19 +41,49 @@ export const styles = StyleSheet.create({
     right: 0,
     top: 0,
   },
+  containerWelcome: {
+    marginTop: 80,
+    flex: 0.35,
+  },
   welcome: {
-    fontSize: 20,
+    color: 'white',
+    fontFamily: 'Raleway-Black',
+    fontSize: 80,
     textAlign: 'center',
-    margin: 10,
+  },
+  containerSubheading: {
+    paddingTop: 30,
+    paddingRight: 70,
+    paddingLeft: 70,
+    flex: 0.45,
+  },
+  subheading: {
+    color: 'white',
+    fontFamily: 'Raleway-Medium',
+    fontSize: 16,
+    textAlign: 'center'
+  },
+  containerInstructions: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 0.1,
   },
   instructions: {
-    textAlign: 'center',
-    color: '#23222E',
-    marginBottom: 5,
+    color: 'grey',
+    fontFamily: 'Raleway-Medium',
+    fontSize: 12,
+    textAlign: 'center'
+  },
+  startContainer: {
+    marginBottom: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 0.1,
   },
   start:{
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 10,
-    margin: 10,
     backgroundColor:'#62C654',
     borderRadius:30,
     borderWidth: 1,

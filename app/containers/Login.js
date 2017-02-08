@@ -10,7 +10,6 @@ import { Actions } from 'react-native-router-flux';
 import { styles } from './styles/stylesLogin'
 import { Spinner } from 'nachos-ui';
 
-
 import {
   Animated,
   StyleSheet,
@@ -96,20 +95,30 @@ class Login extends Component {
     console.log(this.props.user);
   }
 
-  renderLoginButton() {
+  renderLoginScreen() {
     return (
       <View style={styles.container}>
-        <View>
-          <Text>
-
+        <View style={styles.containerWelcome}>
+          <Text style={styles.welcome}>
+            SPOT A MOVIE
           </Text>
         </View>
-        <TouchableHighlight
-          style={styles.start}
-          onPress={this.handleLogin.bind(this)}
-          underlayColor='red'>
-            <Text style={styles.startText}>SIGN IN WITH SPOTIFY</Text>
-        </TouchableHighlight>
+        <View style={styles.containerSubheading}>
+          <Text style={styles.subheading}>Get movie recommendations based on your music preferences</Text>
+        </View>
+        <View style={styles.containerInstructions}>
+          <Text style={styles.instructions}>Sign in with Spotify so we can process your playlists</Text>
+        </View>
+        <View style={styles.startContainer}>
+          <TouchableHighlight
+            style={styles.start}
+            onPress={this.handleLogin.bind(this)}
+            underlayColor='red'>
+            <View>
+              <Text style={styles.startText}>SIGN IN WITH SPOTIFY</Text>
+            </View>
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }
@@ -165,7 +174,7 @@ class Login extends Component {
       );
     } else {
       return (
-        this.renderLoginButton()
+        this.renderLoginScreen()
       )
     }
 
