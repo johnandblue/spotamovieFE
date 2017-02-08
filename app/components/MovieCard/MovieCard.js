@@ -3,11 +3,12 @@ import {
   StyleSheet,
   View,
   Image,
-  Text
+  Text,
+  TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
 
-// import { ColorThief } from 'color-thief';
+
 
 
 const POSTER = 'https://image.tmdb.org/t/p/w500';
@@ -16,9 +17,6 @@ const POSTER = 'https://image.tmdb.org/t/p/w500';
 class GridLayout extends Component {
 
   render() {
-    // this.fixDate(this.props.releaseDate);
-
-    console.log('movie card', this.props);
     return (
       <View style={styles.container}>
           <View style={styles.marginRow}>
@@ -49,7 +47,9 @@ class GridLayout extends Component {
 
             <View style={styles.row}>
               <View style={[styles.box, styles.box2]}>
-                <Text>Description</Text>
+                <TouchableOpacity>
+                  <Text>Description</Text>
+                </TouchableOpacity>
                 <Text>{this.props.movie.overview}</Text>
               </View>
             </View>
@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
     marginHorizontal: 50,
-    // backgroundColor: 'purple',
   },
 
   cardContainer: {

@@ -66,7 +66,6 @@ export const likeMovie = (movieId) => ({
   }
 })
 
-
 export const login = (code) => ({
   type: 'LOGIN',
   [SpotifySymbol] : {
