@@ -39,7 +39,6 @@ class AppContainer extends Component {
     <Router>
       <Scene key="root" hideNavBar="false">
         <Scene key="Login" component={Login} title="Login"/>
-        <Scene key="Wizard" component={Wizard} title="Wizard"/>
         <Scene key="Recomm" component={Recomm} title="Recommendations" />
         <Scene key="LikedList" component={LikedList} title="Liked Movies" />
         <Scene key="SwiperEL" component={SwiperEL} title="Movie Survey" />
