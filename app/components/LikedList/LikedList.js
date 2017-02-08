@@ -71,7 +71,7 @@ class LikedList extends Component {
     if (this.state.value === 'Liked') {
       this.props.unLikeMovie(movieId)
     }
-    if (this.state.value === 'Disliked') {
+    else if (this.state.value === 'Disliked') {
       this.props.unDislikeMovie(movieId)
     }
   }
