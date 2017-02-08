@@ -3,33 +3,29 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: '#23222E',
-    // flex: 1,
-    // flexDirection: 'column',
-    // alignItems: 'center',
-    // justifyContent: 'center'
+    flex: 1,
+    flexDirection: 'column'
   },
-  headingContainer: {
-    backgroundColor: 'red'
+  containerHeading: {
+    marginTop: 40,
+    paddingLeft: 13
   },
   heading: {
-    fontFamily: 'Raleway-Bold',
-    fontSize: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
+    fontFamily: 'Raleway-Medium',
+    fontSize: 38,
+    color: 'white'
   },
-  subheadingContainer: {
-    paddingTop: 30,
-    paddingRight: 70,
-    paddingLeft: 70,
+  containerSubheading: {
+    paddingTop: 20,
+    paddingLeft: 13,
+    paddingRight: 13
   },
   subheading: {
     color: 'white',
     fontFamily: 'Raleway-Medium',
-    fontSize: 16,
-    textAlign: 'center'
+    fontSize: 16
   },
-  skipContainer: {
+  containerSkip: {
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -39,17 +35,22 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center'
   },
+  containerStart: {
+    // position: 'absolute',
+    // bottom: 0,
+    backgroundColor: '#62C654',
+    alignSelf: 'stretch'
+  },
   start: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
     backgroundColor:'#62C654',
-    borderRadius:30,
-    borderWidth: 1,
+    alignSelf: 'stretch',
+    padding: 20
   },
   startText: {
     color:'white',
     textAlign:'center',
-    fontSize: 16
+    fontSize: 24
   }
 });
