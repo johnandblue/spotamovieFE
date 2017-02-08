@@ -58,6 +58,10 @@ export const dislikeMovie = (movieId) => ({
   }
 })
 
+export const skipMovie = (movieId) => ({
+  type: 'SKIP_MOVIE'
+})
+
 export const likeMovie = (movieId) => ({
   type: 'LIKE_MOVIE',
   [SpotifySymbol] : {

@@ -9,7 +9,10 @@ import { likeMovie, dislikeMovie } from '../../actions/actions';
 import SurveyNav from './components/SurveyNav';
 import LikedList from '../LikedList/LikedList';
 import { Actions } from 'react-native-router-flux';
-import Login from '../../containers/Login'
+import Login from '../../containers/Login';
+import { Button } from 'nachos-ui';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 
 
 const buttonStyle = {
@@ -28,6 +31,8 @@ const buttonStyle = {
   }
 }
 
+btnStyle = { margin: 5 }
+
 class SwiperEL extends Component {
   state = {
     cardIndex: 0
@@ -40,39 +45,40 @@ class SwiperEL extends Component {
       })
     }
   }
-
   componentDidMount() {
     this.setState({ cardIndex: 0 });
     this.props.resetMovies()
     this.props.getMoviesSurvey()
 
   }
-
   handleNoMore = () => {
     this.setState({ cardIndex: 0 });
     this.props.resetMovies()
     this.props.getMoviesSurvey()
   }
-
   handleYup = () => {
     const movieId = this.props.movies[this.state.cardIndex].id;
     this.setState({ cardIndex: this.state.cardIndex + 1 });
     this.props.likeMovie(movieId);
   }
-
   handleNope = () => {
     const movieId = this.props.movies[this.state.cardIndex].id;
     this.setState({ cardIndex: this.state.cardIndex + 1 });
     this.props.dislikeMovie(movieId);
   }
-
+  clickSkip =() => {
+    const movieId = this.props.movies[this.state.cardIndex].id;
+    this.setState({ cardIndex: this.state.cardIndex + 1 });
+    console.log('hello');
+    this.props.skipMovie(movieId);
+    this._swiper._goToNextCard();
+  }
   clickLike = () => {
     const movieId = this.props.movies[this.state.cardIndex].id;
     this.setState({ cardIndex: this.state.cardIndex + 1 });
     this.props.likeMovie(movieId);
     this._swiper._goToNextCard();
   }
-
   clickDislike = movie => {
     const movieId = this.props.movies[this.state.cardIndex].id;
     this.setState({ cardIndex: this.state.cardIndex + 1 });
@@ -98,7 +104,7 @@ class SwiperEL extends Component {
         <View
           style={{backgroundColor:'#494953', flex: 1,  alignItems: 'center'}}>
           <View
-            style={{flexDirection: 'column', alignItems:'center', marginTop: 100}}
+            style={{flexDirection: 'column', alignItems:'center', marginTop: 70}}
           >
             <Text
               style={{margin: 20, fontSize: 20, color: 'white'}}
@@ -118,51 +124,27 @@ class SwiperEL extends Component {
             style={{
               flex: 0.2,
               flexDirection: 'row',
-              margin: 20
+              margin: 30
             }}
           >
-            <TouchableOpacity
-              onPress={this.clickDislike}
-            >
-              <View
-                style={{
-                  flex: 0.2,
-                  flexDirection: 'row',
-                  margin: 20
-                }}
-              >
-                <Text style={{color: 'red'}}>
-                  NO
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-            >
-              <View
-                style={{
-                  flex: 0.2,
-                  flexDirection: 'row',
-                  margin: 20
-                }}            >
-                <Text>INFO</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity
+            <Button
+              onPress={this.clickUnlike}
+              type='danger'
+              style={btnStyle}
+              iconName='ios-thumbs-down'>
+            </Button>
+            <Button
+              onPress={this.clickSkip}
+              type='primary'
+              style={btnStyle}
+              iconName='md-arrow-dropup-circle'>
+            </Button>
+            <Button
               onPress={this.clickLike}
-            >
-              <View
-                style={{
-                  flex: 0.2,
-                  flexDirection: 'row',
-                  margin: 20
-                }}
-              >
-                <Text style={{color: 'green'}}>
-                  YES
-                </Text>
-              </View>
-            </TouchableOpacity>
+              type='success'
+              style={btnStyle}
+              iconName='ios-thumbs-up'>
+            </Button>
           </View>
         </View>
       );
@@ -181,7 +163,8 @@ const mapStateToProps = (state) => {
   return {
     movies: state.movies,
     moviesSurvey: state.moviesSurvey,
-    user: state.user
+    user: state.user,
+    moviesSkipped: state.moviesSkipped
   }
 }
 
@@ -189,7 +172,8 @@ const mapDispatchToProps = (dispatch) => ({
   resetMovies: () => dispatch(ActionCreators.resetMovies()),
   getMovieFromId: (movieId) => dispatch(ActionCreators.getMovieFromId(movieId)),
   getMoviesSurvey: () => dispatch(ActionCreators.getMoviesSurvey()),
-  likeMovie: (movieId) => {dispatch(ActionCreators.likeMovie(movieId))},
+  skipMovie: (movieId) => dispatch(ActionCreators.skipMovie(movieId)),
+  likeMovie: (movieId) => dispatch(ActionCreators.likeMovie(movieId)),
   dislikeMovie: (movieId) => dispatch(ActionCreators.dislikeMovie(movieId)),
 })
 

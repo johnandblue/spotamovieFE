@@ -54,61 +54,58 @@ export const moviesSurvey = (state = [], action) => {
       return state;
 
     case 'LIKE_MOVIE_SUCCESS':
-      return state;
-
     case 'LIKE_MOVIE_ERROR':
-      console.log('ERROR IN REDUCERS:', action.error);
-      return state;
-
     default:
       return state;
   }
 }
-const moviesLiked = (state = [], action) => {
+
+const moviesSkipped = (state = [], action) => {
+  switch (action.type) {
+
+    case 'SKIP_MOVIE':
+    default:
+      return state;
+  }
+
+}
+
+export const moviesLiked = (state = [], action) => {
   switch (action.type) {
 
     case 'GET_MOVIES_LIKED_SUCCESS':
     return action.response.movies;
 
     case 'GET_MOVIES_LIKED_ERROR':
-    console.log('ERROR IN REDUCERS:', action.error);
-    return state;
-
     default:
-    return state;
+      return state;
   }
 }
-const moviesDisliked = (state = [], action) => {
+export const moviesDisliked = (state = [], action) => {
   switch (action.type) {
 
     case 'GET_MOVIES_DISLIKED_SUCCESS':
     return action.response.movies;
 
     case 'GET_MOVIES_DISLIKED_ERROR':
-    console.log('ERROR IN REDUCERS:', action.error);
-    return state;
-
     default:
-    return state;
+      return state;
   }
 }
 
-const movieRecomm = (state = { movieId: undefined }, action) => {
+export const movieRecomm = (state = { movieId: undefined }, action) => {
   switch (action.type) {
 
     case 'GET_MOVIE_RECOMMENDATION_SUCCESS':
       return { movieId: action.response.movieId };
 
     case 'GET_MOVIE_RECOMMENDATION_FAILURE':
-      console.log('ERROR IN REDUCERS:', action.error);
-      return state;
-
     default:
       return state;
   }
 }
 
-const user = (state = {...{loading: false}}, action) => {
+export const user = (state = {...{loading: false}}, action) => {
   switch (action.type) {
     case 'LOADING':
       return {...{loading: true}}
@@ -143,7 +140,7 @@ export const parseMoviesSurvey = (moviesArray) => {
 }
 
 const reducers = combineReducers({
-  movies, user, moviesSurvey, moviesLiked, moviesDisliked, movieRecomm
+  movies, user, moviesSurvey, moviesLiked, moviesDisliked, movieRecomm, moviesSkipped
 
 })
 
