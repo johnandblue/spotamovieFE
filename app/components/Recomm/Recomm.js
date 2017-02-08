@@ -5,6 +5,7 @@ import ActionCreators from '../../actions';
 import { Spinner } from 'nachos-ui';
 import { styles, buttonStyle } from './styles/Recomm';
 import { Actions } from 'react-native-router-flux';
+import RecLoader from '../RecLoader/RecLoader';
 
 const POSTER = 'https://image.tmdb.org/t/p/w500';
 
@@ -37,14 +38,7 @@ class Recomm extends Component {
 
     if (!movie) {
       return (
-        <View style={styles.containerLoader}>
-          <View style={styles.textView}>
-            <Text style={styles.title}>
-              LOADING YOUR RECOMMENDATIONS...
-            </Text>
-            <Spinner />
-          </View>
-        </View>
+        <RecLoader/>
       )
     }
 
@@ -68,7 +62,7 @@ class Recomm extends Component {
           </TouchableHighlight>
           <TouchableHighlight
             style={buttonStyle.start}
-            onPress={() => Actions.Login()}
+            onPress={() => Actions.SwiperEL()}
             underlayColor='#fff'>
             <Text style={buttonStyle.startText}>Back to Home Screen</Text>
           </TouchableHighlight>
