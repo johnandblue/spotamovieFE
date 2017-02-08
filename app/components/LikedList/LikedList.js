@@ -67,14 +67,23 @@ class LikedList extends Component {
     this.filteredMovies = this.props.movies.filter((val) => this.props.moviesLiked.includes(val.id.toString()))
   }
 
+  handleRemove = (movieId) => {
+    if (this.state.value === 'Liked') {
+      this.props.unLikeMovie(movieId)
+    }
+    else if (this.state.value === 'Disliked') {
+      this.props.unDislikeMovie(movieId)
+    }
+  }
+
   mapFilteredMovies = () => {
-      this.filteredMovies.map((movie) =>
-                      <MovieItem
-                        key={movie.id}
-                        title={movie.title}
-                        image={movie.poster_path}
-                      />
-                    )
+    this.filteredMovies.map((movie) =>
+      <MovieItem
+        key={movie.id}
+        title={movie.title}
+        image={movie.poster_path}
+      />
+    )
   }
 
   clickUnlike = () => {
@@ -106,7 +115,6 @@ class LikedList extends Component {
   render() {
     let title='';
     const movies = this.props.movies;
-    console.log('this.filteredMovies: ', this.filteredMovies);
 
     if (this.state.cardIndex > movies.length - 1) {
       return (
@@ -151,6 +159,7 @@ class LikedList extends Component {
                   key={movie.id}
                   title={movie.title}
                   image={movie.poster_path}
+                  onRemove={() => this.handleRemove(movie.id)}
                 />
               )
             }
@@ -176,6 +185,8 @@ const mapDispatchToProps = (dispatch) => ({
   getMoviesLiked: () => dispatch(ActionCreators.getMoviesLiked()),
   getMovieFromId: (movieId) => dispatch(ActionCreators.getMovieFromId(movieId)),
   unLikeMovie: (movieId) => dispatch(ActionCreators.unLikeMovie(movieId)),
+  unDislikeMovie: (movieId) => dispatch(ActionCreators.unDislikeMovie(movieId)),
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LikedList);
