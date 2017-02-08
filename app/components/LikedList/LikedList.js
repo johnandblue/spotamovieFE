@@ -53,7 +53,15 @@ class LikedList extends Component {
         this.props.getMovieFromId(movieId)
       })
     }
-    this.filteredMovies = this.props.movies.filter((val) => this.props.moviesLiked.includes(val.id.toString()))
+    if(this.props.movies !== nextProps.movies) {
+      this.filteredMovies = this.props.movies.filter((val) => {
+        if (this.state.value === 'Liked')
+          return this.props.moviesLiked.includes(val.id.toString())
+        else {
+          return this.props.moviesDisliked.includes(val.id.toString())
+        }
+      })
+    }
   }
 
   handleRemove = (movieId) => {
