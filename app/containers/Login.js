@@ -9,7 +9,7 @@ import {Buffer} from 'buffer';
 import { Actions } from 'react-native-router-flux';
 import { styles } from './styles/stylesLogin'
 import { Spinner } from 'nachos-ui';
-
+import Wizard from  '../components/Wizard/Wizard';
 
 import {
   Animated,
@@ -96,20 +96,30 @@ class Login extends Component {
     console.log(this.props.user);
   }
 
-  renderLoginButton() {
+  renderLoginScreen() {
     return (
       <View style={styles.container}>
-        <View>
-          <Text>
-
+        <View style={styles.containerWelcome}>
+          <Text style={styles.welcome}>
+            SPOT A MOVIE
           </Text>
         </View>
-        <TouchableHighlight
-          style={styles.start}
-          onPress={this.handleLogin.bind(this)}
-          underlayColor='red'>
-            <Text style={styles.startText}>SIGN IN WITH SPOTIFY</Text>
-        </TouchableHighlight>
+        <View style={styles.containerSubheading}>
+          <Text style={styles.subheading}>Get movie recommendations based on your music preferences</Text>
+        </View>
+        <View style={styles.containerInstructions}>
+          <Text style={styles.instructions}>Sign in with Spotify so we can process your playlists</Text>
+        </View>
+        <View style={styles.startContainer}>
+          <TouchableHighlight
+            style={styles.start}
+            onPress={this.handleLogin.bind(this)}
+            underlayColor='red'>
+            <View>
+              <Text style={styles.startText}>SIGN IN WITH SPOTIFY</Text>
+            </View>
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }
@@ -119,53 +129,22 @@ class Login extends Component {
     if (this.props.user.loading) {
       return (
         <View style={styles.containerLoader}>
-          <View style={styles.textView}>
+          <View style={styles.titleView}>
             <Text style={styles.title}>
               LOGGING IN...
             </Text>
-            <Spinner />
+            <Spinner color="#94de45"/>
           </View>
         </View>
       );
     }
     if (this.props.user.userToken) {
       return (
-        <View style={styles.container}>
-          <TouchableHighlight
-            style={styles.start}
-            // onPress={Actions.SwiperEL}
-            underlayColor='red'>
-            {this.handleGreeting()}
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.start}
-            onPress={Actions.SwiperEL}
-            underlayColor='#fff'>
-            <Text style={styles.startText}>Go to Survey</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.start}
-            onPress={Actions.LikedList}
-            underlayColor='#fff'>
-            <Text style={styles.startText}>Go to Liked List</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.start}
-            onPress={Actions.Recomm}
-            underlayColor='#fff'>
-            <Text style={styles.startText}>Go to Recommendation</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.start}
-            onPress={() => this.handleLogout()}
-            underlayColor='red'>
-            <Text style={styles.startText}>Logout</Text>
-          </TouchableHighlight>
-        </View>
+        <Wizard/>
       );
     } else {
       return (
-        this.renderLoginButton()
+        this.renderLoginScreen()
       )
     }
 
