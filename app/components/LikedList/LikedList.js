@@ -98,6 +98,13 @@ class LikedList extends Component {
     }
   };
 
+  handleLogout() {
+    console.log('logoutting');
+    this.props.logout()
+    this.setState({userLogged: false})
+    Actions.Login()
+  }
+
   _onValueChange = (value) => {
     this.setState({
       value: value,
@@ -174,7 +181,7 @@ class LikedList extends Component {
              onPress={() => {Actions.Recomm()}}>
              <Icon name="md-aperture"color="white" size={20}  style={styles.actionButtonIcon} />
              </ActionButton.Item>
-           <ActionButton.Item buttonColor='#94de45' title="New Task" onPress={() => Actions.LogOut()}>
+           <ActionButton.Item buttonColor='#94de45' title="New Task" onPress={() => {this.handleLogout()}}>
              <Icon name="md-log-out" size={20} color="white" />
            </ActionButton.Item>
      </ActionButton>
@@ -194,6 +201,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
+  logout: () => dispatch(ActionCreators.logout()),
   getMoviesDisliked: () => dispatch(ActionCreators.getMoviesDisliked()),
   getMoviesLiked: () => dispatch(ActionCreators.getMoviesLiked()),
   getMovieFromId: (movieId) => dispatch(ActionCreators.getMovieFromId(movieId)),

@@ -39,6 +39,12 @@ class Recomm extends Component {
   newRecomm = movie => {
     this.props.getMovieRecommendation()
   }
+  handleLogout() {
+    console.log('logoutting');
+    this.props.logout()
+    this.setState({userLogged: false})
+    Actions.Login()
+  }
 
   render() {
     const movie = this.props.movie;
@@ -81,7 +87,7 @@ class Recomm extends Component {
             </View>
           </TouchableHighlight>
         </Modal>
-        
+
         <ActionButton  buttonColor="#94de45">
 
           <ActionButton.Item buttonColor='#94de45' title="Survey"
@@ -100,7 +106,10 @@ class Recomm extends Component {
           </ActionButton.Item>
 
 
-           <ActionButton.Item buttonColor='#94de45' title="New Task" onPress={() => Actions.LogOut()}>
+           <ActionButton.Item
+             buttonColor='#94de45'
+             title="New Task"
+             onPress={() => {this.handleLogout()}}>
              <Icon name="md-log-out" size={20} color="white" />
            </ActionButton.Item>
 
@@ -120,6 +129,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
+  logout: () => dispatch(ActionCreators.logout()),
   getMovieFromId: (movieId) => dispatch(ActionCreators.getMovieFromId(movieId)),
   getMovieRecommendation: () => dispatch(ActionCreators.getMovieRecommendation()),
 })

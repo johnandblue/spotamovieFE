@@ -93,7 +93,6 @@ class Login extends Component {
   handleLogout() {
     this.props.logout()
     this.setState({userLogged: false})
-    console.log(this.props.user);
   }
 
   renderLoginScreen() {
