@@ -7,6 +7,9 @@ import config from '../../config';
 import querystring from 'querystring';
 import {Buffer} from 'buffer';
 import { Actions } from 'react-native-router-flux';
+import { styles } from './styles/stylesLogin'
+import { Spinner } from 'nachos-ui';
+
 
 import {
   Animated,
@@ -55,48 +58,6 @@ function spotifyOauth () {
   Linking.openURL(query);
 }
 
-const styles = StyleSheet.create({
-  scene: {
-    flex: 1,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-    right: 0,
-    top: 0,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#333',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
-const buttonStyle = {
-  start:{
-    padding: 10,
-    margin: 10,
-    backgroundColor:'rgba(0,0,0,0)',
-    borderRadius:30,
-    borderWidth: 1,
-    borderColor: '#fff'
-  },
-  startText:{
-      color:'white',
-      textAlign:'center',
-      fontSize: 16
-  }
-}
 
 class Login extends Component {
 
@@ -116,9 +77,9 @@ class Login extends Component {
 
   handleGreeting() {
     if (this.props.user.name !== undefined) {
-      return <Text style={buttonStyle.startText}>Welcome {this.props.user.name}</Text>
+      return <Text style={styles.startText}>Welcome {this.props.user.name}</Text>
     } else {
-      return <Text style={buttonStyle.startText}>Welcome</Text>
+      return <Text style={styles.startText}>Welcome</Text>
     }
   }
 
@@ -138,11 +99,16 @@ class Login extends Component {
   renderLoginButton() {
     return (
       <View style={styles.container}>
+        <View>
+          <Text>
+
+          </Text>
+        </View>
         <TouchableHighlight
-          style={buttonStyle.start}
+          style={styles.start}
           onPress={this.handleLogin.bind(this)}
           underlayColor='red'>
-            <Text style={buttonStyle.startText}>Login</Text>
+            <Text style={styles.startText}>SIGN IN WITH SPOTIFY</Text>
         </TouchableHighlight>
       </View>
     )
@@ -152,11 +118,12 @@ class Login extends Component {
 
     if (this.props.user.loading) {
       return (
-        <View style={{ backgroundColor: '#333', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
-          <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 80 }}>
-            <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
+        <View style={styles.containerLoader}>
+          <View style={styles.textView}>
+            <Text style={styles.title}>
               LOGGING IN...
             </Text>
+            <Spinner />
           </View>
         </View>
       );
@@ -165,34 +132,34 @@ class Login extends Component {
       return (
         <View style={styles.container}>
           <TouchableHighlight
-            style={buttonStyle.start}
+            style={styles.start}
             // onPress={Actions.SwiperEL}
             underlayColor='red'>
             {this.handleGreeting()}
           </TouchableHighlight>
           <TouchableHighlight
-            style={buttonStyle.start}
+            style={styles.start}
             onPress={Actions.SwiperEL}
             underlayColor='#fff'>
-            <Text style={buttonStyle.startText}>Go to Survey</Text>
+            <Text style={styles.startText}>Go to Survey</Text>
           </TouchableHighlight>
           <TouchableHighlight
-            style={buttonStyle.start}
+            style={styles.start}
             onPress={Actions.LikedList}
             underlayColor='#fff'>
-            <Text style={buttonStyle.startText}>Go to Liked List</Text>
+            <Text style={styles.startText}>Go to Liked List</Text>
           </TouchableHighlight>
           <TouchableHighlight
-            style={buttonStyle.start}
+            style={styles.start}
             onPress={Actions.Recomm}
             underlayColor='#fff'>
-            <Text style={buttonStyle.startText}>Go to Recommendation</Text>
+            <Text style={styles.startText}>Go to Recommendation</Text>
           </TouchableHighlight>
           <TouchableHighlight
-            style={buttonStyle.start}
+            style={styles.start}
             onPress={() => this.handleLogout()}
             underlayColor='red'>
-            <Text style={buttonStyle.startText}>Logout</Text>
+            <Text style={styles.startText}>Logout</Text>
           </TouchableHighlight>
         </View>
       );

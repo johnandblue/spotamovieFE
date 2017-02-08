@@ -12,24 +12,13 @@ import { connect } from 'react-redux';
 import ActionCreators from '../../actions'
 import MovieItem from './components/MovieItem';
 import { Actions } from 'react-native-router-flux';
+import { Spinner } from 'nachos-ui';
+import { styles, buttonStyle } from './styles/stylesLiked';
 
 
 
-const buttonStyle = {
-  start:{
-    padding: 20,
-    margin: 50,
-    backgroundColor:'#494953',
-    borderRadius:30,
-    borderWidth: 1,
-    borderColor: '#fff'
-  },
-  startText:{
-      color:'#fff',
-      textAlign:'center',
-      fontSize: 20
-  }
-}
+
+
 
 class LikedList extends Component {
   constructor (props){
@@ -64,7 +53,15 @@ class LikedList extends Component {
         this.props.getMovieFromId(movieId)
       })
     }
-    this.filteredMovies = this.props.movies.filter((val) => this.props.moviesLiked.includes(val.id.toString()))
+    if(this.props.movies !== nextProps.movies) {
+      this.filteredMovies = this.props.movies.filter((val) => {
+        if (this.state.value === 'Liked')
+          return this.props.moviesLiked.includes(val.id.toString())
+        else {
+          return this.props.moviesDisliked.includes(val.id.toString())
+        }
+      })
+    }
   }
 
   handleRemove = (movieId) => {
@@ -85,13 +82,6 @@ class LikedList extends Component {
       />
     )
   }
-
-  clickUnlike = () => {
-    const movieId = this.props.movies[this.state.cardIndex].id;
-    this.setState({ cardIndex: this.state.cardIndex + 1 });
-    this.props.unLikeMovie(movieId);
-  }
-
 
   _onChange = (event) => {
     this.setState({
@@ -118,22 +108,34 @@ class LikedList extends Component {
 
     if (this.state.cardIndex > movies.length - 1) {
       return (
-        <Text style={{margin: 20, fontSize: 20, color: 'blue'}}>
-          Waiting for Movie Reccomendation
-        </Text>
+        <View style={styles.containerLoader}>
+          <View style={styles.textView}>
+            <Text style={styles.title}>
+              LOADING YOUR MOVIES...
+            </Text>
+            <Spinner />
+          </View>
+        </View>
+
       );
     }
 
     return (
       <View
         style={{
-          backgroundColor:'#494953',
+          backgroundColor:'#23222E',
           flex: 1,
           flexDirection: 'column',
           alignItems: 'stretch'
         }}>
-        <View style={{ alignItems:'center', marginTop: 70}}>
-          <Text style={{margin: 20, fontSize: 20, color: 'white'}}>
+        <TouchableHighlight
+          style={buttonStyle.start}
+          onPress={() => Actions.Login()}
+          underlayColor='#fff'>
+          <Text style={buttonStyle.startText}>Back to Home Screen</Text>
+        </TouchableHighlight>
+        <View style={{ alignItems:'center', margin: 20}}>
+          <Text style={{fontSize: 20, color: 'white'}}>
             Movies {this.state.value}
           </Text>
         </View>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StatusBar, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import SwipeCards from 'react-native-swipe-cards';
-import styles from './styles/SwiperEl';
+import  { styles } from './styles/SwiperEl';
 import { ButtonsGroup, Card, NoMoreCard } from './components';
 import ActionCreators from '../../actions'
 import { likeMovie, dislikeMovie } from '../../actions/actions';
@@ -10,26 +10,20 @@ import SurveyNav from './components/SurveyNav';
 import LikedList from '../LikedList/LikedList';
 import { Actions } from 'react-native-router-flux';
 import Login from '../../containers/Login';
-import { Button } from 'nachos-ui';
+import { Spinner, Button } from 'nachos-ui';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { themeManager } from 'nachos-ui'
 
+const iconHeart =(<Icon name="md-heart" size={40} color="white" />)
+const iconClose =(<Icon name="md-close" size={40} color="white" />)
 
-
-const buttonStyle = {
-  start:{
-    padding: 20,
-    margin: 50,
-    backgroundColor:'#494953',
-    borderRadius:30,
-    borderWidth: 1,
-    borderColor: '#fff'
-  },
-  startText:{
-      color:'#fff',
-      textAlign:'center',
-      fontSize: 20
-  }
+const buttonTheme = themeManager.getStyle('Button')
+const transparentButtonStyle = {
+  ...buttonTheme,
+  BUTTON_STATE_PRIMARY: 'transparent',
 }
+
+
 
 btnStyle = { margin: 5 }
 
@@ -91,61 +85,64 @@ class SwiperEL extends Component {
     const movies = this.props.movies;
     if (!movies.length || movies.length < this.props.moviesSurvey.length) {
         return (
-          <View style={{ backgroundColor: '#494953', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
-            <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 80 }}>
-              <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
+          <View style={styles.containerLoader}>
+            <View style={styles.textView}>
+              <Text style={styles.title}>
                 LOADING SURVEY...
               </Text>
+              <Spinner />
             </View>
           </View>
         )
     } else if (movies[this.state.cardIndex]) {
       return (
-        <View
-          style={{backgroundColor:'#494953', flex: 1,  alignItems: 'center'}}>
-          <View
-            style={{flexDirection: 'column', alignItems:'center', marginTop: 70}}
-          >
+        <View style={styles.container}>
+          <View style={styles.titleView}>
             <Text
-              style={{margin: 20, fontSize: 20, color: 'white'}}
-            >
+              style={styles.title}>
               {movies[this.state.cardIndex].title}
             </Text>
           </View>
-          <SwipeCards
-            ref={ref => this._swiper = ref}
-            cards={movies}
-            renderCard={data => <Card {...data} />}
-            handleYup={this.handleYup}
-            handleNope={this.handleNope}
-            renderNoMoreCards={() => <SurveyNav/>}
-          />
-          <View
-            style={{
-              flex: 0.2,
-              flexDirection: 'row',
-              margin: 30
-            }}
-          >
-            <Button
-              onPress={this.clickUnlike}
-              type='danger'
-              style={btnStyle}
-              iconName='ios-thumbs-down'>
-            </Button>
-            <Button
-              onPress={this.clickSkip}
-              type='primary'
-              style={btnStyle}
-              iconName='md-arrow-dropup-circle'>
-            </Button>
-            <Button
+
+          <View style={styles.posterView}>
+            <SwipeCards
+              ref={ref => this._swiper = ref}
+              cards={movies}
+              renderCard={data => <Card {...data} />}
+              handleYup={this.handleYup}
+              handleNope={this.handleNope}
+              renderNoMoreCards={() => <SurveyNav/>}
+            />
+          </View>
+
+          <View style={styles.buttonRow1}>
+            <TouchableHighlight
+              style={styles.btnHighLightClose}
+              onPress={this.clickDislike}
+              underlayColor='#ED462C'
+              >
+              <Text style={styles.txtHighLight}>{iconClose}</Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              style={styles.btnHighLightHeart}
               onPress={this.clickLike}
-              type='success'
-              style={btnStyle}
-              iconName='ios-thumbs-up'>
+              underlayColor='#94de45'
+              >
+              <Text style={styles.txtHighLight}>{iconHeart}</Text>
+            </TouchableHighlight>
+          </View>
+
+          <View style={styles.buttonView2}>
+            <Button
+              type='primary'
+              theme={transparentButtonStyle}
+              onPress={this.clickSkip}
+              // iconName='md-close'
+              >
+              I don't know
             </Button>
           </View>
+
         </View>
       );
     }

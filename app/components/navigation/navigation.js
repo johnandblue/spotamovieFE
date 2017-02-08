@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#494953',
+    backgroundColor: '#23222E',
   },
   welcome: {
     fontSize: 20,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   instructions: {
     textAlign: 'center',
-    color: '#333333',
+    color: '#23222E',
     marginBottom: 5,
   },
 });
@@ -58,7 +58,7 @@ const buttonStyle = {
   start:{
     padding: 20,
     margin: 50,
-    backgroundColor:'#494953',
+    backgroundColor:'#23222E',
     borderRadius:30,
     borderWidth: 1,
     borderColor: '#fff'

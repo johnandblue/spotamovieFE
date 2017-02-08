@@ -75,7 +75,8 @@ export const unLikeMovie = (movieId) => ({
   [SpotifySymbol] : {
     endpoint: `/movies/${movieId}/unlike`,
     method: 'POST',
-  }
+  },
+  success: getMoviesLiked
 })
 
 export const unDislikeMovie = (movieId) => ({
@@ -83,7 +84,8 @@ export const unDislikeMovie = (movieId) => ({
   [SpotifySymbol] : {
     endpoint: `/movies/${movieId}/undislike`,
     method: 'POST',
-  }
+  },
+  success: getMoviesDisliked
 })
 
 export const resetMovies = () => ({

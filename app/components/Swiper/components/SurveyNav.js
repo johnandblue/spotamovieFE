@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#333',
+    backgroundColor: '#23222E',
   },
   welcome: {
     fontSize: 20,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   instructions: {
     textAlign: 'center',
-    color: '#333333',
+    color: '#23222E',
     marginBottom: 5,
   },
 });
@@ -95,7 +95,7 @@ class SurveyNav extends Component {
         </TouchableHighlight>
         <TouchableHighlight
           style={buttonStyle.start}
-          onPress={Actions.Login}
+          onPress={() => Actions.Login()}
           underlayColor='#fff'>
           <Text style={buttonStyle.startText}>Back to Home Screen</Text>
         </TouchableHighlight>
