@@ -33,11 +33,11 @@ module.exports = {
      "no-underscore-dangle": 0,
      "no-use-before-define": 0,
      "no-unused-expressions": 0,
-     "no-void": 2,
-     "brace-style": [2, "1tbs"],
-     "camelcase": [1, {"properties": "never"}],
+     "no-void": 0,
+     "brace-style": [0, "1tbs"],
+     "camelcase": [0, {"properties": "never"}],
      "consistent-return": 0,
-     "comma-style": [2, "last"],
+     "comma-style": [0, "last"],
      "complexity": [1, 12],
      "func-names": 0,
      "guard-for-in": 2,
@@ -49,6 +49,7 @@ module.exports = {
      "strict": [0],
      "valid-jsdoc": 2,
      "wrap-iife": [2, "any"],
-     "yoda": [1, "never"]
+     "yoda": [1, "never"],
+     "requireSemicolons":0
    },
 };

@@ -101,7 +101,7 @@ const moviesDisliked = (state = [], action) => {
 const user = (state = {}, action) => {
   switch (action.type) {
     case 'LOGIN_SUCCESS':
-      return {...action.response};
+      return { ...action.response };
     case 'LOGOUT':
       return {};
     default:
@@ -110,11 +110,17 @@ const user = (state = {}, action) => {
 }
 
 export const parseMovie = (data) => {
+  console.log('data', data)
   return {
     seen: false,
     poster_path: data.poster_path,
     id: data.id,
-    title: data.title
+    title: data.title,
+    overview: data.overview,
+    voteAverage: data.vote_average,
+    genres: data.genres,
+    releaseDate: data.release_date,
+    backdropPath: data.backdrop_path
   }
 }
 

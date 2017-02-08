@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, StatusBar, TouchableOpacity, Image, TouchableHighlight } from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity, Image, TouchableHighlight, Modal } from 'react-native';
 import { connect } from 'react-redux';
 import ActionCreators from '../../actions';
 
-const POSTER = 'https://image.tmdb.org/t/p/w500';
+import GridLayout from '../MovieCard/MovieCard';
 
+const POSTER = 'https://image.tmdb.org/t/p/w500';
 
 const styles = {
   posterCard: {
@@ -19,10 +20,7 @@ const styles = {
     shadowOpacity: 0.8,
   },
   poster: {
-    flex: 1,
-    height: null,
-    width: null,
-    borderRadius: 10
+    borderRadius: 10,
   },
   container: {
     flex: 1,
@@ -30,90 +28,145 @@ const styles = {
     alignItems: 'center',
     backgroundColor: '#494953',
   },
-}
+
+  container1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 70,
+  },
+
+  modal1: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'stretch',
+  },
+
+  modal: {
+    flex: 1,
+    backgroundColor: 'silver',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    backgroundColor: 'rgba(0,0,0,0.8)',
+  },
+};
 
 const buttonStyle = {
-  start:{
-    padding: 20,
-    margin: 50,
-    backgroundColor:'#494953',
-    borderRadius:30,
+  start: {
+    padding: 10,
+    marginTop: 30,
+    backgroundColor: '#494953',
+    borderRadius: 30,
     borderWidth: 1,
-    borderColor: '#fff'
+    borderColor: '#fff',
   },
-  startText:{
-      color:'#fff',
-      textAlign:'center',
-      fontSize: 20
-  }
-}
+  startText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 16,
+  },
+};
 
 class Recomm extends Component {
 
-  state = {
-    cardIndex: 0
-  };
+  constructor() {
+     super();
+     this.state = {modalVisible: false};
+  }
+
+  openModal = () => {
+     this.setState({modalVisible: true});
+  }
+
+  closeModal = () => {
+     this.setState({modalVisible: false});
+  }
 
   componentWillReceiveProps(nextProps) {
     if(this.props.movieRecomm !== nextProps.movieRecomm) {
-      console.log(nextProps);
       this.props.getMovieFromId(nextProps.movieRecomm);
     }
-    // this.setState({ cardIndex: this.state.cardIndex + 1 });
   }
 
   componentDidMount() {
+    this.setState({modalVisible: false})
     this.props.getMovieRecommendation()
-    console.log('this.state.cardIndex in didmount: ', this.state.cardIndex);
+
   }
 
-
   newReccom = movie => {
-    console.log('cardIndex in newReccom: ', this.state.cardIndex)
     this.props.getMovieRecommendation()
-    console.log(this.props.movies);
   }
 
 
   render() {
-
+    console.log('recommendation: ', this.props.movieRecomm);
     const movie = this.props.movie;
-    console.log(movie);
+    console.log('movie: ', movie);
 
     if (!movie) {
-      return <View><Text>No recommendation</Text></View>;
+      return (
+        <View style={{ backgroundColor: '#494953', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
+          <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 80 }}>
+            <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
+              LOADING...
+            </Text>
+
+          </View>
+        </View>
+      )
     }
 
     return (
       <View style={{ backgroundColor: '#494953', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
-        <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 100 }}>
+        <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 80 }}>
           <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
             Recommendations
           </Text>
-          <View style={styles.poster}>
-            <Image
-              style={styles.posterCard}
-              source={{uri: `${POSTER}/${movie.poster_path}`}}
-            />
-          </View>
-        </View>
-        <View style={styles.container}>
+
+          <TouchableHighlight
+
+            onPress = {this.openModal}>
+            <View style={styles.poster}>
+              <Image
+                style={styles.posterCard}
+                source={{uri: `${POSTER}/${movie.poster_path}`}}
+              />
+            </View>
+          </TouchableHighlight>
+
           <TouchableHighlight
             style={buttonStyle.start}
             onPress={this.newReccom}
             underlayColor='#fff'>
-              <Text style={buttonStyle.startText}>Give me another one !</Text>
+            <Text style={buttonStyle.startText}>Give me another one !</Text>
           </TouchableHighlight>
         </View>
+
+        <Modal
+          animationType="fade"
+          transparent
+          visible={this.state.modalVisible}
+          >
+          <TouchableHighlight
+            onPress={this.closeModal}
+            style={styles.modal1}>
+              <View style = {styles.modal}>
+                  <GridLayout/>
+                  <Text>Hide Modal</Text>
+              </View>
+          </TouchableHighlight>
+        </Modal>
       </View>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-
   return {
-    movie: state.movies.find(movie =>  movie.id === state.movieRecomm.movieId),
+    movie: state.movies.find(movie => movie.id === parseInt(state.movieRecomm.movieId, 10)),
     movieRecomm: state.movieRecomm.movieId,
     user: state.user
   }

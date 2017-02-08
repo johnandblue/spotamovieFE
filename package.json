@@ -17,6 +17,7 @@
     "react-native-extended-stylesheet": "^0.3.1",
     "react-native-router-flux": "^3.37.0",
     "react-native-spotify": "^1.0.1",
+    "react-native-star-rating": "^1.0.6",
     "react-native-swipe-cards": "^0.1.0",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
