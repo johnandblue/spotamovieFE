@@ -6,6 +6,8 @@ import { Spinner } from 'nachos-ui';
 import { styles, buttonStyle } from './styles/Recomm';
 import { Actions } from 'react-native-router-flux';
 import MovieCard from '../MovieCard/MovieCard';
+import ActionButton from 'react-native-circular-action-menu';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const POSTER = 'https://image.tmdb.org/t/p/w500';
 
@@ -16,13 +18,13 @@ class Recomm extends Component {
       this.state = {modalVisible: false};
     }
 
-    openModal = () => {
-      this.setState({modalVisible: true});
-    }
+  openModal = () => {
+    this.setState({modalVisible: true});
+  }
 
-    closeModal = () => {
-      this.setState({modalVisible: false});
-    }
+  closeModal = () => {
+    this.setState({modalVisible: false});
+  }
 
   componentWillReceiveProps(nextProps) {
     if(this.props.movieRecomm !== nextProps.movieRecomm) {
@@ -71,19 +73,6 @@ class Recomm extends Component {
             </View>
           </TouchableHighlight>
 
-          <TouchableHighlight
-            style={buttonStyle.start}
-            onPress={this.newRecomm}
-            underlayColor='#fff'>
-            <Text style={buttonStyle.startText}>Give me another one !</Text>
-          </TouchableHighlight>
-
-          <TouchableHighlight
-            style={buttonStyle.start}
-            onPress={() => Actions.Login()}
-            underlayColor='#fff'>
-            <Text style={buttonStyle.startText}>Back to Home Screen</Text>
-          </TouchableHighlight>
         </View>
 
         <Modal
@@ -99,6 +88,31 @@ class Recomm extends Component {
             </View>
           </TouchableHighlight>
         </Modal>
+
+        <ActionButton bgColor="rgba(100,255,0,0.5)" buttonColor="#62C654">
+
+          <ActionButton.Item buttonColor='#62C654' title="Survey"
+            onPress={Actions.SwiperEL}>
+            <Icon name="md-heart" size={20} color="white" />
+          </ActionButton.Item>
+
+          <ActionButton.Item buttonColor='#62C654'
+            title="Notifications" onPress={() => {this.newRecomm}}>
+            <Icon name="md-repeat"color="white" size={20}  style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+
+          <ActionButton.Item buttonColor='#62C654' title="LikedList"
+            onPress={() => {Actions.LikedList()}}>
+            <Icon name="md-aperture"color="white" size={20}  style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+
+
+           <ActionButton.Item buttonColor='#62C654' title="New Task" onPress={() => Actions.LogOut()}>
+             <Icon name="md-log-out" size={20} color="white" />
+           </ActionButton.Item>
+
+        </ActionButton>
+
       </View>
     )
   }

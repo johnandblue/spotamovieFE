@@ -41,6 +41,10 @@
 		827E356A34B14EB5A7BAC5F5 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDFF60A5E6744B485293B7C /* Ionicons.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8B83D0061E4B8A0400CA4B1B /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B83D0041E4B891E00CA4B1B /* libRNKeychain.a */; };
+		8B83D0111E4B949E00CA4B1B /* LucidaGrande.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B83D0101E4B949E00CA4B1B /* LucidaGrande.ttf */; };
+		8B83D0121E4B949E00CA4B1B /* LucidaGrande.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B83D0101E4B949E00CA4B1B /* LucidaGrande.ttf */; };
+		8B83D0141E4B94A600CA4B1B /* LucidaGrandeBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B83D0131E4B94A600CA4B1B /* LucidaGrandeBold.ttf */; };
+		8B83D0151E4B94A600CA4B1B /* LucidaGrandeBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B83D0131E4B94A600CA4B1B /* LucidaGrandeBold.ttf */; };
 		EEFB9AED54BF4896AF70D2CF /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7528A8DB92DC4E30B022A12F /* Foundation.ttf */; };
 		FAE6094742A6455ABD536955 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD493D3FF82C4243A88260C8 /* EvilIcons.ttf */; };
 		FB1444639B9A46EBBA782E28 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D3282B741C542A58C9EAAC6 /* Entypo.ttf */; };
@@ -295,6 +299,8 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8B83CFE41E4B891E00CA4B1B /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKeychain.xcodeproj; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; };
 		8B83D0071E4B8A7400CA4B1B /* spotamovieFE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = spotamovieFE.entitlements; path = spotamovieFE/spotamovieFE.entitlements; sourceTree = "<group>"; };
+		8B83D0101E4B949E00CA4B1B /* LucidaGrande.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LucidaGrande.ttf; sourceTree = "<group>"; };
+		8B83D0131E4B94A600CA4B1B /* LucidaGrandeBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LucidaGrandeBold.ttf; sourceTree = "<group>"; };
 		A343B95F1E3BA9A90002C3EB /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		AD493D3FF82C4243A88260C8 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		AFF4CB7C700F44ABA640101D /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -457,7 +463,9 @@
 				49449D051E4A1599004807D2 /* Raleway-Medium.ttf */,
 				49449D021E4A157C004807D2 /* Raleway-Black.ttf */,
 				49449CFF1E4A156D004807D2 /* Raleway-Bold.ttf */,
+				8B83D0101E4B949E00CA4B1B /* LucidaGrande.ttf */,
 				5D3282B741C542A58C9EAAC6 /* Entypo.ttf */,
+				8B83D0131E4B94A600CA4B1B /* LucidaGrandeBold.ttf */,
 				AD493D3FF82C4243A88260C8 /* EvilIcons.ttf */,
 				B2CF080DCBE34C9697BAE3BC /* FontAwesome.ttf */,
 				7528A8DB92DC4E30B022A12F /* Foundation.ttf */,
@@ -912,7 +920,9 @@
 			files = (
 				49449CB41E4933D4004807D2 /* Fonts in Resources */,
 				49449D071E4A1599004807D2 /* Raleway-Medium.ttf in Resources */,
+				8B83D0121E4B949E00CA4B1B /* LucidaGrande.ttf in Resources */,
 				49449D011E4A156E004807D2 /* Raleway-Bold.ttf in Resources */,
+				8B83D0151E4B94A600CA4B1B /* LucidaGrandeBold.ttf in Resources */,
 				49449D041E4A157C004807D2 /* Raleway-Black.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -922,6 +932,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49449CB31E4933D4004807D2 /* Fonts in Resources */,
+				8B83D0111E4B949E00CA4B1B /* LucidaGrande.ttf in Resources */,
 				49449D061E4A1599004807D2 /* Raleway-Medium.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
@@ -936,6 +947,7 @@
 				67BD065918EB4874A2603ECF /* Octicons.ttf in Resources */,
 				7F0EDE12901440619A07119C /* SimpleLineIcons.ttf in Resources */,
 				74BF4F31E8B248F397F8988A /* Zocial.ttf in Resources */,
+				8B83D0141E4B94A600CA4B1B /* LucidaGrandeBold.ttf in Resources */,
 				49449D031E4A157C004807D2 /* Raleway-Black.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -61,11 +61,20 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
     marginHorizontal: 50,
+
   },
 
   cardContainer: {
     flex: 3,
     justifyContent: 'space-between',
+    shadowColor: 'silver',
+    shadowRadius: 4,
+    shadowOpacity: 0.8,
+    shadowOffset: {
+      width: 0,
+      height: 0
+    }
+
   },
 
   backdrop: {
@@ -77,14 +86,28 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     paddingLeft: 100,
-    paddingTop: 10
+    paddingTop: 10,
+    color: 'goldenrod'
   },
 
   date: {
     fontFamily: 'Raleway',
     fontSize: 10,
-    marginHorizontal: 100
+    marginHorizontal: 100,
+    color: 'goldenrod'
+
   },
+
+  description: {
+    fontFamily: 'LucidaGrande',
+    fontSize: 12,
+  },
+
+  overview: {
+    fontFamily: 'LucidaGrande',
+    fontSize: 10,
+  },
+
   thumbnail: {
     flex: 1,
     position: 'absolute',
@@ -92,6 +115,7 @@ const styles = StyleSheet.create({
     left: 10,
     width: 70,
     height: 100,
+    borderColor: 'silver'
   },
 
 
@@ -127,7 +151,7 @@ const styles = StyleSheet.create({
     padding: 10
   },
   box3: {
-    backgroundColor: 'orange'
+    backgroundColor: '#254441'
   },
 
 });
