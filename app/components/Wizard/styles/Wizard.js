@@ -8,7 +8,8 @@ export const styles = StyleSheet.create({
   },
   containerHeading: {
     marginTop: 40,
-    paddingLeft: 13
+    paddingLeft: 13,
+    flex: 0.2
   },
   heading: {
     fontFamily: 'Raleway-Medium',
@@ -16,9 +17,9 @@ export const styles = StyleSheet.create({
     color: 'white'
   },
   containerSubheading: {
-    paddingTop: 20,
     paddingLeft: 13,
-    paddingRight: 13
+    paddingRight: 13,
+    flex: 0.6
   },
   subheading: {
     color: 'white',
@@ -28,16 +29,16 @@ export const styles = StyleSheet.create({
   containerSkip: {
     justifyContent: 'center',
     alignItems: 'center',
+    flex: 0.1
   },
   skip: {
     color: 'grey',
     fontFamily: 'Raleway-Medium',
-    fontSize: 12,
+    fontSize: 14,
     textAlign: 'center'
   },
   containerStart: {
-    // position: 'absolute',
-    // bottom: 0,
+    flex: 0.1,
     backgroundColor: '#62C654',
     alignSelf: 'stretch'
   },
