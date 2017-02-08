@@ -86,11 +86,18 @@ export const styles = StyleSheet.create({
     backgroundColor:'#62C654',
     borderRadius:30,
     borderWidth: 1,
-    // borderColor: '#fff'
+    // width: 250
   },
   startText:{
-      color:'white',
-      textAlign:'center',
-      fontSize: 16
+    color:'white',
+    textAlign:'center',
+    fontSize: 16
+  },
+  loginButtonContainer: {
+    flexDirection: 'row'
+  },
+  spotifyIcon: {
+    width: 20,
+    height: 20
   }
 });

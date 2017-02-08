@@ -20,7 +20,8 @@ import {
   AppRegistry,
   TouchableHighlight,
   Linking,
-  Button
+  Button,
+  Image
 } from 'react-native';
 
 const {
@@ -114,8 +115,9 @@ class Login extends Component {
             style={styles.start}
             onPress={this.handleLogin.bind(this)}
             underlayColor='red'>
-            <View>
-              <Text style={styles.startText}>SIGN IN WITH SPOTIFY</Text>
+            <View style={styles.loginButtonContainer}>
+              <Image style={styles.spotifyIcon} source={require('./images/spotifyIcon.png')} />
+              <Text style={styles.startText}> SIGN IN WITH SPOTIFY</Text>
             </View>
           </TouchableHighlight>
         </View>
