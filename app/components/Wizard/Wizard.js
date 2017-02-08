@@ -23,7 +23,12 @@ class Wizard extends Component {
           <Text style={styles.subheading}>This app is young, so we need to create a base of movie preferences to detect connections with your music taste.</Text>
         </View>
         <View style={styles.containerSkip}>
-          <Text style={styles.skip}>SKIP IT</Text>
+          <TouchableHighlight
+            style={styles.skipButton}
+            onPress={Actions.Recomm}
+            underlayColor='#23222E'>
+            <Text style={styles.skipText}>SKIP IT</Text>
+          </TouchableHighlight>
         </View>
         <View style={styles.containerStart}>
           <TouchableHighlight

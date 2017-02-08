@@ -31,7 +31,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 0.1
   },
-  skip: {
+  skipButton: {
+  },
+  skipText: {
     color: 'grey',
     fontFamily: 'Raleway-Medium',
     fontSize: 14,
