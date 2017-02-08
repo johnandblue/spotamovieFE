@@ -86,6 +86,10 @@ export const resetMovies = () => ({
   type: 'RESET_MOVIES'
 })
 
+export const loading = () => ({
+  type: 'LOADING'
+})
+
 export const logout = () => ({
   type: 'LOGOUT'
 })

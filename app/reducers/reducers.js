@@ -108,8 +108,10 @@ const movieRecomm = (state = { movieId: undefined }, action) => {
   }
 }
 
-const user = (state = {}, action) => {
+const user = (state = {...{loading: false}}, action) => {
   switch (action.type) {
+    case 'LOADING':
+      return {...{loading: true}}
     case 'LOGIN_SUCCESS':
       return {...action.response};
     case 'LOGOUT':
