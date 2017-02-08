@@ -1,5 +1,7 @@
 import * as ActionCreators from '../app/actions/actions'
 
+
+
 describe('Action creators for SpotifySymbol', () => {
   it('getMovieRecommendation', () => {
     const expectedAction = {
@@ -70,7 +72,8 @@ describe('Action creators for SpotifySymbol', () => {
       [ActionCreators.SpotifySymbol] : {
         endpoint: `/movies/${movieId}/unlike`,
         method: 'POST'
-      }
+      },
+      success: ActionCreators.getMoviesLiked
     }
     expect(ActionCreators.unLikeMovie(movieId)).toEqual(expectedAction);
   })
@@ -81,7 +84,8 @@ describe('Action creators for SpotifySymbol', () => {
       [ActionCreators.SpotifySymbol] : {
         endpoint: `/movies/${movieId}/undislike`,
         method: 'POST'
-      }
+      },
+      success: ActionCreators.getMoviesDisliked
     }
     expect(ActionCreators.unDislikeMovie(movieId)).toEqual(expectedAction);
   })
