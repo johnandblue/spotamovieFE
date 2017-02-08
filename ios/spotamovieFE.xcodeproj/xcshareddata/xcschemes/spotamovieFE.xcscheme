@@ -124,6 +124,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "spotamovie"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
