@@ -56,12 +56,15 @@ class Recomm extends Component {
     }
 
     return (
-      <View style={{ backgroundColor: '#23222E', flexDirection: 'column', flex: 1,  alignItems: 'center' }}>
-        <View style={{ flexDirection: 'column', alignItems: 'center', marginTop: 40 }}>
-          <Text style={{ margin: 20, fontSize: 20, color: 'white' }}>
+      <View style={styles.container}>
+
+        <View style={styles.titleView}>
+          <Text style={styles.title}>
             Recommendations
           </Text>
+        </View>
 
+        <View style={styles.posterView}>
           <TouchableHighlight
             onPress = {this.openModal}>
             <View style={styles.poster}>
@@ -71,8 +74,8 @@ class Recomm extends Component {
               />
             </View>
           </TouchableHighlight>
-
         </View>
+
 
         <Modal
           animationType="fade"
@@ -88,33 +91,34 @@ class Recomm extends Component {
           </TouchableHighlight>
         </Modal>
 
-        <ActionButton  buttonColor="#94de45">
+        <View style={styles.buttonRow1}>
+          <ActionButton  buttonColor="#94de45">
 
-          <ActionButton.Item buttonColor='#94de45' title="Survey"
-            onPress={() => {Actions.SwiperEL()}}>
-            <Icon name="md-heart" size={20} color="white" />
-          </ActionButton.Item>
+            <ActionButton.Item buttonColor='#94de45' title="Survey"
+              onPress={() => {Actions.SwiperEL()}}>
+              <Icon name="md-heart" size={20} color="white" />
+            </ActionButton.Item>
 
-          <ActionButton.Item buttonColor='#94de45'
-            title="Notifications" onPress={() => {this.newRecomm()}}>
-            <Icon name="md-repeat"color="white" size={20}  style={styles.actionButtonIcon} />
-          </ActionButton.Item>
+            <ActionButton.Item buttonColor='#94de45'
+              title="Notifications" onPress={() => {this.newRecomm()}}>
+              <Icon name="md-repeat"color="white" size={20}  style={styles.actionButtonIcon} />
+            </ActionButton.Item>
 
-          <ActionButton.Item buttonColor='#94de45' title="LikedList"
-            onPress={() => {Actions.LikedList()}}>
-            <Icon name="md-aperture"color="white" size={20}  style={styles.actionButtonIcon} />
-          </ActionButton.Item>
+            <ActionButton.Item buttonColor='#94de45' title="LikedList"
+              onPress={() => {Actions.LikedList()}}>
+              <Icon name="md-aperture"color="white" size={20}  style={styles.actionButtonIcon} />
+            </ActionButton.Item>
 
 
-           <ActionButton.Item
-             buttonColor='#94de45'
-             title="New Task"
-             onPress={() => {this.handleLogout()}}>
-             <Icon name="md-log-out" size={20} color="white" />
-           </ActionButton.Item>
+             <ActionButton.Item
+               buttonColor='#94de45'
+               title="Logout"
+               onPress={() => {this.handleLogout()}}>
+               <Icon name="md-log-out" size={20} color="white" />
+             </ActionButton.Item>
 
-        </ActionButton>
-
+          </ActionButton>
+        </View>
       </View>
     )
   }

@@ -137,8 +137,24 @@ class LikedList extends Component {
           flexDirection: 'column',
           alignItems: 'stretch'
         }}>
-        <View style={{ alignItems:'center', margin: 20}}>
-          <Text style={{fontSize: 20, color: 'white'}}>
+        <View style={{
+          flex: 0.1,
+          // backgroundColor: 'pink',
+          flexDirection: 'column',
+          alignItems:'center',
+          justifyContent: 'center',
+          marginTop: 20,
+        }}>
+          <Text style={{
+            fontFamily: 'Raleway-Bold',
+            fontSize: 30,
+            justifyContent: 'center',
+            alignItems: 'center',
+            textAlign: 'center',
+            // backgroundColor: 'purple',
+            color: 'white',
+            marginBottom:0
+          }}>
             Movies {this.state.value}
           </Text>
         </View>
@@ -170,21 +186,33 @@ class LikedList extends Component {
             }
           </View>
         </ScrollView>
-        <ActionButton
-           buttonColor="#62C654">
+        <View
+          style={{
+            bottom: 60
+          }}>
+          <ActionButton
+            buttonColor="#94de45">
+            <ActionButton.Item
+              buttonColor='#94de45'
+              title="Survey"
+              onPress={() => Actions.SwiperEL()}>
+              <Icon name="md-heart" size={20} color="white" />
+            </ActionButton.Item>
+            <ActionButton.Item
+              buttonColor='#94de45'
+              title="Recomm"
+              onPress={() => {Actions.Recomm()}}>
+              <Icon name="md-aperture"color="white" size={20}  style={styles.actionButtonIcon} />
+            </ActionButton.Item>
+            <ActionButton.Item
+              buttonColor='#94de45'
+              title="Logout"
+              onPress={() => {this.handleLogout()}}>
+              <Icon name="md-log-out" size={20} color="white" />
+            </ActionButton.Item>
+          </ActionButton>
+        </View>
 
-         <ActionButton.Item buttonColor='#94de45' title="Survey"
-           onPress={() => Actions.SwiperEL()}>
-           <Icon name="md-heart" size={20} color="white" />
-         </ActionButton.Item>
-           <ActionButton.Item buttonColor='#94de45' title="Recomm"
-             onPress={() => {Actions.Recomm()}}>
-             <Icon name="md-aperture"color="white" size={20}  style={styles.actionButtonIcon} />
-             </ActionButton.Item>
-           <ActionButton.Item buttonColor='#94de45' title="New Task" onPress={() => {this.handleLogout()}}>
-             <Icon name="md-log-out" size={20} color="white" />
-           </ActionButton.Item>
-     </ActionButton>
       </View>
     );
   }
