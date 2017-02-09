@@ -7,7 +7,9 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
-// import { color } from 'dominant-color';
+import Icon from 'react-native-vector-icons/Ionicons';
+
+const iconPulse =(<Icon name="md-pulse" size={16} color="goldenrod" />)
 
 const POSTER = 'https://image.tmdb.org/t/p/w500';
 
@@ -33,6 +35,7 @@ class MovieCard extends Component {
               <View style={[styles.box, styles.box3]}>
                 <Text style={styles.title}>{this.props.movie.title}</Text>
                 <Text style={styles.date}>{this.props.movie.releaseDate}</Text>
+                <Text style={styles.voteAverage}>{iconPulse}  {this.props.movie.voteAverage}/10</Text>
               </View>
 
               <Image
@@ -92,20 +95,26 @@ const styles = StyleSheet.create({
 
   date: {
     fontFamily: 'Raleway',
-    fontSize: 10,
+    fontSize: 12,
+    marginHorizontal: 100,
+    color: 'grey'
+  },
+
+  voteAverage: {
+    fontFamily: 'Raleway',
+    fontSize: 12,
     marginHorizontal: 100,
     color: 'goldenrod'
-
   },
 
   description: {
     fontFamily: 'Raleway-Medium',
-    fontSize: 12,
+    fontSize: 16,
   },
 
   overview: {
     fontFamily: 'Raleway-Medium',
-    fontSize: 10,
+    fontSize: 14,
   },
 
   thumbnail: {
