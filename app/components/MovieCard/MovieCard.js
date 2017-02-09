@@ -13,10 +13,16 @@ const iconPulse =(<Icon name="md-pulse" size={16} color="goldenrod" />)
 
 const POSTER = 'https://image.tmdb.org/t/p/w500';
 
+
 class MovieCard extends Component {
 
 
   render() {
+    const overview = this.props.movie.overview;
+    const lengthOv = 312;
+    let trimmedOv  = overview.length > lengthOv ?
+                    overview.substring(0, lengthOv) + "..." :
+                    overview;
     return (
 
       <View style={styles.container}>
@@ -48,7 +54,7 @@ class MovieCard extends Component {
               <View style={[styles.box, styles.box2]}>
                 <Text style={styles.description}>Description</Text>
                 <Text></Text>
-                <Text style={styles.overview}>{this.props.movie.overview}</Text>
+                <Text style={styles.overview}>{trimmedOv}</Text>
               </View>
             </View>
           </View>
@@ -108,13 +114,13 @@ const styles = StyleSheet.create({
   },
 
   description: {
-    fontFamily: 'Raleway-Medium',
+    fontFamily: 'Raleway-Bold',
     fontSize: 16,
   },
 
   overview: {
     fontFamily: 'Raleway-Medium',
-    fontSize: 14,
+    fontSize: 13,
   },
 
   thumbnail: {
