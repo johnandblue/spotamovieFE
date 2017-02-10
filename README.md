@@ -13,7 +13,7 @@ Our app solves that problem for you!
 Spot A Movie is a mobile app, developed in React Native that allows users to connect with their Spotify accounts, and get movie recommendations based on their Spotify playlists.
 
 ![spotamovie app](./Landing.png)
-![spotamovie app](./Swiper.png)
+![spotamovie app](./SwiperEl.png)
 ![spotamovie app](./Recomm.png)
 ![spotamovie app](./List.png)
 
