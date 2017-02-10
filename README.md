@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/johnandblue/spotamovieFE.svg?branch=master)](https://travis-ci.org/johnandblue/spotamovieFE) 
+[![Build Status](https://travis-ci.org/johnandblue/spotamovieFE.svg?branch=develop)](https://travis-ci.org/johnandblue/spotamovieFE) 
 
 # SPOT A MOVIE
 
@@ -36,7 +36,7 @@ Key points:
 
 
 ## Tests
-[![Build Status](https://travis-ci.org/johnandblue/spotamovieFE.svg?branch=master)](https://travis-ci.org/johnandblue/spotamovieFE)
+[![Build Status](https://travis-ci.org/johnandblue/spotamovieFE.svg?branch=develop)](https://travis-ci.org/johnandblue/spotamovieFE)
 
 The  tests are running using [Jest](https://facebook.github.io/jest/). 
 and continuos integration on [Travis](https://travis-ci.org/johnandblue/spotamovieFE)
