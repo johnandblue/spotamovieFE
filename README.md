@@ -39,7 +39,7 @@ Key points:
 [![Build Status](https://travis-ci.org/johnandblue/spotamovieFE.svg?branch=develop)](https://travis-ci.org/johnandblue/spotamovieFE)
 
 The  tests are running using [Jest](https://facebook.github.io/jest/). 
-and continuos integration on [Travis](https://travis-ci.org/johnandblue/spotamovieFE)
+and continuos integration on [Travis](https://travis-ci.org/johnandblue/spotamovieFE).
 To run tests: `npm test`
 
 ## Tech Stack
