@@ -14,6 +14,8 @@ Spot A Movie is a mobile app, developed in React Native that allows users to con
 
 ![spotamovie app](./Landing.png)
 ![spotamovie app](./Swiper.png)
+![spotamovie app](./Recomm.png)
+![spotamovie app](./List.png)
 
 ## Installation
 
