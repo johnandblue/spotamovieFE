@@ -9,6 +9,7 @@ import RecLoader from '../RecLoader/RecLoader';
 import MovieCard from '../MovieCard/MovieCard';
 import ActionButton from 'react-native-circular-action-menu';
 import Icon from 'react-native-vector-icons/Ionicons';
+import TabBarNavigation from '../foot/tab-bar-navigation'
 const POSTER = 'https://image.tmdb.org/t/p/w500';
 
 class Recomm extends Component {
@@ -90,8 +91,8 @@ class Recomm extends Component {
             </View>
           </TouchableHighlight>
         </Modal>
-
-        <View style={styles.buttonRow1}>
+        <TabBarNavigation ref='tab'/>
+        {/* <View style={styles.buttonRow1}>
           <ActionButton  buttonColor="#94de45">
 
             <ActionButton.Item buttonColor='#94de45' title="Survey"
@@ -118,7 +119,7 @@ class Recomm extends Component {
              </ActionButton.Item>
 
           </ActionButton>
-        </View>
+        </View> */}
       </View>
     )
   }
