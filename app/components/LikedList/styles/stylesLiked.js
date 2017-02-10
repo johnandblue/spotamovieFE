@@ -1,66 +1,51 @@
-import EStyleSheet from 'react-native-extended-stylesheet';
+import { StyleSheet } from 'react-native';
 
-const styles = EStyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: '$blackColor'
-  },
-  movieContainer: {
-    flex: 1,
-  },
+export const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1
-  },
-  movieImageContainer: {
-    height: '35%',
-    width: '45%',
-    marginHorizontal: '1.5%',
-    shadowOffset: {
-      width: 1,
-      height: 1,
-    },
-    shadowColor: 'black',
-    shadowOpacity: 0.8
-  },
-  movieImage: {
+    backgroundColor: '#23222E',
     flex: 1,
-    width: null,
-    height: null
-  },
-  deleteButton: {
-    marginTop: '1%',
-    width: '45%',
-    height: '7%',
-    marginHorizontal: '1.5%',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: 'column',
     alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '$redColor'
   },
-  deleteText: {
-    color: '$redColor',
-    fontSize: 16
-  },
-  getMeMovieContainer: {
+  containerLoader: {
+    backgroundColor: '#23222E',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-  getMovieButton: {
+  titleView: {
+    flex: 0.1,
+    // backgroundColor: 'pink',
+    flexDirection: 'column',
+    alignItems:'center',
+    justifyContent: 'center',
+    marginTop: 40,
+  },
+  title: {
+    fontFamily: 'Raleway-Bold',
+    fontSize: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '$blueColor',
-    padding: 40,
-    flexDirection: 'row'
-  },
-  getMovieText: {
-    color: '$blueColor',
-    fontSize: 16
+    textAlign: 'center',
+    // backgroundColor: 'purple',
+    color: 'white',
+    marginBottom:10,
   }
 });
 
-export default styles;
+export const buttonStyle = StyleSheet.create({
+  start:{
+    padding: 5,
+    marginTop: 40,
+    backgroundColor:'#23222E',
+    borderRadius:30,
+    borderWidth: 1,
+    borderColor: '#fff'
+  },
+  startText:{
+      color:'#fff',
+      textAlign:'center',
+      fontSize: 16
+  }
+})

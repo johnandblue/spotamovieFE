@@ -58,14 +58,15 @@ export const dislikeMovie = (movieId) => ({
   }
 })
 
+export const skipMovie = (movieId) => ({
+  type: 'SKIP_MOVIE'
+})
+
 export const likeMovie = (movieId) => ({
   type: 'LIKE_MOVIE',
   [SpotifySymbol] : {
     endpoint: `/movies/${movieId}/like`,
     method: 'POST',
-    data: {
-      movieId
-    }
   }
 })
 
@@ -74,7 +75,8 @@ export const unLikeMovie = (movieId) => ({
   [SpotifySymbol] : {
     endpoint: `/movies/${movieId}/unlike`,
     method: 'POST',
-  }
+  },
+  success: getMoviesLiked
 })
 
 export const unDislikeMovie = (movieId) => ({
@@ -82,11 +84,16 @@ export const unDislikeMovie = (movieId) => ({
   [SpotifySymbol] : {
     endpoint: `/movies/${movieId}/undislike`,
     method: 'POST',
-  }
+  },
+  success: getMoviesDisliked
 })
 
 export const resetMovies = () => ({
   type: 'RESET_MOVIES'
+})
+
+export const loading = () => ({
+  type: 'LOADING'
 })
 
 export const logout = () => ({

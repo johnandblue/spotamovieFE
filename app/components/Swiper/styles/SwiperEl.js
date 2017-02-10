@@ -1,43 +1,99 @@
-import EStyleSheet from 'react-native-extended-stylesheet';
+import { StyleSheet } from 'react-native';
 
-const styles = EStyleSheet.create({
-  root: {
+export const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#23222E',
     flex: 1,
-    backgroundColor: '$blackColor',
-    justifyContent: 'center',
+    flexDirection: 'column',
     alignItems: 'center',
-    paddingTop: '2%'
   },
-  titleContainer: {
+  containerLoader: {
+    backgroundColor: '#23222E',
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  titleView: {
     flex: 0.1,
+    // backgroundColor: 'pink',
+    flexDirection: 'column',
+    alignItems:'center',
+    justifyContent: 'center',
+    marginTop: 40,
+  },
+  title: {
+    fontFamily: 'Raleway-Bold',
+    fontSize: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: 5
+    textAlign: 'center',
+    // backgroundColor: 'purple',
+    color: 'white',
+    marginBottom:10,
   },
-  yupAndNopeStyle: {
-    position: 'absolute',
-    top: '25%',
-    left: '20%',
+  posterView: {
+    flex: 0.6,
+    // backgroundColor:'cyan',
+    paddingRight: 60,
+    paddingLeft: 60,
+    alignItems: 'center'
   },
-  nopeTextStyle: {
-    color: '$redColor',
-    fontFamily: 'montserrat-bold',
-    fontSize: 75,
+  buttonRow1: {
+    marginTop: 20,
+    flex: 0.1,
+    // backgroundColor: 'yellow',
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: 5,
+    width: 230,
+    justifyContent: 'space-between'
   },
-  yupTextStyle: {
-    color: '$blueColor',
-    fontFamily: 'montserrat-bold',
-    fontSize: 75
+  buttonView1: {
+    // flex: 0.1,
+    // backgroundColor:'deeppink',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'row',
   },
-  titleStyle: {
-    fontSize: 20,
-    color: '#fff',
-    fontFamily: 'montserrat-regular'
+  buttonView2: {
+    flex: 0.1,
+    // backgroundColor:'chartreuse',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 10,
+    width: 200
   },
-  swiperContainer: {
-    flex: 1,
-    backgroundColor: '$blackColor'
+  btnStyle: {
+    // flex: 1,
+    margin: 5
+  },
+  btnHighLightHeart:{
+    height: 70,
+    width: 70,
+    justifyContent: 'center',
+    padding: 10,
+    margin: 10,
+    backgroundColor:'#94de45',
+    borderRadius:35,
+    borderWidth: 2,
+    borderColor: 'rgba(0,0,0,0)'
+  },
+  btnHighLightClose:{
+    height: 70,
+    width: 70,
+    justifyContent: 'center',
+    padding: 10,
+    margin: 10,
+    backgroundColor:'#ED462C',
+    borderRadius:35,
+    borderWidth: 2,
+    borderColor: 'rgba(0,0,0,0)'
+  },
+  txtHighLight:{
+    marginTop:5,
+    justifyContent: 'center',
+    color:'#94de45',
+    textAlign:'center',
   }
 });
-
-export default styles;
