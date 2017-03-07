@@ -53,3 +53,5 @@ fastlane/Preview.html
 fastlane/screenshots
 
 bower_components
+
+config.js
