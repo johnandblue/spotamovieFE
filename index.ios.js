@@ -9,7 +9,7 @@ import api      from './app/lib/api.js';
 import AppContainer from './app/containers/AppContainer'
 import Login from './app/containers/Login';
 import { SpotifySymbol, TMDBSymbol } from './app/actions/actions';
-import config from '../../config';
+import config from './config';
 
 
 import {
